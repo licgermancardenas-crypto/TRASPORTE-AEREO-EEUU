@@ -11,6 +11,8 @@ annotation __PBI_TimeIntelligenceEnabled = 0
 
 annotation PBI_QueryOrder = ["RutaDatos", "Medidas", "fRutasMes", "fPatrones", "fDetalle", "dMes", "dAerolinea", "dOrigen", "dDestino", "dDiaSemana", "dHora", "dCausaCancelacion"]
 
+annotation PBI_ProTooling = ["DevMode"]
+
 ref table Medidas
 ref table fRutasMes
 ref table fPatrones
@@ -22,3 +24,6 @@ ref table dDestino
 ref table dDiaSemana
 ref table dHora
 ref table dCausaCancelacion
+
+ref cultureInfo es-ES
+

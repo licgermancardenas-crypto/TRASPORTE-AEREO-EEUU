@@ -1,15 +1,18 @@
 table dDiaSemana
+	lineageTag: e5e355f8-b720-4b1c-9d98-a0a638579b3e
 
 	column DiaSemanaNum
 		dataType: int64
-		formatString: 0
 		isHidden
 		isKey
+		formatString: 0
+		lineageTag: 99db0d0f-a6ca-4bdc-8b22-72ab85e96977
 		summarizeBy: none
 		sourceColumn: DiaSemanaNum
 
 	column DiaSemana
 		dataType: string
+		lineageTag: d4b5c05e-b384-4710-98e5-82f19866746b
 		summarizeBy: none
 		sourceColumn: DiaSemana
 		sortByColumn: DiaSemanaNum

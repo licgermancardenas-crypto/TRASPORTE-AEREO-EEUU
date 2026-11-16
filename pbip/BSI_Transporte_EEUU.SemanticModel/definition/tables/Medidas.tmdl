@@ -1,128 +1,158 @@
 table Medidas
+	lineageTag: 1460b258-f141-4d23-b4bf-d7bc2bc0b550
 
 	/// Vuelos programados reportados a BTS
 	measure Vuelos = SUM ( fRutasMes[Vuelos] )
 		formatString: #,0
 		displayFolder: 1 Volumen
+		lineageTag: 6410b993-ae9f-46ea-b0e0-aa203dd7c6a8
 
 	measure 'Vuelos Cancelados' = SUM ( fRutasMes[Cancelados] )
 		formatString: #,0
 		displayFolder: 1 Volumen
+		lineageTag: 1ad24dc4-c501-4aee-9a73-1d589d719692
 
 	measure 'Vuelos Desviados' = SUM ( fRutasMes[Desviados] )
 		formatString: #,0
 		displayFolder: 1 Volumen
+		lineageTag: 1c45dd19-3a02-4b1c-87ed-2e8a5cdd3b57
 
 	/// Vuelos que llegaron a destino (base para puntualidad, criterio BTS)
 	measure 'Vuelos Operados' = [Vuelos] - [Vuelos Cancelados] - [Vuelos Desviados]
 		formatString: #,0
 		displayFolder: 1 Volumen
+		lineageTag: f68b2e9d-d5c0-4e3c-94e8-4ec733d323f3
 
 	/// Llegadas 15+ min tarde
 	measure 'Vuelos Demorados' = SUM ( fRutasMes[LlegadasDemoradas] )
 		formatString: #,0
 		displayFolder: 1 Volumen
+		lineageTag: 09ab39fd-5c5b-4af0-b632-ac0b03f969e0
 
 	measure 'Vuelos a Tiempo' = [Vuelos Operados] - [Vuelos Demorados]
 		formatString: #,0
 		displayFolder: 1 Volumen
+		lineageTag: 1915459d-3430-4ce5-a060-470b32868bec
 
 	measure 'Millas Voladas' = SUM ( fRutasMes[Millas] )
 		formatString: #,0
 		displayFolder: 1 Volumen
+		lineageTag: ce8f2156-4a8b-42c4-aec1-a1f7b706cbd8
 
 	/// Llegadas con menos de 15 min de demora / vuelos operados
 	measure '% A Tiempo' = DIVIDE ( [Vuelos a Tiempo], [Vuelos Operados] )
 		formatString: 0.0%
 		displayFolder: 2 Puntualidad
+		lineageTag: eee082e8-30d1-4908-b266-fe1222b33a8a
 
 	measure '% Demorados' = DIVIDE ( [Vuelos Demorados], [Vuelos Operados] )
 		formatString: 0.0%
 		displayFolder: 2 Puntualidad
+		lineageTag: 20042192-e3cc-45b3-a511-043bec8c7c4c
 
 	measure '% Cancelados' = DIVIDE ( [Vuelos Cancelados], [Vuelos] )
 		formatString: 0.00%
 		displayFolder: 2 Puntualidad
+		lineageTag: 354f6b90-5979-494d-ae3e-be01adec0d56
 
 	measure '% Desviados' = DIVIDE ( [Vuelos Desviados], [Vuelos] )
 		formatString: 0.00%
 		displayFolder: 2 Puntualidad
+		lineageTag: c4711936-22fc-4238-9533-da415d3de37d
 
 	measure '% Salidas Demoradas' = DIVIDE ( SUM ( fRutasMes[SalidasDemoradas] ), [Vuelos] - [Vuelos Cancelados] )
 		formatString: 0.0%
 		displayFolder: 2 Puntualidad
+		lineageTag: 96b92d06-416e-4366-8123-16d565a3f0f4
 
 	/// Promedio de todos los vuelos operados (negativo = llegó antes)
 	measure 'Demora Promedio Llegada' = DIVIDE ( SUM ( fRutasMes[SumaDemoraLlegada] ), SUM ( fRutasMes[NDemoraLlegada] ) )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
+		lineageTag: e4cd6ddb-1dbe-443b-aa81-6730e2f84a36
 
 	measure 'Demora Promedio Salida' = DIVIDE ( SUM ( fRutasMes[SumaDemoraSalida] ), SUM ( fRutasMes[NDemoraSalida] ) )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
+		lineageTag: 1acb9f19-4483-4ca2-8e0b-bec18bd84ce2
 
 	/// Demora media solo de los vuelos que llegaron 15+ min tarde
 	measure 'Demora Promedio de Demorados' = DIVIDE ( SUM ( fRutasMes[SumaDemoraDemorados] ), [Vuelos Demorados] )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
+		lineageTag: e763a090-b491-4939-978d-c3f539c2d256
 
 	measure 'Taxi Salida Promedio' = DIVIDE ( SUM ( fRutasMes[SumaTaxiSalida] ), SUM ( fRutasMes[NTaxiSalida] ) )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
+		lineageTag: 9797a842-015e-4669-8506-c1b797d8e1f2
 
 	measure 'Min Demora Aerolínea' = SUM ( fRutasMes[DemoraAerolineaMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
+		lineageTag: f3e885f5-9bbe-4b43-8bbc-ca331d1b41c9
 
 	measure 'Min Demora Clima' = SUM ( fRutasMes[DemoraClimaMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
+		lineageTag: 320df23c-23a6-415a-b7fc-d8070f64e1d0
 
 	measure 'Min Demora Sistema NAS' = SUM ( fRutasMes[DemoraNASMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
+		lineageTag: 94223c54-6b3a-4c13-8cef-b8adfb5f911c
 
 	measure 'Min Demora Seguridad' = SUM ( fRutasMes[DemoraSeguridadMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
+		lineageTag: 5616294d-7ff5-4339-8f59-cf646f502e89
 
 	measure 'Min Demora Avión previo' = SUM ( fRutasMes[DemoraAvionPrevioMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
+		lineageTag: d6a58cb4-dbf6-491a-ace6-97e78c150436
 
 	/// Minutos de demora atribuidos a alguna causa (vuelos 15+ min tarde)
 	measure 'Min Demora Total' = [Min Demora Aerolínea] + [Min Demora Clima] + [Min Demora Sistema NAS] + [Min Demora Seguridad] + [Min Demora Avión previo]
 		formatString: #,0
 		displayFolder: 3 Causas de demora
+		lineageTag: b5842ca7-60e4-4033-a1bc-8f94547e9f94
 
 	measure 'Horas de Demora' = DIVIDE ( [Min Demora Total], 60 )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
+		lineageTag: 74b04414-5b7d-481e-8343-a701f2736e55
 
 	measure '% Causa Aerolínea' = DIVIDE ( [Min Demora Aerolínea], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
+		lineageTag: 05a38285-7106-47ea-84e7-75ecfd62a910
 
 	measure '% Causa Clima' = DIVIDE ( [Min Demora Clima], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
+		lineageTag: f30a7169-a57b-4c12-806f-f467643139c4
 
 	measure '% Causa Sistema NAS' = DIVIDE ( [Min Demora Sistema NAS], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
+		lineageTag: 77cf3908-2f11-4251-9988-418ebc7229e5
 
 	measure '% Causa Seguridad' = DIVIDE ( [Min Demora Seguridad], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
+		lineageTag: 16329660-a2a9-413a-a21c-4e6d53f82caf
 
 	measure '% Causa Avión previo' = DIVIDE ( [Min Demora Avión previo], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
+		lineageTag: fc916155-b91f-4059-8071-fc1cef2528a5
 
 	/// Demoras atribuibles a la operación de la aerolínea (propia + avión previo)
 	measure '% Causa Controlable' = DIVIDE ( [Min Demora Aerolínea] + [Min Demora Avión previo], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
+		lineageTag: 039ff976-86fd-4815-bfd8-3669205348b5
 
 	/// Mismos meses del año anterior (en blanco si no hay datos)
 	measure 'Vuelos Año Anterior' =
@@ -138,10 +168,12 @@ table Medidas
 			    )
 		formatString: #,0
 		displayFolder: 4 Comparaciones
+		lineageTag: 000658c9-2c61-4e33-a8c1-f5fce1d94217
 
 	measure 'Var % Vuelos vs AA' = DIVIDE ( [Vuelos] - [Vuelos Año Anterior], [Vuelos Año Anterior] )
 		formatString: +0.0%;-0.0%;0.0%
 		displayFolder: 4 Comparaciones
+		lineageTag: 7b45a3d2-ca3f-4e6e-a737-ca2cfbfffad6
 
 	measure '% A Tiempo Año Anterior' =
 			VAR idx = VALUES ( dMes[MesIndice] )
@@ -156,11 +188,13 @@ table Medidas
 			    )
 		formatString: 0.0%
 		displayFolder: 4 Comparaciones
+		lineageTag: bf623849-9a50-489f-83a5-17a446a97c9e
 
 	/// Diferencia en puntos porcentuales contra iguales meses del año anterior
 	measure 'Δ % A Tiempo vs AA' = IF ( NOT ISBLANK ( [% A Tiempo Año Anterior] ), [% A Tiempo] - [% A Tiempo Año Anterior] )
 		formatString: +0.0%;-0.0%;0.0%
 		displayFolder: 4 Comparaciones
+		lineageTag: 0ba583a5-9ad5-49e3-aeed-de6460bf8bd8
 
 	/// Últimos 12 meses hasta el último mes elegido vs los 12 anteriores (pp)
 	measure 'Δ % A Tiempo 12M' =
@@ -173,6 +207,7 @@ table Medidas
 			    IF ( i >= 24 && NOT ISBLANK ( ult ) && NOT ISBLANK ( prev ), ult - prev )
 		formatString: +0.0%;-0.0%;0.0%
 		displayFolder: 4 Comparaciones
+		lineageTag: 420ea930-e561-44dc-aad5-c93d355313df
 
 	/// Igual que Vuelos Cancelados pero en blanco si es 0 (oculta 'No cancelado')
 	measure 'Cancelados por Causa' =
@@ -181,6 +216,7 @@ table Medidas
 			    IF ( v > 0, v )
 		formatString: #,0
 		displayFolder: 1 Volumen
+		lineageTag: 056071e2-95d9-40a7-8971-b9b4a27e8bee
 
 	measure '% A Tiempo Mes Anterior' =
 			VAR i = MAX ( dMes[MesIndice] )
@@ -191,6 +227,7 @@ table Medidas
 			    )
 		formatString: 0.0%
 		displayFolder: 4 Comparaciones
+		lineageTag: 649e51d2-4720-447c-9fd3-10d9906d5072
 
 	/// Últimos 3 meses hasta el mes del contexto
 	measure '% A Tiempo Móvil 3M' =
@@ -204,6 +241,7 @@ table Medidas
 			    )
 		formatString: 0.0%
 		displayFolder: 4 Comparaciones
+		lineageTag: 635ae50e-354b-4ba5-a4f0-7ce10693c7b9
 
 	/// Posición por % a tiempo dentro de lo filtrado
 	measure 'Ranking Aerolínea' =
@@ -213,10 +251,12 @@ table Medidas
 			)
 		formatString: 0
 		displayFolder: 4 Comparaciones
+		lineageTag: a60499b4-5c11-4d3c-9083-fbcb5c8db7b3
 
 	measure 'P Vuelos' = SUM ( fPatrones[Vuelos] )
 		formatString: #,0
 		displayFolder: 5 Patrones
+		lineageTag: fe332334-500c-4ce6-895a-9b6093f9fd91
 
 	/// % de llegadas demoradas según día y hora programada
 	measure 'P % Demorados' =
@@ -226,51 +266,96 @@ table Medidas
 			)
 		formatString: 0.0%
 		displayFolder: 5 Patrones
+		lineageTag: 813cb3dc-070c-42cf-99ed-b5fc77e7fdcc
 
 	measure 'P % A Tiempo' = IF ( NOT ISBLANK ( [P % Demorados] ), 1 - [P % Demorados] )
 		formatString: 0.0%
 		displayFolder: 5 Patrones
+		lineageTag: e2378b45-66e4-4094-80d4-dbca708a6818
 
 	measure 'P % Cancelados' = DIVIDE ( SUM ( fPatrones[Cancelados] ), [P Vuelos] )
 		formatString: 0.00%
 		displayFolder: 5 Patrones
+		lineageTag: df13b533-fd60-41ae-bf0e-b8c055cccc0e
 
 	measure 'D Vuelos' = COUNTROWS ( fDetalle )
 		formatString: #,0
 		displayFolder: 6 Detalle
+		lineageTag: d825260d-df58-4901-b3df-4f776a0efe40
 
 	measure 'Texto Detalle' = "Vuelos de " & FORMAT ( MAX ( fDetalle[Fecha] ), "mmmm yyyy" )
 		displayFolder: 6 Detalle
+		lineageTag: 018de8b1-409c-4dc4-b769-4fd54c2df975
 
-	/// Semáforo: verde ≥80%, ámbar ≥72%, rojo debajo
-	measure 'Color % A Tiempo' =
-			VAR v = [% A Tiempo]
-			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, "#2E9C8F", v >= 0.72, "#E0A526", "#C8102E" )
+	/// Semáforo (alias de Color Puntualidad): verde ≥80%, ámbar 75–80%, rojo <75%
+	measure 'Color % A Tiempo' = [Color Puntualidad]
 		displayFolder: 9 Formato
+		lineageTag: 5a29de41-9876-43aa-8362-90529bd99d77
 
+	/// Semáforo sobre fPatrones: verde ≥80%, ámbar 75–80%, rojo <75%
 	measure 'Color P % A Tiempo' =
 			VAR v = [P % A Tiempo]
 			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, "#2E9C8F", v >= 0.72, "#E0A526", "#C8102E" )
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, "#10B981", v >= 0.75, "#F59E0B", "#EF4444" )
 		displayFolder: 9 Formato
+		lineageTag: 53e32067-746b-40ee-ad58-0ff58fcc1c40
 
-	/// Escala del mapa de calor: <15% verde ... ≥30% rojo
+	/// Mapa de calor divergente azul → claro → naranja (apto daltónicos): azul = pocas demoras
 	measure 'Color % Demorados' =
 			VAR v = [P % Demorados]
 			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v < 0.15, "#2E9C8F", v < 0.20, "#7FB8A0", v < 0.25, "#E0A526", v < 0.30, "#E06C3C", "#C8102E" )
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (),
+			        v < 0.12, "#2166AC", v < 0.16, "#67A9CF", v < 0.20, "#D1E5F0",
+			        v < 0.24, "#FDDBC7", v < 0.28, "#F4A15D", "#D9600F" )
 		displayFolder: 9 Formato
+		lineageTag: 979eb34c-6b51-4ac6-ba4c-a4d07cea4860
 
 	measure 'Texto Período' = "Período: " & FORMAT ( MIN ( dMes[FechaMes] ), "mmm yyyy" ) & " – " & FORMAT ( MAX ( dMes[FechaMes] ), "mmm yyyy" )
 		displayFolder: 9 Formato
+		lineageTag: aa32dfcb-b765-4d3e-8eb6-b1f3454bb457
 
 	measure 'Texto Fuente' = "Fuente: BTS – On-Time Performance (transtats.bts.gov). Elaboración ATLAS."
 		displayFolder: 9 Formato
+		lineageTag: 01cfdc14-6a53-4503-9998-9bc0f4ca0fee
+
+	/// Semáforo de puntualidad: verde ≥80%, ámbar 75–80%, rojo <75%
+	measure 'Color Puntualidad' =
+			VAR v = [% A Tiempo]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, "#10B981", v >= 0.75, "#F59E0B", "#EF4444" )
+		displayFolder: 9 Formato
+		lineageTag: 02ca8624-ed9d-4f69-ab1a-06611e68d7a6
+
+	/// Texto oscuro sobre celdas claras del mapa de calor, blanco sobre las oscuras
+	measure 'Color Texto % Demorados' =
+			VAR v = [P % Demorados]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v < 0.16 || v >= 0.28, "#FFFFFF", "#1D1631" )
+		displayFolder: 9 Formato
+		lineageTag: 6d965f1c-99e1-40d4-a23c-9f8ffacdf718
+
+	/// Detalle: rojo si la llegada se demoró más de 60 min, verde si llegó sin demora
+	measure 'Color Demora Llegada' =
+			VAR v = MAX ( fDetalle[DemoraLlegadaMin] )
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v > 60, "#FDE2E2", v <= 0, "#D1FAE5", BLANK () )
+		displayFolder: 9 Formato
+		lineageTag: 76124dc1-75ec-48ca-9e9d-42606ced7e39
+
+	/// Título según los filtros de Año y Mes
+	measure 'Titulo Dinamico' =
+			VAR anio = IF ( HASONEVALUE ( dMes[Anio] ), " " & VALUES ( dMes[Anio] ), IF ( ISFILTERED ( dMes[Anio] ), " " & CONCATENATEX ( VALUES ( dMes[Anio] ), dMes[Anio], ", ", dMes[Anio] ), "" ) )
+			VAR mes = IF ( HASONEVALUE ( dMes[Mes] ), " " & VALUES ( dMes[Mes] ), IF ( ISFILTERED ( dMes[Mes] ), " (" & COUNTROWS ( VALUES ( dMes[Mes] ) ) & " meses)", "" ) )
+			VAR filtro = TRIM ( anio & mes )
+			RETURN
+			    "Resumen de puntualidad" & IF ( filtro = "", " – todo el período", " – " & filtro )
+		displayFolder: 9 Formato
+		lineageTag: d25ab1cb-3d71-444e-a103-cd9657788f3f
 
 	column Columna
 		dataType: int64
 		isHidden
+		lineageTag: d260a8be-2962-42e8-a77f-07facb3bc602
 		summarizeBy: none
 		sourceColumn: Columna
 

@@ -1,36 +1,43 @@
 table dDestino
+	lineageTag: 63ca895f-e96b-4823-8c0a-612145a71ceb
 
 	column DestinoCodigo
 		dataType: string
 		isKey
+		lineageTag: 093fdf2f-06b5-4f09-8a77-3523233bdc09
 		summarizeBy: none
 		sourceColumn: DestinoCodigo
 
 	column DestinoCiudad
 		dataType: string
+		lineageTag: 909e4b35-2c9e-4b79-bd15-8c9338b5f2b0
 		dataCategory: City
 		summarizeBy: none
 		sourceColumn: DestinoCiudad
 
 	column DestinoEstadoCod
 		dataType: string
+		lineageTag: 7f81b33b-45a6-47fe-b210-806097509657
 		summarizeBy: none
 		sourceColumn: DestinoEstadoCod
 
 	column DestinoEstado
 		dataType: string
+		lineageTag: b32b18c1-88c5-4027-aec3-b27833ad1726
 		dataCategory: StateOrProvince
 		summarizeBy: none
 		sourceColumn: DestinoEstado
 
 	column DestinoNombreAeropuerto
 		dataType: string
+		lineageTag: 6434e943-95d2-4332-b8da-bd89712e2c60
 		summarizeBy: none
 		sourceColumn: DestinoNombreAeropuerto
 
 	column DestinoLatitud
 		dataType: double
 		formatString: 0.0000
+		lineageTag: df189786-827b-4356-b4c7-ccc5e01c72f2
 		dataCategory: Latitude
 		summarizeBy: none
 		sourceColumn: DestinoLatitud
@@ -38,6 +45,7 @@ table dDestino
 	column DestinoLongitud
 		dataType: double
 		formatString: 0.0000
+		lineageTag: 0ca25520-caed-46be-869d-59eee7e5c77a
 		dataCategory: Longitude
 		summarizeBy: none
 		sourceColumn: DestinoLongitud

@@ -57,3 +57,4 @@ relationship e01fad95-ca54-5bcd-8614-7356196e715c
 relationship a906aab2-7639-5da3-8405-40e49f6b5551
 	fromColumn: fPatrones.DiaSemanaNum
 	toColumn: dDiaSemana.DiaSemanaNum
+

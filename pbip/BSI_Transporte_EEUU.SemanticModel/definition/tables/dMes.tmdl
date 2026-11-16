@@ -1,58 +1,70 @@
 table dMes
+	lineageTag: 5872ec8b-988c-4ac3-b684-b63770a13ac9
 
 	column MesKey
 		dataType: int64
-		formatString: 0
 		isHidden
 		isKey
+		formatString: 0
+		lineageTag: a856c021-7073-4b77-9064-ba12238495cc
 		summarizeBy: none
 		sourceColumn: MesKey
 
 	column FechaMes
 		dataType: dateTime
 		formatString: mmm yyyy
+		lineageTag: 63d19b71-cd4c-43f5-956f-a9df61e67a21
 		summarizeBy: none
 		sourceColumn: FechaMes
+
+		annotation UnderlyingDateTimeDataType = Date
 
 	column Anio
 		dataType: int64
 		formatString: 0
+		lineageTag: f0c1afae-94fc-4b14-8df6-6da5ef565963
 		summarizeBy: none
 		sourceColumn: Anio
 
 	column MesNum
 		dataType: int64
-		formatString: 0
 		isHidden
+		formatString: 0
+		lineageTag: 74775735-5da8-4323-89a5-aa5825b3a38f
 		summarizeBy: none
 		sourceColumn: MesNum
 
 	column Mes
 		dataType: string
+		lineageTag: 5642e11f-cde6-43d2-b7ac-2913180ee45a
 		summarizeBy: none
 		sourceColumn: Mes
 		sortByColumn: MesNum
 
 	column AnioMes
 		dataType: string
+		lineageTag: 5fe123be-f300-4ac7-9f81-39443db7975f
 		summarizeBy: none
 		sourceColumn: AnioMes
 		sortByColumn: MesIndice
 
 	column MesIndice
 		dataType: int64
-		formatString: 0
 		isHidden
+		formatString: 0
+		lineageTag: e592880a-dfd6-4d0f-b7fe-27e66666a6e8
 		summarizeBy: none
 		sourceColumn: MesIndice
 
 	column Trimestre
 		dataType: string
+		lineageTag: e887c6d2-6077-4cda-ac51-a87abcfbcf77
 		summarizeBy: none
 		sourceColumn: Trimestre
 
 	column Temporada
 		dataType: string
+		lineageTag: a4da4fef-b19b-4ce4-b778-bab558adeb96
 		summarizeBy: none
 		sourceColumn: Temporada
 

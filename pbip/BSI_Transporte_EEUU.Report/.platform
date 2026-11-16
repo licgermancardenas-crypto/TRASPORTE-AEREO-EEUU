@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "BSI_Transporte_EEUU"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "622d08b6-6fb2-4f79-96ea-8d0f5e2ba17a"
+  }
+}

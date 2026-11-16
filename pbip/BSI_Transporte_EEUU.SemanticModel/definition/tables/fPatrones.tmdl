@@ -1,53 +1,62 @@
 table fPatrones
+	lineageTag: e2be2f15-b88b-4694-b48f-d19db9a926be
 
 	column MesKey
 		dataType: int64
-		formatString: 0
 		isHidden
+		formatString: 0
+		lineageTag: b682e71b-4ed9-441c-b034-5b1965ae210c
 		summarizeBy: none
 		sourceColumn: MesKey
 
 	column AerolineaCod
 		dataType: string
 		isHidden
+		lineageTag: 7939cd4d-6d7a-40c6-acbd-2130ace0d814
 		summarizeBy: none
 		sourceColumn: AerolineaCod
 
 	column DiaSemanaNum
 		dataType: int64
-		formatString: 0
 		isHidden
+		formatString: 0
+		lineageTag: e93cf8b9-f996-4640-88bc-51aaa81c6211
 		summarizeBy: none
 		sourceColumn: DiaSemanaNum
 
 	column HoraProgramada
 		dataType: int64
-		formatString: 0
 		isHidden
+		formatString: 0
+		lineageTag: 4cc07fa7-2192-4d25-92bc-b9b1c280d331
 		summarizeBy: none
 		sourceColumn: HoraProgramada
 
 	column Vuelos
 		dataType: int64
 		isHidden
+		lineageTag: 6954d964-8477-4c27-8acb-5b6caad37ac4
 		summarizeBy: sum
 		sourceColumn: Vuelos
 
 	column Cancelados
 		dataType: int64
 		isHidden
+		lineageTag: df31a534-2aae-42a3-ac82-a313d93c2407
 		summarizeBy: sum
 		sourceColumn: Cancelados
 
 	column Desviados
 		dataType: int64
 		isHidden
+		lineageTag: 2d76729c-e05a-4942-b35d-48900355cc48
 		summarizeBy: sum
 		sourceColumn: Desviados
 
 	column LlegadasDemoradas
 		dataType: int64
 		isHidden
+		lineageTag: 1dfeedf7-3381-4177-aaaf-2c45faa734ed
 		summarizeBy: sum
 		sourceColumn: LlegadasDemoradas
 

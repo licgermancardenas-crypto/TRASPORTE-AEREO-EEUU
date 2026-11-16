@@ -1,38 +1,18 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "p5patrones_09_pivotTable",
   "position": {
     "x": 20,
     "y": 136,
     "z": 9000,
-    "width": 1240,
     "height": 226,
+    "width": 1240,
     "tabOrder": 9000
   },
   "visual": {
     "visualType": "pivotTable",
-    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
-        "Rows": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dDiaSemana"
-                    }
-                  },
-                  "Property": "DiaSemana"
-                }
-              },
-              "queryRef": "dDiaSemana.DiaSemana",
-              "nativeQueryRef": "Día",
-              "displayName": "Día"
-            }
-          ]
-        },
         "Columns": {
           "projections": [
             {
@@ -48,7 +28,28 @@
               },
               "queryRef": "dHora.HoraTexto",
               "nativeQueryRef": "Hora",
+              "active": true,
               "displayName": "Hora"
+            }
+          ]
+        },
+        "Rows": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dDiaSemana"
+                    }
+                  },
+                  "Property": "DiaSemana"
+                }
+              },
+              "queryRef": "dDiaSemana.DiaSemana",
+              "nativeQueryRef": "Día",
+              "active": true,
+              "displayName": "Día"
             }
           ]
         },
@@ -97,8 +98,13 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Color Texto % Demorados"
                     }
                   }
                 }
@@ -158,7 +164,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E4DFEE'"
+                      "Value": "'#E5E7EB'"
                     }
                   }
                 }
@@ -167,7 +173,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             }
@@ -180,7 +186,67 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1D1631'"
+                    }
+                  }
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Custom'"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "88D"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
                 }
               }
             }
@@ -232,6 +298,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

@@ -1,17 +1,16 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
   "name": "p3aeropuertos_10_azureMap",
   "position": {
     "x": 20,
     "y": 136,
     "z": 10000,
-    "width": 620,
     "height": 554,
+    "width": 620,
     "tabOrder": 10000
   },
   "visual": {
     "visualType": "azureMap",
-    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Category": {
@@ -29,53 +28,8 @@
               },
               "queryRef": "dOrigen.OrigenCodigo",
               "nativeQueryRef": "Origen",
+              "active": true,
               "displayName": "Origen"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "dOrigen"
-                        }
-                      },
-                      "Property": "OrigenLatitud"
-                    }
-                  },
-                  "Function": 1
-                }
-              },
-              "queryRef": "Avg(dOrigen.OrigenLatitud)",
-              "nativeQueryRef": "Promedio de OrigenLatitud"
-            }
-          ]
-        },
-        "X": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "dOrigen"
-                        }
-                      },
-                      "Property": "OrigenLongitud"
-                    }
-                  },
-                  "Function": 1
-                }
-              },
-              "queryRef": "Avg(dOrigen.OrigenLongitud)",
-              "nativeQueryRef": "Promedio de OrigenLongitud"
             }
           ]
         },
@@ -145,6 +99,52 @@
               "displayName": "Demora media demorados"
             }
           ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dOrigen"
+                        }
+                      },
+                      "Property": "OrigenLongitud"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dOrigen.OrigenLongitud)",
+              "nativeQueryRef": "Promedio de OrigenLongitud"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dOrigen"
+                        }
+                      },
+                      "Property": "OrigenLatitud"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dOrigen.OrigenLatitud)",
+              "nativeQueryRef": "Promedio de OrigenLatitud"
+            }
+          ]
         }
       }
     },
@@ -169,14 +169,14 @@
             "centerLatitude": {
               "expr": {
                 "Literal": {
-                  "Value": "38.5D"
+                  "Value": "38.473555222042236D"
                 }
               }
             },
             "centerLongitude": {
               "expr": {
                 "Literal": {
-                  "Value": "-96.5D"
+                  "Value": "-96.52406268550155D"
                 }
               }
             },
@@ -193,31 +193,10 @@
       "bubbleLayer": [
         {
           "properties": {
-            "minRadius": {
-              "expr": {
-                "Literal": {
-                  "Value": "2D"
-                }
-              }
-            },
             "maxRadius": {
               "expr": {
                 "Literal": {
                   "Value": "16D"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "30D"
-                }
-              }
-            },
-            "strokeWidth": {
-              "expr": {
-                "Literal": {
-                  "Value": "1D"
                 }
               }
             }
@@ -265,7 +244,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E4DFEE'"
+                      "Value": "'#E5E7EB'"
                     }
                   }
                 }
@@ -274,7 +253,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "8D"
+                  "Value": "10D"
                 }
               }
             }
@@ -287,7 +266,67 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "false"
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1D1631'"
+                    }
+                  }
+                }
+              }
+            },
+            "position": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Outer'"
+                }
+              }
+            },
+            "preset": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Custom'"
+                }
+              }
+            },
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "88D"
+                }
+              }
+            },
+            "shadowBlur": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            },
+            "shadowDistance": {
+              "expr": {
+                "Literal": {
+                  "Value": "3D"
+                }
+              }
+            },
+            "shadowSpread": {
+              "expr": {
+                "Literal": {
+                  "Value": "0D"
+                }
+              }
+            },
+            "angle": {
+              "expr": {
+                "Literal": {
+                  "Value": "90D"
                 }
               }
             }
@@ -339,6 +378,7 @@
           }
         }
       ]
-    }
+    },
+    "drillFilterOtherVisuals": true
   }
 }

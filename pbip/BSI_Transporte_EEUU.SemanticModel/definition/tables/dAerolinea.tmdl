@@ -1,18 +1,22 @@
 table dAerolinea
+	lineageTag: a58df915-2759-481e-ad58-7166662a225d
 
 	column AerolineaCod
 		dataType: string
 		isKey
+		lineageTag: fc2bd854-e436-43eb-ab50-3551b7eab49a
 		summarizeBy: none
 		sourceColumn: AerolineaCod
 
 	column Aerolinea
 		dataType: string
+		lineageTag: 01bc4020-edb6-4245-b77c-79408cbac19a
 		summarizeBy: none
 		sourceColumn: Aerolinea
 
 	column TipoAerolinea
 		dataType: string
+		lineageTag: 3b815d79-3870-4a0f-9676-05a49a75db51
 		summarizeBy: none
 		sourceColumn: TipoAerolinea
 

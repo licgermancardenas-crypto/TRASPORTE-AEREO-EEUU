@@ -12,3 +12,6 @@ raw_log.txt
 # Python
 __pycache__/
 .venv/
+# Temas que Power BI Desktop copia al abrir y el reporte no usa
+**/StaticResources/SharedResources/BuiltInThemes/
+**/StaticResources/SharedResources/BaseThemes/CY18SU07.json

@@ -1,26 +1,31 @@
 table dHora
+	lineageTag: d39de8cf-e0b5-4d06-9291-a4b91cdf32af
 
 	column HoraProgramada
 		dataType: int64
-		formatString: 0
 		isKey
+		formatString: 0
+		lineageTag: 6479d87a-5528-4bcf-8265-32d4705ad257
 		summarizeBy: none
 		sourceColumn: HoraProgramada
 
 	column HoraTexto
 		dataType: string
+		lineageTag: 85cdf556-6ece-42a0-9557-3a79db49b71b
 		summarizeBy: none
 		sourceColumn: HoraTexto
 
 	column FranjaOrden
 		dataType: int64
-		formatString: 0
 		isHidden
+		formatString: 0
+		lineageTag: 9d70764e-a64c-4fb2-ba7f-913daebb084f
 		summarizeBy: none
 		sourceColumn: FranjaOrden
 
 	column FranjaHoraria
 		dataType: string
+		lineageTag: e9bdc918-676c-48b8-9692-8b2048962c11
 		summarizeBy: none
 		sourceColumn: FranjaHoraria
 		sortByColumn: FranjaOrden
