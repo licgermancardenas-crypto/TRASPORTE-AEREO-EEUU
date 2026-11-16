@@ -21,12 +21,16 @@ BASE_THEME = "CY26SU02"
 AZUL = "#1D1631"     # tinta ATLAS (banda, títulos)
 VIOLETA = "#5B3F99"  # acento ATLAS
 LILA = "#B9A6E6"
-TURQ = "#2E9C8F"     # bueno
-AMBAR = "#E0A526"    # neutro
-ROJO = "#C8102E"     # malo
+TURQ = "#10B981"     # bueno (semáforo: ≥80% a tiempo)
+AMBAR = "#F59E0B"    # neutro (75–80%)
+ROJO = "#EF4444"     # malo (<75%)
 GRIS = "#6B6480"
-FONDO = "#F4F1F9"
-BORDE = "#E4DFEE"
+FONDO = "#F3F4F6"    # lienzo
+FILA_ALT = "#F9FAFB" # filas alternas de tablas
+BORDE = "#E5E7EB"
+# mapa de calor divergente azul → claro → naranja (apto daltónicos)
+CALOR = ["#2166AC", "#67A9CF", "#D1E5F0", "#FDDBC7", "#F4A15D", "#D9600F"]
+TEMA_ARCHIVO = "ATLAS_Theme.json"
 PALETA = [VIOLETA, TURQ, AMBAR, "#1F4E9C", ROJO, "#7A5FB5", "#9A93AD", "#E06C3C", AZUL, GRIS]
 
 SM = f"{NAME}.SemanticModel"
@@ -183,20 +187,35 @@ MEDIDAS = [
      "\"Vuelos de \" & FORMAT ( MAX ( fDetalle[Fecha] ), \"mmmm yyyy\" )",
      None, "6 Detalle", None),
     # --- Formato y textos
-    ("Color % A Tiempo",
-     f"VAR v = [% A Tiempo]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, \"{TURQ}\", v >= 0.72, \"{AMBAR}\", \"{ROJO}\" )",
-     None, "9 Formato", "Semáforo: verde ≥80%, ámbar ≥72%, rojo debajo"),
+    ("Color Puntualidad",
+     f"VAR v = [% A Tiempo]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, \"{TURQ}\", v >= 0.75, \"{AMBAR}\", \"{ROJO}\" )",
+     None, "9 Formato", "Semáforo de puntualidad: verde ≥80%, ámbar 75–80%, rojo <75%"),
+    ("Color % A Tiempo", "[Color Puntualidad]",
+     None, "9 Formato", "Semáforo (alias de Color Puntualidad): verde ≥80%, ámbar 75–80%, rojo <75%"),
     ("Color P % A Tiempo",
-     f"VAR v = [P % A Tiempo]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, \"{TURQ}\", v >= 0.72, \"{AMBAR}\", \"{ROJO}\" )",
-     None, "9 Formato", None),
+     f"VAR v = [P % A Tiempo]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, \"{TURQ}\", v >= 0.75, \"{AMBAR}\", \"{ROJO}\" )",
+     None, "9 Formato", "Semáforo sobre fPatrones: verde ≥80%, ámbar 75–80%, rojo <75%"),
     ("Color % Demorados",
-     f"VAR v = [P % Demorados]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v < 0.15, \"{TURQ}\", v < 0.20, \"#7FB8A0\", v < 0.25, \"{AMBAR}\", v < 0.30, \"#E06C3C\", \"{ROJO}\" )",
-     None, "9 Formato", "Escala del mapa de calor: <15% verde ... ≥30% rojo"),
+     "VAR v = [P % Demorados]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (),\n"
+     f"        v < 0.12, \"{CALOR[0]}\", v < 0.16, \"{CALOR[1]}\", v < 0.20, \"{CALOR[2]}\",\n"
+     f"        v < 0.24, \"{CALOR[3]}\", v < 0.28, \"{CALOR[4]}\", \"{CALOR[5]}\" )",
+     None, "9 Formato", "Mapa de calor divergente azul → claro → naranja (apto daltónicos): azul = pocas demoras"),
+    ("Color Texto % Demorados",
+     f"VAR v = [P % Demorados]\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v < 0.16 || v >= 0.28, \"#FFFFFF\", \"{AZUL}\" )",
+     None, "9 Formato", "Texto oscuro sobre celdas claras del mapa de calor, blanco sobre las oscuras"),
+    ("Color Demora Llegada",
+     "VAR v = MAX ( fDetalle[DemoraLlegadaMin] )\nRETURN\n    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v > 60, \"#FDE2E2\", v <= 0, \"#D1FAE5\", BLANK () )",
+     None, "9 Formato", "Detalle: rojo si la llegada se demoró más de 60 min, verde si llegó sin demora"),
     ("Texto Período",
      "\"Período: \" & FORMAT ( MIN ( dMes[FechaMes] ), \"mmm yyyy\" ) & \" – \" & FORMAT ( MAX ( dMes[FechaMes] ), \"mmm yyyy\" )",
      None, "9 Formato", None),
     ("Texto Fuente", "\"Fuente: BTS – On-Time Performance (transtats.bts.gov). Elaboración ATLAS.\"", None,
      "9 Formato", None),
+    ("Titulo Dinamico",
+     "VAR anio = IF ( HASONEVALUE ( dMes[Anio] ), \" \" & VALUES ( dMes[Anio] ), IF ( ISFILTERED ( dMes[Anio] ), \" \" & CONCATENATEX ( VALUES ( dMes[Anio] ), dMes[Anio], \", \", dMes[Anio] ), \"\" ) )\n"
+     "VAR mes = IF ( HASONEVALUE ( dMes[Mes] ), \" \" & VALUES ( dMes[Mes] ), IF ( ISFILTERED ( dMes[Mes] ), \" (\" & COUNTROWS ( VALUES ( dMes[Mes] ) ) & \" meses)\", \"\" ) )\n"
+     "VAR filtro = TRIM ( anio & mes )\nRETURN\n    \"Resumen de puntualidad\" & IF ( filtro = \"\", \" – todo el período\", \" – \" & filtro )",
+     None, "9 Formato", "Título según los filtros de Año y Mes"),
 ]
 
 
@@ -374,8 +393,10 @@ def titulo(texto):
 
 def contenedor(extra=None):
     o = {"background": [{"properties": {"show": lit(True), "color": {"solid": {"color": lit("#FFFFFF")}}}}],
-         "border": [{"properties": {"show": lit(True), "color": {"solid": {"color": lit(BORDE)}}, "radius": lit(8)}}],
-         "dropShadow": [{"properties": {"show": lit(False)}}]}
+         "border": [{"properties": {"show": lit(True), "color": {"solid": {"color": lit(BORDE)}}, "radius": lit(10)}}],
+         "dropShadow": [{"properties": {"show": lit(True), "color": {"solid": {"color": lit(AZUL)}}, "position": lit("Outer"),
+                                        "preset": lit("Custom"), "transparency": lit(88), "shadowBlur": lit(10),
+                                        "shadowDistance": lit(3), "shadowSpread": lit(0), "angle": lit(90)}}]}
     if extra:
         o.update(extra)
     return o
@@ -413,8 +434,7 @@ class Pagina:
             objects.setdefault("mapControls", [{"properties": {
                 "autoZoom": lit(False), "zoom": lit(MAPA_ZOOM.get(self.nombre, 3.2)),
                 "centerLatitude": lit(38.5), "centerLongitude": lit(-96.5), "showStylePicker": lit(False)}}])
-            objects.setdefault("bubbleLayer", [{"properties": {
-                "minRadius": lit(2), "maxRadius": lit(16), "transparency": lit(30), "strokeWidth": lit(1)}}])
+            objects.setdefault("bubbleLayer", [{"properties": {"maxRadius": lit(16)}}])
         if objects:
             v["objects"] = objects
         vco = contenedor(titulo(title) if title else {"title": [{"properties": {"show": lit(False)}}]})
@@ -439,7 +459,7 @@ class Pagina:
                        "visualContainerObjects": {"background": [{"properties": {"show": lit(False)}}]}},
         })
 
-    def encabezado(self, subtitulo, slicers=None, periodo="Texto Período"):
+    def encabezado(self, subtitulo, slicers=None, periodo="Texto Período", subtitulo_medida=None):
         self.z += 1
         # banda superior
         self.visuales.append({
@@ -452,13 +472,23 @@ class Pagina:
         self.texto(20, 6, 520, 52, [
             ("ATLAS  ", {"fontWeight": "bold", "fontSize": "20pt", "color": LILA}),
             ("|  BSI Transporte EEUU", {"fontWeight": "bold", "fontSize": "16pt", "color": "#FFFFFF"})])
-        self.texto(560, 14, 420, 40, [(subtitulo, {"fontSize": "12pt", "color": "#C9C2DB"})])
+        if subtitulo_medida:  # subtítulo dinámico (tarjeta transparente con una medida de texto)
+            self.add("card", 500, 8, 480, 48, {"Values": [M(subtitulo_medida)]}, objects={
+                "labels": [{"properties": {"color": {"solid": {"color": lit("#E4DFEE")}}, "fontSize": lit(12)}}],
+                "categoryLabels": [{"properties": {"show": lit(False)}}]},
+                extra_vco={"background": [{"properties": {"show": lit(False)}}],
+                           "border": [{"properties": {"show": lit(False)}}],
+                           "dropShadow": [{"properties": {"show": lit(False)}}]})
+            self.visuales[-1]["name"] = f"{self.nombre}_{self.z:02d}_titulo"
+        else:
+            self.texto(560, 14, 420, 40, [(subtitulo, {"fontSize": "12pt", "color": "#C9C2DB"})])
         # tarjeta con período dinámico
         self.add("card", 990, 8, 280, 48, {"Values": [M(periodo)]}, objects={
             "labels": [{"properties": {"color": {"solid": {"color": lit("#FFFFFF")}}, "fontSize": lit(11)}}],
             "categoryLabels": [{"properties": {"show": lit(False)}}]},
             extra_vco={"background": [{"properties": {"show": lit(False)}}],
-                       "border": [{"properties": {"show": lit(False)}}]})
+                       "border": [{"properties": {"show": lit(False)}}],
+                       "dropShadow": [{"properties": {"show": lit(False)}}]})
         # segmentadores
         y = 72
         for i, (ent, prop, tit) in enumerate(slicers or SLICERS_STD):
@@ -473,7 +503,8 @@ class Pagina:
         self.add("card", 20, 696, 700, 22, {"Values": [M("Texto Fuente")]}, objects={
             "labels": [{"properties": {"color": {"solid": {"color": lit(GRIS)}}, "fontSize": lit(8)}}],
             "categoryLabels": [{"properties": {"show": lit(False)}}]},
-            extra_vco={"background": [{"properties": {"show": lit(False)}}], "border": [{"properties": {"show": lit(False)}}]})
+            extra_vco={"background": [{"properties": {"show": lit(False)}}], "border": [{"properties": {"show": lit(False)}}],
+                       "dropShadow": [{"properties": {"show": lit(False)}}]})
 
 
 def kpis(p, y, medidas):
@@ -486,10 +517,23 @@ def kpis(p, y, medidas):
             "categoryLabels": [{"properties": {"show": lit(False)}}]})
 
 
-def barras_color(medida_color="Color % A Tiempo"):
+def barras_color(medida_color="Color Puntualidad"):
     return {"dataPoint": [{"properties": {"fill": {"solid": {"color": {"expr": {"Measure": {
         "Expression": {"SourceRef": {"Entity": "Medidas"}}, "Property": medida_color}}}}}},
         "selector": {"data": [{"dataViewWildcard": {"matchingOption": 1}}]}}]}
+
+
+def color_medida(medida):
+    return {"solid": {"color": {"expr": {"Measure": {"Expression": {"SourceRef": {"Entity": "Medidas"}}, "Property": medida}}}}}
+
+
+def barra_datos(query_ref, color):
+    """Barras de datos en una columna de tabla."""
+    return {"properties": {"dataBars": {"positiveColor": {"solid": {"color": lit(color)}},
+                                        "negativeColor": {"solid": {"color": lit("#FCA5A5")}},
+                                        "axisColor": {"solid": {"color": lit("#9CA3AF")}},
+                                        "reverseDirection": lit(False), "hideText": lit(False)}},
+            "selector": {"metadata": query_ref}}
 
 
 SLICERS_STD = [("dMes", "Anio", "Año"), ("dMes", "Mes", "Mes"), ("dAerolinea", "Aerolinea", "Aerolínea"),
@@ -505,7 +549,7 @@ def paginas():
     P = []
     # 1 RESUMEN ---------------------------------------------------------------
     p = Pagina("p1resumen", "Resumen")
-    p.encabezado("Resumen ejecutivo de puntualidad")
+    p.encabezado("Resumen ejecutivo de puntualidad", subtitulo_medida="Titulo Dinamico")
     kpis(p, 136, [("Vuelos", "Vuelos"), ("% A Tiempo", "% a tiempo"), ("Δ % A Tiempo 12M", "Δ últimos 12 meses (pp)"),
                   ("% Cancelados", "% cancelados"), ("Demora Promedio de Demorados", "Demora media de demorados"),
                   ("Horas de Demora", "Horas de demora")])
@@ -528,7 +572,8 @@ def paginas():
         C("dAerolinea", "Aerolinea"), C("dAerolinea", "TipoAerolinea"), M("Ranking Aerolínea"), M("Vuelos"),
         M("% A Tiempo"), M("Δ % A Tiempo 12M"), M("% Cancelados"), M("Demora Promedio de Demorados"),
         M("% Causa Controlable"), M("Taxi Salida Promedio")]}, title="Tabla de desempeño (ordenar por columna)",
-        sort=(M("Ranking Aerolínea"), "Ascending"))
+        sort=(M("Ranking Aerolínea"), "Ascending"), objects={"columnFormatting": [
+            barra_datos("Medidas.Vuelos", "#B9A8DC"), barra_datos("Medidas.% A Tiempo", "#A7E3CB")]})
     p.add("lineChart", 20, 432, 470, 258, {"Category": [C("dMes", "FechaMes")],
                                            "Series": [C("dAerolinea", "TipoAerolinea")], "Y": [M("% A Tiempo")]},
           title="% a tiempo: troncales vs regionales vs low cost", sort=(C("dMes", "FechaMes"), "Ascending"))
@@ -582,7 +627,7 @@ def paginas():
           objects={"values": [{"properties": {
               "backColor": {"solid": {"color": {"expr": {"Measure": {
                   "Expression": {"SourceRef": {"Entity": "Medidas"}}, "Property": "Color % Demorados"}}}}},
-              "fontColor": {"solid": {"color": lit("#FFFFFF")}}},
+              "fontColor": color_medida("Color Texto % Demorados")},
               "selector": {"data": [{"dataViewWildcard": {"matchingOption": 1}}], "metadata": "Medidas.P % Demorados"}}]})
     p.add("lineChart", 20, 372, 610, 318, {"Category": [C("dMes", "Mes")], "Series": [C("dMes", "Anio")],
                                            "Y": [M("% A Tiempo")]},
@@ -602,17 +647,21 @@ def paginas():
         C("fDetalle", "Fecha"), C("dAerolinea", "Aerolinea"), C("fDetalle", "NroVuelo"), C("fDetalle", "Ruta"),
         C("dHora", "HoraTexto"), C("fDetalle", "DemoraSalidaMin"), C("fDetalle", "DemoraLlegadaMin"),
         C("fDetalle", "Cancelado"), C("dCausaCancelacion", "CausaCancelacion"), C("fDetalle", "Desviado"),
-        C("fDetalle", "DistanciaMillas")]}, title="Vuelos", sort=(C("fDetalle", "DemoraLlegadaMin"), "Descending"))
+        C("fDetalle", "DistanciaMillas")]}, title="Vuelos", sort=(C("fDetalle", "DemoraLlegadaMin"), "Descending"),
+        objects={"values": [{"properties": {"fontSize": lit(10)}},
+                            {"properties": {"backColor": color_medida("Color Demora Llegada")},
+                             "selector": {"data": [{"dataViewWildcard": {"matchingOption": 1}}],
+                                          "metadata": "fDetalle.DemoraLlegadaMin"}}]})
     p.pie()
     P.append(p)
     return P
 
 
 TEMA = {
-    "name": "ATLAS",
+    "name": "ATLAS v2",
     "dataColors": PALETA,
     "foreground": AZUL, "foregroundNeutralSecondary": GRIS, "foregroundNeutralTertiary": "#8A97A6",
-    "background": "#FFFFFF", "backgroundLight": FONDO, "backgroundNeutral": "#E1E6EC",
+    "background": "#FFFFFF", "backgroundLight": FONDO, "backgroundNeutral": BORDE,
     "tableAccent": VIOLETA, "good": TURQ, "neutral": AMBAR, "bad": ROJO,
     "maximum": ROJO, "center": AMBAR, "minimum": TURQ,
     "textClasses": {
@@ -625,9 +674,17 @@ TEMA = {
         "page": {"*": {"background": [{"color": {"solid": {"color": FONDO}}, "transparency": 0}],
                        "outspace": [{"color": {"solid": {"color": FONDO}}}]}},
         "tableEx": {"*": {"columnHeaders": [{"backColor": {"solid": {"color": AZUL}}, "fontColor": {"solid": {"color": "#FFFFFF"}}}],
-                          "values": [{"backColorSecondary": {"solid": {"color": FONDO}}}]}},
+                          "values": [{"backColorSecondary": {"solid": {"color": FILA_ALT}}}]}},
         "pivotTable": {"*": {"columnHeaders": [{"backColor": {"solid": {"color": AZUL}}, "fontColor": {"solid": {"color": "#FFFFFF"}}}],
                              "rowHeaders": [{"backColor": {"solid": {"color": AZUL}}, "fontColor": {"solid": {"color": "#FFFFFF"}}}]}},
+        # tarjetas blancas con borde redondeado y sombra sutil
+        "*": {"*": {"background": [{"show": True, "color": {"solid": {"color": "#FFFFFF"}}, "transparency": 0}],
+                    "border": [{"show": True, "color": {"solid": {"color": BORDE}}, "radius": 10}],
+                    "dropShadow": [{"show": True, "color": {"solid": {"color": AZUL}}, "position": "Outer", "preset": "Custom",
+                                    "transparency": 88, "shadowBlur": 10, "shadowDistance": 3, "shadowSpread": 0, "angle": 90}]}},
+        # textos, formas e imágenes sin tarjeta
+        **{vt: {"*": {"background": [{"show": False}], "border": [{"show": False}], "dropShadow": [{"show": False}]}}
+           for vt in ("textbox", "shape", "basicShape", "image", "actionButton")},
     },
 }
 
@@ -644,21 +701,23 @@ def escribir_reporte():
     shutil.copy(PBI_THEMES / f"{BASE_THEME}.json", sr / f"{BASE_THEME}.json")
     rr = r / "StaticResources" / "RegisteredResources"
     rr.mkdir(parents=True, exist_ok=True)
-    w(rr / "ATLAS_Tema.json", json.dumps(TEMA, indent=2, ensure_ascii=False))
-    w(BASE / "ATLAS_Tema.json", json.dumps(TEMA, indent=2, ensure_ascii=False))
+    w(rr / TEMA_ARCHIVO, json.dumps(TEMA, indent=2, ensure_ascii=False))
+    w(BASE / TEMA_ARCHIVO, json.dumps(TEMA, indent=2, ensure_ascii=False))
     w(d / "version.json", json.dumps({"$schema": f"{SCH}/versionMetadata/1.0.0/schema.json", "version": "2.0.0"}, indent=2))
     w(d / "report.json", json.dumps({
         "$schema": f"{SCH}/report/3.0.0/schema.json",
         "themeCollection": {
             "baseTheme": {"name": BASE_THEME, "reportVersionAtImport": {"visual": "2.4.0", "report": "3.0.0", "page": "2.3.0"},
                           "type": "SharedResources"},
-            "customTheme": {"name": "ATLAS_Tema.json", "reportVersionAtImport": {"visual": "2.4.0", "report": "3.0.0", "page": "2.3.0"},
+            "customTheme": {"name": TEMA_ARCHIVO, "reportVersionAtImport": {"visual": "2.4.0", "report": "3.0.0", "page": "2.3.0"},
                             "type": "RegisteredResources"}},
         "resourcePackages": [
             {"name": "SharedResources", "type": "SharedResources",
              "items": [{"name": BASE_THEME, "path": f"BaseThemes/{BASE_THEME}.json", "type": "BaseTheme"}]},
             {"name": "RegisteredResources", "type": "RegisteredResources",
-             "items": [{"name": "ATLAS_Tema.json", "path": "ATLAS_Tema.json", "type": "CustomTheme"}]}],
+             "items": [{"name": TEMA_ARCHIVO, "path": TEMA_ARCHIVO, "type": "CustomTheme"}]}],
+        # panel de filtros nativo oculto para los lectores (los segmentadores están en el lienzo)
+        "objects": {"outspacePane": [{"properties": {"expanded": lit(False), "visible": lit(False)}}]},
         "settings": {"useStylableVisualContainerHeader": True, "exportDataMode": "AllowSummarized",
                      "defaultDrillFilterOtherVisuals": True, "allowChangeFilterTypes": True,
                      "useEnhancedTooltips": True, "useDefaultAggregateDisplayName": True},

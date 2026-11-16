@@ -2,7 +2,7 @@
 
 Este documento acompaña la revisión de UI/UX del 16/11/2026. La primera parte lista lo que ya quedó aplicado en los archivos del proyecto (PBIR + TMDL). La segunda explica, paso a paso, lo que falta hacer a mano en Power BI Desktop.
 
-> **Importante:** `scripts/03_generar_pbip.py` vuelve a generar la carpeta `pbip/` desde cero y **pisa estos cambios**. No lo corras sin antes pasar estos cambios al script, o hacé un commit para poder recuperarlos.
+> **Generador:** `scripts/03_generar_pbip.py` ya incluye todo lo de la sección 1, así que regenerar `pbip/` no pierde esta revisión. Los pasos manuales de la sección 2 sí se pierden al regenerar: cuando los apliques, pasalos también al script.
 
 ---
 
@@ -44,7 +44,7 @@ Repetí los mismos pasos en el mapa de la **Página 3** (`Vuelos demorados por a
 
 > Si **Valor de campo** no aparece para ese mapa, usá **Escala de colores** sobre la medida `% A Tiempo`: mínimo `#EF4444`, centro `#F59E0B` (valor 0,775) y máximo `#10B981`.
 
-Opcional: para que el mapa muestre todo el país al abrir, en **Formato → Configuración de la vista** desactivá **Vista automática** y fijá un zoom de 3 centrado en lat 39 / lon −97.
+El mapa de la Página 1 ya abre mostrando todo el país (antes abría con zoom en la costa este). Si lo movés en Desktop y guardás, se guarda esa nueva vista.
 
 ### 2.2 Página 2 (Comparativo): ajuste fino de las barras de datos
 

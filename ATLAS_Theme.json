@@ -170,11 +170,6 @@
             "shadowSpread": 0,
             "angle": 90
           }
-        ],
-        "outspacePane": [
-          {
-            "visible": false
-          }
         ]
       }
     },
