@@ -28,7 +28,8 @@
                 }
               },
               "queryRef": "dAerolinea.Aerolinea",
-              "nativeQueryRef": "Aerolinea"
+              "nativeQueryRef": "Aerolínea",
+              "displayName": "Aerolínea"
             }
           ]
         }

@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dOrigen"
+                      "Entity": "dAerolinea"
                     }
                   },
-                  "Property": "OrigenEstado"
+                  "Property": "TipoAerolinea"
                 }
               },
-              "queryRef": "dOrigen.OrigenEstado",
-              "nativeQueryRef": "OrigenEstado"
+              "queryRef": "dAerolinea.TipoAerolinea",
+              "nativeQueryRef": "Tipo",
+              "displayName": "Tipo"
             }
           ]
         }
@@ -61,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Estado de origen'"
+                  "Value": "'Tipo de aerolínea'"
                 }
               }
             },

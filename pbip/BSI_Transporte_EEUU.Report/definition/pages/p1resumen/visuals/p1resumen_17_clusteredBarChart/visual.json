@@ -28,7 +28,8 @@
                 }
               },
               "queryRef": "dAerolinea.Aerolinea",
-              "nativeQueryRef": "Aerolinea"
+              "nativeQueryRef": "Aerolínea",
+              "displayName": "Aerolínea"
             }
           ]
         },
@@ -39,14 +40,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% A Tiempo"
                 }
               },
-              "queryRef": "fVuelos.% A Tiempo",
-              "nativeQueryRef": "% A Tiempo"
+              "queryRef": "Medidas.% A Tiempo",
+              "nativeQueryRef": "% a tiempo",
+              "displayName": "% a tiempo"
             }
           ]
         }
@@ -58,7 +60,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "fVuelos"
+                    "Entity": "Medidas"
                   }
                 },
                 "Property": "% A Tiempo"
@@ -81,7 +83,7 @@
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "fVuelos"
+                          "Entity": "Medidas"
                         }
                       },
                       "Property": "Color % A Tiempo"

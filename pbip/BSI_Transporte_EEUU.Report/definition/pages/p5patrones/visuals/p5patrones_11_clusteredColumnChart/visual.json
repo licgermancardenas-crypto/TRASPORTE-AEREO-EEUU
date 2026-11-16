@@ -1,38 +1,20 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p5patrones_10_pivotTable",
+  "name": "p5patrones_11_clusteredColumnChart",
   "position": {
-    "x": 20,
-    "y": 136,
-    "z": 10000,
-    "width": 1240,
-    "height": 250,
-    "tabOrder": 10000
+    "x": 642,
+    "y": 396,
+    "z": 11000,
+    "width": 300,
+    "height": 294,
+    "tabOrder": 11000
   },
   "visual": {
-    "visualType": "pivotTable",
+    "visualType": "clusteredColumnChart",
     "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
-        "Rows": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dCalendario"
-                    }
-                  },
-                  "Property": "DiaSemana"
-                }
-              },
-              "queryRef": "dCalendario.DiaSemana",
-              "nativeQueryRef": "DiaSemana"
-            }
-          ]
-        },
-        "Columns": {
+        "Category": {
           "projections": [
             {
               "field": {
@@ -42,60 +24,69 @@
                       "Entity": "dHora"
                     }
                   },
-                  "Property": "HoraTexto"
+                  "Property": "FranjaHoraria"
                 }
               },
-              "queryRef": "dHora.HoraTexto",
-              "nativeQueryRef": "HoraTexto"
+              "queryRef": "dHora.FranjaHoraria",
+              "nativeQueryRef": "Franja horaria",
+              "displayName": "Franja horaria"
             }
           ]
         },
-        "Values": {
+        "Y": {
           "projections": [
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
-                  "Property": "% Demorados"
+                  "Property": "P % A Tiempo"
                 }
               },
-              "queryRef": "fVuelos.% Demorados",
-              "nativeQueryRef": "% Demorados"
+              "queryRef": "Medidas.P % A Tiempo",
+              "nativeQueryRef": "% a tiempo",
+              "displayName": "% a tiempo"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "dHora"
+                  }
+                },
+                "Property": "FranjaHoraria"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
-      "values": [
+      "dataPoint": [
         {
           "properties": {
-            "backColor": {
+            "fill": {
               "solid": {
                 "color": {
                   "expr": {
                     "Measure": {
                       "Expression": {
                         "SourceRef": {
-                          "Entity": "fVuelos"
+                          "Entity": "Medidas"
                         }
                       },
-                      "Property": "Color % Demorados"
-                    }
-                  }
-                }
-              }
-            },
-            "fontColor": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Property": "Color P % A Tiempo"
                     }
                   }
                 }
@@ -109,8 +100,7 @@
                   "matchingOption": 1
                 }
               }
-            ],
-            "metadata": "fVuelos.% Demorados"
+            ]
           }
         }
       ]
@@ -197,7 +187,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'% de vuelos demorados por día y hora programada de salida'"
+                  "Value": "'% a tiempo por franja'"
                 }
               }
             },

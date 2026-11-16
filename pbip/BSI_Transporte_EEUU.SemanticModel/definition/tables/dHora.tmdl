@@ -12,10 +12,18 @@ table dHora
 		summarizeBy: none
 		sourceColumn: HoraTexto
 
+	column FranjaOrden
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: FranjaOrden
+
 	column FranjaHoraria
 		dataType: string
 		summarizeBy: none
 		sourceColumn: FranjaHoraria
+		sortByColumn: FranjaOrden
 
 	partition dHora = m
 		mode: import

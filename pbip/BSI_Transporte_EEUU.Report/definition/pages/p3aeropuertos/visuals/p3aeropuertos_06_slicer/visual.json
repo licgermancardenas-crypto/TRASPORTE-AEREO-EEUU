@@ -21,13 +21,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "dMes"
                     }
                   },
                   "Property": "Mes"
                 }
               },
-              "queryRef": "dCalendario.Mes",
+              "queryRef": "dMes.Mes",
               "nativeQueryRef": "Mes"
             }
           ]

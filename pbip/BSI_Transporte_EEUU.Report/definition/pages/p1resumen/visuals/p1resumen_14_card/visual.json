@@ -21,14 +21,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Demora Promedio de Demorados"
                 }
               },
-              "queryRef": "fVuelos.Demora Promedio de Demorados",
-              "nativeQueryRef": "Demora Promedio de Demorados"
+              "queryRef": "Medidas.Demora Promedio de Demorados",
+              "nativeQueryRef": "Demora media demorados",
+              "displayName": "Demora media demorados"
             }
           ]
         }

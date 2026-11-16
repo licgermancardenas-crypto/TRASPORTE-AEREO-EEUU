@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p5patrones_14_card",
+  "name": "p5patrones_13_card",
   "position": {
     "x": 20,
     "y": 696,
-    "z": 14000,
+    "z": 13000,
     "width": 700,
     "height": 22,
-    "tabOrder": 14000
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "card",
@@ -21,13 +21,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Texto Fuente"
                 }
               },
-              "queryRef": "fVuelos.Texto Fuente",
+              "queryRef": "Medidas.Texto Fuente",
               "nativeQueryRef": "Texto Fuente"
             }
           ]

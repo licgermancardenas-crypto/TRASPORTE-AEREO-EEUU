@@ -21,14 +21,14 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
-                  "Property": "Texto Período"
+                  "Property": "Texto Detalle"
                 }
               },
-              "queryRef": "fVuelos.Texto Período",
-              "nativeQueryRef": "Texto Período"
+              "queryRef": "Medidas.Texto Detalle",
+              "nativeQueryRef": "Texto Detalle"
             }
           ]
         }

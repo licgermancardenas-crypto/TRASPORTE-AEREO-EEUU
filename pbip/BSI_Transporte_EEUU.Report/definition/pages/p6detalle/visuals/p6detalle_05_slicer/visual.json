@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "dAerolinea"
                     }
                   },
-                  "Property": "Anio"
+                  "Property": "Aerolinea"
                 }
               },
-              "queryRef": "dCalendario.Anio",
-              "nativeQueryRef": "Anio"
+              "queryRef": "dAerolinea.Aerolinea",
+              "nativeQueryRef": "Aerolínea",
+              "displayName": "Aerolínea"
             }
           ]
         }
@@ -61,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Año'"
+                  "Value": "'Aerolínea'"
                 }
               }
             },

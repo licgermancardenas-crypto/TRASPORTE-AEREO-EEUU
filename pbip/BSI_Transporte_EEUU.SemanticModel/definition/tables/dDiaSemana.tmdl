@@ -1,0 +1,24 @@
+table dDiaSemana
+
+	column DiaSemanaNum
+		dataType: int64
+		formatString: 0
+		isHidden
+		isKey
+		summarizeBy: none
+		sourceColumn: DiaSemanaNum
+
+	column DiaSemana
+		dataType: string
+		summarizeBy: none
+		sourceColumn: DiaSemana
+		sortByColumn: DiaSemanaNum
+
+	partition dDiaSemana = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaDatos & "dDiaSemana.parquet"))
+				in
+				    Origen
+

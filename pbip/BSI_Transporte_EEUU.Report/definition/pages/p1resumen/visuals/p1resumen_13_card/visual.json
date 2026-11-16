@@ -21,14 +21,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% Cancelados"
                 }
               },
-              "queryRef": "fVuelos.% Cancelados",
-              "nativeQueryRef": "% Cancelados"
+              "queryRef": "Medidas.% Cancelados",
+              "nativeQueryRef": "% cancelados",
+              "displayName": "% cancelados"
             }
           ]
         }

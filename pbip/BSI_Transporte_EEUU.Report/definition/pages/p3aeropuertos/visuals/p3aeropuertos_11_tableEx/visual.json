@@ -28,7 +28,8 @@
                 }
               },
               "queryRef": "dOrigen.OrigenCodigo",
-              "nativeQueryRef": "OrigenCodigo"
+              "nativeQueryRef": "Origen",
+              "displayName": "Origen"
             },
             {
               "field": {
@@ -42,7 +43,8 @@
                 }
               },
               "queryRef": "dOrigen.OrigenCiudad",
-              "nativeQueryRef": "OrigenCiudad"
+              "nativeQueryRef": "Ciudad",
+              "displayName": "Ciudad"
             },
             {
               "field": {
@@ -56,20 +58,21 @@
                 }
               },
               "queryRef": "dOrigen.OrigenEstadoCod",
-              "nativeQueryRef": "OrigenEstadoCod"
+              "nativeQueryRef": "Estado",
+              "displayName": "Estado"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Vuelos"
                 }
               },
-              "queryRef": "fVuelos.Vuelos",
+              "queryRef": "Medidas.Vuelos",
               "nativeQueryRef": "Vuelos"
             },
             {
@@ -77,42 +80,45 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% A Tiempo"
                 }
               },
-              "queryRef": "fVuelos.% A Tiempo",
-              "nativeQueryRef": "% A Tiempo"
+              "queryRef": "Medidas.% A Tiempo",
+              "nativeQueryRef": "% a tiempo",
+              "displayName": "% a tiempo"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% Cancelados"
                 }
               },
-              "queryRef": "fVuelos.% Cancelados",
-              "nativeQueryRef": "% Cancelados"
+              "queryRef": "Medidas.% Cancelados",
+              "nativeQueryRef": "% cancelados",
+              "displayName": "% cancelados"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Taxi Salida Promedio"
                 }
               },
-              "queryRef": "fVuelos.Taxi Salida Promedio",
-              "nativeQueryRef": "Taxi Salida Promedio"
+              "queryRef": "Medidas.Taxi Salida Promedio",
+              "nativeQueryRef": "Taxi salida (min)",
+              "displayName": "Taxi salida (min)"
             }
           ]
         }
@@ -124,7 +130,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "fVuelos"
+                    "Entity": "Medidas"
                   }
                 },
                 "Property": "Vuelos"

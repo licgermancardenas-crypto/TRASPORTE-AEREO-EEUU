@@ -1,0 +1,66 @@
+table dMes
+
+	column MesKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		isKey
+		summarizeBy: none
+		sourceColumn: MesKey
+
+	column FechaMes
+		dataType: dateTime
+		formatString: mmm yyyy
+		summarizeBy: none
+		sourceColumn: FechaMes
+
+	column Anio
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Anio
+
+	column MesNum
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: MesNum
+
+	column Mes
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Mes
+		sortByColumn: MesNum
+
+	column AnioMes
+		dataType: string
+		summarizeBy: none
+		sourceColumn: AnioMes
+
+	column MesIndice
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: MesIndice
+
+	column Trimestre
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Trimestre
+
+	column Temporada
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Temporada
+
+	partition dMes = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaDatos & "dMes.parquet")),
+				    Paso1 = Table.TransformColumnTypes(Origen, {{"FechaMes", type date}})
+				in
+				    Paso1
+

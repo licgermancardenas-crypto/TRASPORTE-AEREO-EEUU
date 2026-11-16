@@ -21,13 +21,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% Causa Sistema NAS"
                 }
               },
-              "queryRef": "fVuelos.% Causa Sistema NAS",
+              "queryRef": "Medidas.% Causa Sistema NAS",
               "nativeQueryRef": "% Causa Sistema NAS"
             }
           ]

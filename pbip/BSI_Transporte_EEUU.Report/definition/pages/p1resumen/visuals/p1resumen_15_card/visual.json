@@ -21,13 +21,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Horas de Demora"
                 }
               },
-              "queryRef": "fVuelos.Horas de Demora",
+              "queryRef": "Medidas.Horas de Demora",
               "nativeQueryRef": "Horas de Demora"
             }
           ]

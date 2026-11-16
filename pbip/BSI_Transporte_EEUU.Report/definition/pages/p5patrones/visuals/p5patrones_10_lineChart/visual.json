@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p5patrones_11_lineChart",
+  "name": "p5patrones_10_lineChart",
   "position": {
     "x": 20,
     "y": 396,
-    "z": 11000,
+    "z": 10000,
     "width": 610,
     "height": 294,
-    "tabOrder": 11000
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "lineChart",
@@ -21,13 +21,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "dMes"
                     }
                   },
                   "Property": "Mes"
                 }
               },
-              "queryRef": "dCalendario.Mes",
+              "queryRef": "dMes.Mes",
               "nativeQueryRef": "Mes"
             }
           ]
@@ -39,14 +39,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "dMes"
                     }
                   },
                   "Property": "Anio"
                 }
               },
-              "queryRef": "dCalendario.Anio",
-              "nativeQueryRef": "Anio"
+              "queryRef": "dMes.Anio",
+              "nativeQueryRef": "Año",
+              "displayName": "Año"
             }
           ]
         },
@@ -57,14 +58,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% A Tiempo"
                 }
               },
-              "queryRef": "fVuelos.% A Tiempo",
-              "nativeQueryRef": "% A Tiempo"
+              "queryRef": "Medidas.% A Tiempo",
+              "nativeQueryRef": "% a tiempo",
+              "displayName": "% a tiempo"
             }
           ]
         }
@@ -76,7 +78,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "dCalendario"
+                    "Entity": "dMes"
                   }
                 },
                 "Property": "Mes"

@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "dMes"
                     }
                   },
                   "Property": "AnioMes"
                 }
               },
-              "queryRef": "dCalendario.AnioMes",
-              "nativeQueryRef": "AnioMes"
+              "queryRef": "dMes.AnioMes",
+              "nativeQueryRef": "Mes",
+              "displayName": "Mes"
             }
           ]
         },
@@ -39,70 +40,75 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Min Demora Aerolínea"
                 }
               },
-              "queryRef": "fVuelos.Min Demora Aerolínea",
-              "nativeQueryRef": "Min Demora Aerolínea"
+              "queryRef": "Medidas.Min Demora Aerolínea",
+              "nativeQueryRef": "Aerolínea",
+              "displayName": "Aerolínea"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Min Demora Clima"
                 }
               },
-              "queryRef": "fVuelos.Min Demora Clima",
-              "nativeQueryRef": "Min Demora Clima"
+              "queryRef": "Medidas.Min Demora Clima",
+              "nativeQueryRef": "Clima",
+              "displayName": "Clima"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Min Demora Sistema NAS"
                 }
               },
-              "queryRef": "fVuelos.Min Demora Sistema NAS",
-              "nativeQueryRef": "Min Demora Sistema NAS"
+              "queryRef": "Medidas.Min Demora Sistema NAS",
+              "nativeQueryRef": "Sistema NAS",
+              "displayName": "Sistema NAS"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Min Demora Seguridad"
                 }
               },
-              "queryRef": "fVuelos.Min Demora Seguridad",
-              "nativeQueryRef": "Min Demora Seguridad"
+              "queryRef": "Medidas.Min Demora Seguridad",
+              "nativeQueryRef": "Seguridad",
+              "displayName": "Seguridad"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Min Demora Avión previo"
                 }
               },
-              "queryRef": "fVuelos.Min Demora Avión previo",
-              "nativeQueryRef": "Min Demora Avión previo"
+              "queryRef": "Medidas.Min Demora Avión previo",
+              "nativeQueryRef": "Avión previo",
+              "displayName": "Avión previo"
             }
           ]
         }
@@ -114,7 +120,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "dCalendario"
+                    "Entity": "dMes"
                   }
                 },
                 "Property": "AnioMes"

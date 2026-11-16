@@ -1,23 +1,59 @@
-relationship fe396655-4b23-5884-a28d-3a176a321a77
-	fromColumn: fVuelos.FechaKey
-	toColumn: dCalendario.FechaKey
+relationship fda27488-0058-5289-866f-fc42ce88fb77
+	fromColumn: fRutasMes.MesKey
+	toColumn: dMes.MesKey
 
-relationship 6e5ed081-0e50-52e0-9e34-ae080fd41794
-	fromColumn: fVuelos.AerolineaCod
+relationship 41f17b2f-1a4a-53ca-84b4-6d8db884cc3f
+	fromColumn: fPatrones.MesKey
+	toColumn: dMes.MesKey
+
+relationship af2920cb-e773-528b-8162-61216ef1b2fd
+	fromColumn: fDetalle.MesKey
+	toColumn: dMes.MesKey
+
+relationship ddcbd8a3-c737-51f7-929b-c07df173d92b
+	fromColumn: fRutasMes.AerolineaCod
 	toColumn: dAerolinea.AerolineaCod
 
-relationship cce84700-4ea6-5897-894c-0220f019b0ff
-	fromColumn: fVuelos.OrigenCod
+relationship ad3b0d16-86ee-5da1-868f-026d911c5e34
+	fromColumn: fPatrones.AerolineaCod
+	toColumn: dAerolinea.AerolineaCod
+
+relationship b4df5472-e56c-537b-b3d1-2e9169f052d6
+	fromColumn: fDetalle.AerolineaCod
+	toColumn: dAerolinea.AerolineaCod
+
+relationship 05a68626-9446-50f8-b744-c3c00f0fc48d
+	fromColumn: fRutasMes.OrigenCod
 	toColumn: dOrigen.OrigenCodigo
 
-relationship 1a69daf2-de30-5cd2-8564-d56bacb27fac
-	fromColumn: fVuelos.DestinoCod
+relationship 397f3652-ce91-5654-b7d6-7d1ef6bdf2b0
+	fromColumn: fDetalle.OrigenCod
+	toColumn: dOrigen.OrigenCodigo
+
+relationship 2f25735c-b7c4-543f-8fac-b575e0931585
+	fromColumn: fRutasMes.DestinoCod
 	toColumn: dDestino.DestinoCodigo
 
-relationship 79627e61-2f0c-538e-ae7b-9e79ff31c0f2
-	fromColumn: fVuelos.HoraProgramada
+relationship 1ba951ca-30fe-56e7-bda4-2afd7fa9cf1e
+	fromColumn: fDetalle.DestinoCod
+	toColumn: dDestino.DestinoCodigo
+
+relationship bf9873f7-e03c-5e20-881f-0ccd1f1efcf3
+	fromColumn: fRutasMes.CodigoCancelacion
+	toColumn: dCausaCancelacion.CodigoCancelacion
+
+relationship db19c2da-49fa-5ca5-8b44-39ba2a7f1d96
+	fromColumn: fDetalle.CodigoCancelacion
+	toColumn: dCausaCancelacion.CodigoCancelacion
+
+relationship 3fd243ab-4cc9-500e-9344-842ab24e311b
+	fromColumn: fPatrones.HoraProgramada
 	toColumn: dHora.HoraProgramada
 
-relationship f396c766-9de9-5199-ab5b-68c9c3d548e5
-	fromColumn: fVuelos.CodigoCancelacion
-	toColumn: dCausaCancelacion.CodigoCancelacion
+relationship e01fad95-ca54-5bcd-8614-7356196e715c
+	fromColumn: fDetalle.HoraProgramada
+	toColumn: dHora.HoraProgramada
+
+relationship a906aab2-7639-5da3-8405-40e49f6b5551
+	fromColumn: fPatrones.DiaSemanaNum
+	toColumn: dDiaSemana.DiaSemanaNum

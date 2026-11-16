@@ -1,0 +1,149 @@
+table fRutasMes
+
+	column MesKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: MesKey
+
+	column AerolineaCod
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: AerolineaCod
+
+	column OrigenCod
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: OrigenCod
+
+	column DestinoCod
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: DestinoCod
+
+	column CodigoCancelacion
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: CodigoCancelacion
+
+	column Vuelos
+		dataType: int64
+		isHidden
+		summarizeBy: sum
+		sourceColumn: Vuelos
+
+	column Cancelados
+		dataType: int64
+		isHidden
+		summarizeBy: sum
+		sourceColumn: Cancelados
+
+	column Desviados
+		dataType: int64
+		isHidden
+		summarizeBy: sum
+		sourceColumn: Desviados
+
+	column LlegadasDemoradas
+		dataType: int64
+		isHidden
+		summarizeBy: sum
+		sourceColumn: LlegadasDemoradas
+
+	column SalidasDemoradas
+		dataType: int64
+		isHidden
+		summarizeBy: sum
+		sourceColumn: SalidasDemoradas
+
+	column NDemoraLlegada
+		dataType: int64
+		isHidden
+		summarizeBy: sum
+		sourceColumn: NDemoraLlegada
+
+	column NDemoraSalida
+		dataType: int64
+		isHidden
+		summarizeBy: sum
+		sourceColumn: NDemoraSalida
+
+	column NTaxiSalida
+		dataType: int64
+		isHidden
+		summarizeBy: sum
+		sourceColumn: NTaxiSalida
+
+	column SumaDemoraLlegada
+		dataType: double
+		isHidden
+		summarizeBy: sum
+		sourceColumn: SumaDemoraLlegada
+
+	column SumaDemoraDemorados
+		dataType: double
+		isHidden
+		summarizeBy: sum
+		sourceColumn: SumaDemoraDemorados
+
+	column SumaDemoraSalida
+		dataType: double
+		isHidden
+		summarizeBy: sum
+		sourceColumn: SumaDemoraSalida
+
+	column SumaTaxiSalida
+		dataType: double
+		isHidden
+		summarizeBy: sum
+		sourceColumn: SumaTaxiSalida
+
+	column Millas
+		dataType: double
+		isHidden
+		summarizeBy: sum
+		sourceColumn: Millas
+
+	column DemoraAerolineaMin
+		dataType: double
+		isHidden
+		summarizeBy: sum
+		sourceColumn: DemoraAerolineaMin
+
+	column DemoraClimaMin
+		dataType: double
+		isHidden
+		summarizeBy: sum
+		sourceColumn: DemoraClimaMin
+
+	column DemoraNASMin
+		dataType: double
+		isHidden
+		summarizeBy: sum
+		sourceColumn: DemoraNASMin
+
+	column DemoraSeguridadMin
+		dataType: double
+		isHidden
+		summarizeBy: sum
+		sourceColumn: DemoraSeguridadMin
+
+	column DemoraAvionPrevioMin
+		dataType: double
+		isHidden
+		summarizeBy: sum
+		sourceColumn: DemoraAvionPrevioMin
+
+	partition fRutasMes = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaDatos & "fRutasMes.parquet"))
+				in
+				    Origen
+

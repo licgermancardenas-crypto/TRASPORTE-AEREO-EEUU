@@ -21,13 +21,13 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "fDetalle"
                     }
                   },
                   "Property": "Fecha"
                 }
               },
-              "queryRef": "dCalendario.Fecha",
+              "queryRef": "fDetalle.Fecha",
               "nativeQueryRef": "Fecha"
             },
             {
@@ -42,34 +42,36 @@
                 }
               },
               "queryRef": "dAerolinea.Aerolinea",
-              "nativeQueryRef": "Aerolinea"
+              "nativeQueryRef": "Aerolínea",
+              "displayName": "Aerolínea"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "fDetalle"
                     }
                   },
                   "Property": "NroVuelo"
                 }
               },
-              "queryRef": "fVuelos.NroVuelo",
-              "nativeQueryRef": "NroVuelo"
+              "queryRef": "fDetalle.NroVuelo",
+              "nativeQueryRef": "Vuelo",
+              "displayName": "Vuelo"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "fDetalle"
                     }
                   },
                   "Property": "Ruta"
                 }
               },
-              "queryRef": "fVuelos.Ruta",
+              "queryRef": "fDetalle.Ruta",
               "nativeQueryRef": "Ruta"
             },
             {
@@ -84,48 +86,51 @@
                 }
               },
               "queryRef": "dHora.HoraTexto",
-              "nativeQueryRef": "HoraTexto"
+              "nativeQueryRef": "Hora",
+              "displayName": "Hora"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "fDetalle"
                     }
                   },
                   "Property": "DemoraSalidaMin"
                 }
               },
-              "queryRef": "fVuelos.DemoraSalidaMin",
-              "nativeQueryRef": "DemoraSalidaMin"
+              "queryRef": "fDetalle.DemoraSalidaMin",
+              "nativeQueryRef": "Demora salida (min)",
+              "displayName": "Demora salida (min)"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "fDetalle"
                     }
                   },
                   "Property": "DemoraLlegadaMin"
                 }
               },
-              "queryRef": "fVuelos.DemoraLlegadaMin",
-              "nativeQueryRef": "DemoraLlegadaMin"
+              "queryRef": "fDetalle.DemoraLlegadaMin",
+              "nativeQueryRef": "Demora llegada (min)",
+              "displayName": "Demora llegada (min)"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "fDetalle"
                     }
                   },
                   "Property": "Cancelado"
                 }
               },
-              "queryRef": "fVuelos.Cancelado",
+              "queryRef": "fDetalle.Cancelado",
               "nativeQueryRef": "Cancelado"
             },
             {
@@ -140,20 +145,21 @@
                 }
               },
               "queryRef": "dCausaCancelacion.CausaCancelacion",
-              "nativeQueryRef": "CausaCancelacion"
+              "nativeQueryRef": "Causa de cancelación",
+              "displayName": "Causa de cancelación"
             },
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "fDetalle"
                     }
                   },
                   "Property": "Desviado"
                 }
               },
-              "queryRef": "fVuelos.Desviado",
+              "queryRef": "fDetalle.Desviado",
               "nativeQueryRef": "Desviado"
             },
             {
@@ -161,14 +167,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "fDetalle"
                     }
                   },
                   "Property": "DistanciaMillas"
                 }
               },
-              "queryRef": "fVuelos.DistanciaMillas",
-              "nativeQueryRef": "DistanciaMillas"
+              "queryRef": "fDetalle.DistanciaMillas",
+              "nativeQueryRef": "Millas",
+              "displayName": "Millas"
             }
           ]
         }
@@ -180,7 +187,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "fVuelos"
+                    "Entity": "fDetalle"
                   }
                 },
                 "Property": "DemoraLlegadaMin"

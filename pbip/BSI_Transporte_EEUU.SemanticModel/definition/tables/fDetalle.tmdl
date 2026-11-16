@@ -1,0 +1,96 @@
+table fDetalle
+
+	column Fecha
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		summarizeBy: none
+		sourceColumn: Fecha
+
+	column MesKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: MesKey
+
+	column AerolineaCod
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: AerolineaCod
+
+	column NroVuelo
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: NroVuelo
+
+	column OrigenCod
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: OrigenCod
+
+	column DestinoCod
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: DestinoCod
+
+	column Ruta
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Ruta
+
+	column HoraProgramada
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: HoraProgramada
+
+	column DemoraSalidaMin
+		dataType: double
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: DemoraSalidaMin
+
+	column DemoraLlegadaMin
+		dataType: double
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: DemoraLlegadaMin
+
+	column Cancelado
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Cancelado
+
+	column CodigoCancelacion
+		dataType: string
+		isHidden
+		summarizeBy: none
+		sourceColumn: CodigoCancelacion
+
+	column Desviado
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Desviado
+
+	column DistanciaMillas
+		dataType: double
+		formatString: #,0
+		summarizeBy: none
+		sourceColumn: DistanciaMillas
+
+	partition fDetalle = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaDatos & "fDetalle.parquet")),
+				    Paso1 = Table.TransformColumnTypes(Origen, {{"Fecha", type date}})
+				in
+				    Paso1
+

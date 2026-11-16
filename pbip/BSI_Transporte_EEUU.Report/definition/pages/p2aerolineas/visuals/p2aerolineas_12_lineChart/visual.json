@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "dMes"
                     }
                   },
                   "Property": "AnioMes"
                 }
               },
-              "queryRef": "dCalendario.AnioMes",
-              "nativeQueryRef": "AnioMes"
+              "queryRef": "dMes.AnioMes",
+              "nativeQueryRef": "Mes",
+              "displayName": "Mes"
             }
           ]
         },
@@ -46,7 +47,8 @@
                 }
               },
               "queryRef": "dAerolinea.TipoAerolinea",
-              "nativeQueryRef": "TipoAerolinea"
+              "nativeQueryRef": "Tipo",
+              "displayName": "Tipo"
             }
           ]
         },
@@ -57,14 +59,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% A Tiempo"
                 }
               },
-              "queryRef": "fVuelos.% A Tiempo",
-              "nativeQueryRef": "% A Tiempo"
+              "queryRef": "Medidas.% A Tiempo",
+              "nativeQueryRef": "% a tiempo",
+              "displayName": "% a tiempo"
             }
           ]
         }
@@ -76,7 +79,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "dCalendario"
+                    "Entity": "dMes"
                   }
                 },
                 "Property": "AnioMes"

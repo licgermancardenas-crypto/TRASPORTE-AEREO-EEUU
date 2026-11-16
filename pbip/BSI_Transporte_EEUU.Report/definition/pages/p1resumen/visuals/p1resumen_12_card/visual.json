@@ -21,14 +21,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Δ % A Tiempo vs AA"
                 }
               },
-              "queryRef": "fVuelos.Δ % A Tiempo vs AA",
-              "nativeQueryRef": "Δ % A Tiempo vs AA"
+              "queryRef": "Medidas.Δ % A Tiempo vs AA",
+              "nativeQueryRef": "Δ vs año ant. (pp)",
+              "displayName": "Δ vs año ant. (pp)"
             }
           ]
         }

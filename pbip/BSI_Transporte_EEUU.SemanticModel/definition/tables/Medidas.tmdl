@@ -1,15 +1,15 @@
-table fVuelos
+table Medidas
 
 	/// Vuelos programados reportados a BTS
-	measure Vuelos = COUNTROWS ( fVuelos )
+	measure Vuelos = SUM ( fRutasMes[Vuelos] )
 		formatString: #,0
 		displayFolder: 1 Volumen
 
-	measure 'Vuelos Cancelados' = SUM ( fVuelos[Cancelado] )
+	measure 'Vuelos Cancelados' = SUM ( fRutasMes[Cancelados] )
 		formatString: #,0
 		displayFolder: 1 Volumen
 
-	measure 'Vuelos Desviados' = SUM ( fVuelos[Desviado] )
+	measure 'Vuelos Desviados' = SUM ( fRutasMes[Desviados] )
 		formatString: #,0
 		displayFolder: 1 Volumen
 
@@ -18,8 +18,8 @@ table fVuelos
 		formatString: #,0
 		displayFolder: 1 Volumen
 
-	/// Vuelos con llegada 15+ minutos tarde
-	measure 'Vuelos Demorados' = SUM ( fVuelos[LlegadaDemorada15] )
+	/// Llegadas 15+ min tarde
+	measure 'Vuelos Demorados' = SUM ( fRutasMes[LlegadasDemoradas] )
 		formatString: #,0
 		displayFolder: 1 Volumen
 
@@ -27,7 +27,7 @@ table fVuelos
 		formatString: #,0
 		displayFolder: 1 Volumen
 
-	measure 'Millas Voladas' = SUM ( fVuelos[DistanciaMillas] )
+	measure 'Millas Voladas' = SUM ( fRutasMes[Millas] )
 		formatString: #,0
 		displayFolder: 1 Volumen
 
@@ -48,45 +48,45 @@ table fVuelos
 		formatString: 0.00%
 		displayFolder: 2 Puntualidad
 
-	measure '% Salidas Demoradas' = DIVIDE ( SUM ( fVuelos[SalidaDemorada15] ), [Vuelos] - [Vuelos Cancelados] )
+	measure '% Salidas Demoradas' = DIVIDE ( SUM ( fRutasMes[SalidasDemoradas] ), [Vuelos] - [Vuelos Cancelados] )
 		formatString: 0.0%
 		displayFolder: 2 Puntualidad
 
 	/// Promedio de todos los vuelos operados (negativo = llegó antes)
-	measure 'Demora Promedio Llegada' = AVERAGE ( fVuelos[DemoraLlegadaMin] )
+	measure 'Demora Promedio Llegada' = DIVIDE ( SUM ( fRutasMes[SumaDemoraLlegada] ), SUM ( fRutasMes[NDemoraLlegada] ) )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
 
-	measure 'Demora Promedio Salida' = AVERAGE ( fVuelos[DemoraSalidaMin] )
+	measure 'Demora Promedio Salida' = DIVIDE ( SUM ( fRutasMes[SumaDemoraSalida] ), SUM ( fRutasMes[NDemoraSalida] ) )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
 
 	/// Demora media solo de los vuelos que llegaron 15+ min tarde
-	measure 'Demora Promedio de Demorados' = CALCULATE ( AVERAGE ( fVuelos[DemoraLlegadaMin] ), fVuelos[LlegadaDemorada15] = 1 )
+	measure 'Demora Promedio de Demorados' = DIVIDE ( SUM ( fRutasMes[SumaDemoraDemorados] ), [Vuelos Demorados] )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
 
-	measure 'Taxi Salida Promedio' = AVERAGE ( fVuelos[TaxiSalidaMin] )
+	measure 'Taxi Salida Promedio' = DIVIDE ( SUM ( fRutasMes[SumaTaxiSalida] ), SUM ( fRutasMes[NTaxiSalida] ) )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
 
-	measure 'Min Demora Aerolínea' = SUM ( fVuelos[DemoraAerolineaMin] )
+	measure 'Min Demora Aerolínea' = SUM ( fRutasMes[DemoraAerolineaMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
 
-	measure 'Min Demora Clima' = SUM ( fVuelos[DemoraClimaMin] )
+	measure 'Min Demora Clima' = SUM ( fRutasMes[DemoraClimaMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
 
-	measure 'Min Demora Sistema NAS' = SUM ( fVuelos[DemoraNASMin] )
+	measure 'Min Demora Sistema NAS' = SUM ( fRutasMes[DemoraNASMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
 
-	measure 'Min Demora Seguridad' = SUM ( fVuelos[DemoraSeguridadMin] )
+	measure 'Min Demora Seguridad' = SUM ( fRutasMes[DemoraSeguridadMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
 
-	measure 'Min Demora Avión previo' = SUM ( fVuelos[DemoraAvionPrevioMin] )
+	measure 'Min Demora Avión previo' = SUM ( fRutasMes[DemoraAvionPrevioMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
 
@@ -124,7 +124,18 @@ table fVuelos
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
 
-	measure 'Vuelos Año Anterior' = CALCULATE ( [Vuelos], SAMEPERIODLASTYEAR ( dCalendario[Fecha] ) )
+	/// Mismos meses del año anterior (en blanco si no hay datos)
+	measure 'Vuelos Año Anterior' =
+			VAR idx = VALUES ( dMes[MesIndice] )
+			RETURN
+			    IF (
+			        MINX ( idx, dMes[MesIndice] ) > 12,
+			        CALCULATE (
+			            [Vuelos],
+			            REMOVEFILTERS ( dMes ),
+			            TREATAS ( SELECTCOLUMNS ( idx, "i", dMes[MesIndice] - 12 ), dMes[MesIndice] )
+			        )
+			    )
 		formatString: #,0
 		displayFolder: 4 Comparaciones
 
@@ -132,24 +143,45 @@ table fVuelos
 		formatString: +0.0%;-0.0%;0.0%
 		displayFolder: 4 Comparaciones
 
-	measure '% A Tiempo Año Anterior' = CALCULATE ( [% A Tiempo], SAMEPERIODLASTYEAR ( dCalendario[Fecha] ) )
+	measure '% A Tiempo Año Anterior' =
+			VAR idx = VALUES ( dMes[MesIndice] )
+			RETURN
+			    IF (
+			        MINX ( idx, dMes[MesIndice] ) > 12,
+			        CALCULATE (
+			            [% A Tiempo],
+			            REMOVEFILTERS ( dMes ),
+			            TREATAS ( SELECTCOLUMNS ( idx, "i", dMes[MesIndice] - 12 ), dMes[MesIndice] )
+			        )
+			    )
 		formatString: 0.0%
 		displayFolder: 4 Comparaciones
 
-	/// Diferencia en puntos porcentuales contra igual período del año anterior
+	/// Diferencia en puntos porcentuales contra iguales meses del año anterior
 	measure 'Δ % A Tiempo vs AA' = IF ( NOT ISBLANK ( [% A Tiempo Año Anterior] ), [% A Tiempo] - [% A Tiempo Año Anterior] )
 		formatString: +0.0%;-0.0%;0.0%
 		displayFolder: 4 Comparaciones
 
-	measure '% A Tiempo Mes Anterior' = CALCULATE ( [% A Tiempo], DATEADD ( dCalendario[Fecha], -1, MONTH ) )
+	measure '% A Tiempo Mes Anterior' =
+			VAR i = MAX ( dMes[MesIndice] )
+			RETURN
+			    IF (
+			        HASONEVALUE ( dMes[MesIndice] ),
+			        CALCULATE ( [% A Tiempo], REMOVEFILTERS ( dMes ), dMes[MesIndice] = i - 1 )
+			    )
 		formatString: 0.0%
 		displayFolder: 4 Comparaciones
 
+	/// Últimos 3 meses hasta el mes del contexto
 	measure '% A Tiempo Móvil 3M' =
-			CALCULATE (
-			    [% A Tiempo],
-			    DATESINPERIOD ( dCalendario[Fecha], MAX ( dCalendario[Fecha] ), -3, MONTH )
-			)
+			VAR i = MAX ( dMes[MesIndice] )
+			RETURN
+			    CALCULATE (
+			        [% A Tiempo],
+			        REMOVEFILTERS ( dMes ),
+			        dMes[MesIndice] > i - 3,
+			        dMes[MesIndice] <= i
+			    )
 		formatString: 0.0%
 		displayFolder: 4 Comparaciones
 
@@ -162,169 +194,71 @@ table fVuelos
 		formatString: 0
 		displayFolder: 4 Comparaciones
 
+	measure 'P Vuelos' = SUM ( fPatrones[Vuelos] )
+		formatString: #,0
+		displayFolder: 5 Patrones
+
+	/// % de llegadas demoradas según día y hora programada
+	measure 'P % Demorados' =
+			DIVIDE (
+			    SUM ( fPatrones[LlegadasDemoradas] ),
+			    SUM ( fPatrones[Vuelos] ) - SUM ( fPatrones[Cancelados] ) - SUM ( fPatrones[Desviados] )
+			)
+		formatString: 0.0%
+		displayFolder: 5 Patrones
+
+	measure 'P % A Tiempo' = IF ( NOT ISBLANK ( [P % Demorados] ), 1 - [P % Demorados] )
+		formatString: 0.0%
+		displayFolder: 5 Patrones
+
+	measure 'P % Cancelados' = DIVIDE ( SUM ( fPatrones[Cancelados] ), [P Vuelos] )
+		formatString: 0.00%
+		displayFolder: 5 Patrones
+
+	measure 'D Vuelos' = COUNTROWS ( fDetalle )
+		formatString: #,0
+		displayFolder: 6 Detalle
+
+	measure 'Texto Detalle' = "Vuelo por vuelo – " & FORMAT ( MAX ( fDetalle[Fecha] ), "mmmm yyyy" ) & " (último mes publicado por BTS)"
+		displayFolder: 6 Detalle
+
 	/// Semáforo: verde ≥80%, ámbar ≥72%, rojo debajo
 	measure 'Color % A Tiempo' =
 			VAR v = [% A Tiempo]
 			RETURN
 			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, "#2E9C8F", v >= 0.72, "#E0A526", "#C8102E" )
-		displayFolder: 5 Formato
+		displayFolder: 9 Formato
 
-	/// Escala para mapa de calor: <15% verde ... ≥30% rojo
+	measure 'Color P % A Tiempo' =
+			VAR v = [P % A Tiempo]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, "#2E9C8F", v >= 0.72, "#E0A526", "#C8102E" )
+		displayFolder: 9 Formato
+
+	/// Escala del mapa de calor: <15% verde ... ≥30% rojo
 	measure 'Color % Demorados' =
-			VAR v = [% Demorados]
+			VAR v = [P % Demorados]
 			RETURN
 			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v < 0.15, "#2E9C8F", v < 0.20, "#7FB8A0", v < 0.25, "#E0A526", v < 0.30, "#E06C3C", "#C8102E" )
-		displayFolder: 5 Formato
+		displayFolder: 9 Formato
 
-	measure 'Texto Período' = "Período: " & FORMAT ( MIN ( dCalendario[Fecha] ), "mmm yyyy" ) & " – " & FORMAT ( MAX ( dCalendario[Fecha] ), "mmm yyyy" )
-		displayFolder: 5 Formato
+	measure 'Texto Período' = "Período: " & FORMAT ( MIN ( dMes[FechaMes] ), "mmm yyyy" ) & " – " & FORMAT ( MAX ( dMes[FechaMes] ), "mmm yyyy" )
+		displayFolder: 9 Formato
 
 	measure 'Texto Fuente' = "Fuente: BTS – On-Time Performance (transtats.bts.gov). Elaboración ATLAS."
-		displayFolder: 5 Formato
+		displayFolder: 9 Formato
 
-	column FechaKey
+	column Columna
 		dataType: int64
-		formatString: 0
 		isHidden
 		summarizeBy: none
-		sourceColumn: FechaKey
+		sourceColumn: Columna
 
-	column AerolineaCod
-		dataType: string
-		isHidden
-		summarizeBy: none
-		sourceColumn: AerolineaCod
-
-	column NroVuelo
-		dataType: int64
-		formatString: 0
-		summarizeBy: none
-		sourceColumn: NroVuelo
-
-	column OrigenCod
-		dataType: string
-		isHidden
-		summarizeBy: none
-		sourceColumn: OrigenCod
-
-	column DestinoCod
-		dataType: string
-		isHidden
-		summarizeBy: none
-		sourceColumn: DestinoCod
-
-	column Ruta
-		dataType: string
-		summarizeBy: none
-		sourceColumn: Ruta
-
-	column HoraProgramada
-		dataType: int64
-		formatString: 0
-		isHidden
-		summarizeBy: none
-		sourceColumn: HoraProgramada
-
-	column DemoraSalidaMin
-		dataType: double
-		summarizeBy: sum
-		sourceColumn: DemoraSalidaMin
-
-	column DemoraLlegadaMin
-		dataType: double
-		summarizeBy: sum
-		sourceColumn: DemoraLlegadaMin
-
-	column SalidaDemorada15
-		dataType: int64
-		formatString: 0
-		isHidden
-		summarizeBy: none
-		sourceColumn: SalidaDemorada15
-
-	column LlegadaDemorada15
-		dataType: int64
-		formatString: 0
-		isHidden
-		summarizeBy: none
-		sourceColumn: LlegadaDemorada15
-
-	column Cancelado
-		dataType: int64
-		formatString: 0
-		summarizeBy: none
-		sourceColumn: Cancelado
-
-	column Desviado
-		dataType: int64
-		formatString: 0
-		summarizeBy: none
-		sourceColumn: Desviado
-
-	column CodigoCancelacion
-		dataType: string
-		isHidden
-		summarizeBy: none
-		sourceColumn: CodigoCancelacion
-
-	column DistanciaMillas
-		dataType: double
-		summarizeBy: sum
-		sourceColumn: DistanciaMillas
-
-	column TiempoAireMin
-		dataType: double
-		isHidden
-		summarizeBy: none
-		sourceColumn: TiempoAireMin
-
-	column TaxiSalidaMin
-		dataType: double
-		isHidden
-		summarizeBy: none
-		sourceColumn: TaxiSalidaMin
-
-	column TaxiLlegadaMin
-		dataType: double
-		isHidden
-		summarizeBy: none
-		sourceColumn: TaxiLlegadaMin
-
-	column DemoraAerolineaMin
-		dataType: double
-		isHidden
-		summarizeBy: none
-		sourceColumn: DemoraAerolineaMin
-
-	column DemoraClimaMin
-		dataType: double
-		isHidden
-		summarizeBy: none
-		sourceColumn: DemoraClimaMin
-
-	column DemoraNASMin
-		dataType: double
-		isHidden
-		summarizeBy: none
-		sourceColumn: DemoraNASMin
-
-	column DemoraSeguridadMin
-		dataType: double
-		isHidden
-		summarizeBy: none
-		sourceColumn: DemoraSeguridadMin
-
-	column DemoraAvionPrevioMin
-		dataType: double
-		isHidden
-		summarizeBy: none
-		sourceColumn: DemoraAvionPrevioMin
-
-	partition fVuelos = m
+	partition Medidas = m
 		mode: import
 		source =
 				let
-				    Origen = Parquet.Document(File.Contents(RutaDatos & "fVuelos.parquet"))
+				    Origen = #table(type table [Columna = Int64.Type], {})
 				in
 				    Origen
 

@@ -28,7 +28,8 @@
                 }
               },
               "queryRef": "dAerolinea.Aerolinea",
-              "nativeQueryRef": "Aerolinea"
+              "nativeQueryRef": "Aerolínea",
+              "displayName": "Aerolínea"
             }
           ]
         },
@@ -39,13 +40,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Vuelos"
                 }
               },
-              "queryRef": "fVuelos.Vuelos",
+              "queryRef": "Medidas.Vuelos",
               "nativeQueryRef": "Vuelos"
             }
           ]
@@ -58,7 +59,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "fVuelos"
+                    "Entity": "Medidas"
                   }
                 },
                 "Property": "Vuelos"

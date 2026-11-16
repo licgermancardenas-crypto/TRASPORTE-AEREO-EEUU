@@ -1,124 +1,122 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p1resumen_18_map",
+  "name": "p5patrones_09_pivotTable",
   "position": {
     "x": 20,
-    "y": 470,
-    "z": 18000,
-    "width": 760,
-    "height": 220,
-    "tabOrder": 18000
+    "y": 136,
+    "z": 9000,
+    "width": 1240,
+    "height": 250,
+    "tabOrder": 9000
   },
   "visual": {
-    "visualType": "map",
+    "visualType": "pivotTable",
     "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
-        "Category": {
+        "Rows": {
           "projections": [
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dOrigen"
+                      "Entity": "dDiaSemana"
                     }
                   },
-                  "Property": "OrigenCodigo"
+                  "Property": "DiaSemana"
                 }
               },
-              "queryRef": "dOrigen.OrigenCodigo",
-              "nativeQueryRef": "OrigenCodigo"
+              "queryRef": "dDiaSemana.DiaSemana",
+              "nativeQueryRef": "Día",
+              "displayName": "Día"
             }
           ]
         },
-        "Y": {
+        "Columns": {
           "projections": [
             {
               "field": {
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dOrigen"
+                      "Entity": "dHora"
                     }
                   },
-                  "Property": "OrigenLatitud"
+                  "Property": "HoraTexto"
                 }
               },
-              "queryRef": "dOrigen.OrigenLatitud",
-              "nativeQueryRef": "OrigenLatitud"
+              "queryRef": "dHora.HoraTexto",
+              "nativeQueryRef": "Hora",
+              "displayName": "Hora"
             }
           ]
         },
-        "X": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dOrigen"
-                    }
-                  },
-                  "Property": "OrigenLongitud"
-                }
-              },
-              "queryRef": "dOrigen.OrigenLongitud",
-              "nativeQueryRef": "OrigenLongitud"
-            }
-          ]
-        },
-        "Size": {
+        "Values": {
           "projections": [
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
-                  "Property": "Vuelos"
+                  "Property": "P % Demorados"
                 }
               },
-              "queryRef": "fVuelos.Vuelos",
-              "nativeQueryRef": "Vuelos"
-            }
-          ]
-        },
-        "Tooltips": {
-          "projections": [
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fVuelos"
-                    }
-                  },
-                  "Property": "% A Tiempo"
-                }
-              },
-              "queryRef": "fVuelos.% A Tiempo",
-              "nativeQueryRef": "% A Tiempo"
-            },
-            {
-              "field": {
-                "Measure": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fVuelos"
-                    }
-                  },
-                  "Property": "Demora Promedio Llegada"
-                }
-              },
-              "queryRef": "fVuelos.Demora Promedio Llegada",
-              "nativeQueryRef": "Demora Promedio Llegada"
+              "queryRef": "Medidas.P % Demorados",
+              "nativeQueryRef": "% demorados",
+              "displayName": "% demorados"
             }
           ]
         }
       }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Color % Demorados"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Medidas.P % Demorados"
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "background": [
@@ -202,7 +200,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Aeropuertos de origen (tamaño = vuelos)'"
+                  "Value": "'% de vuelos demorados por día y hora programada de salida'"
                 }
               }
             },

@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "dMes"
                     }
                   },
                   "Property": "AnioMes"
                 }
               },
-              "queryRef": "dCalendario.AnioMes",
-              "nativeQueryRef": "AnioMes"
+              "queryRef": "dMes.AnioMes",
+              "nativeQueryRef": "Mes",
+              "displayName": "Mes"
             }
           ]
         },
@@ -39,28 +40,30 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% A Tiempo"
                 }
               },
-              "queryRef": "fVuelos.% A Tiempo",
-              "nativeQueryRef": "% A Tiempo"
+              "queryRef": "Medidas.% A Tiempo",
+              "nativeQueryRef": "% a tiempo",
+              "displayName": "% a tiempo"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% A Tiempo Móvil 3M"
                 }
               },
-              "queryRef": "fVuelos.% A Tiempo Móvil 3M",
-              "nativeQueryRef": "% A Tiempo Móvil 3M"
+              "queryRef": "Medidas.% A Tiempo Móvil 3M",
+              "nativeQueryRef": "Promedio móvil 3 meses",
+              "displayName": "Promedio móvil 3 meses"
             }
           ]
         }
@@ -72,7 +75,7 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "dCalendario"
+                    "Entity": "dMes"
                   }
                 },
                 "Property": "AnioMes"

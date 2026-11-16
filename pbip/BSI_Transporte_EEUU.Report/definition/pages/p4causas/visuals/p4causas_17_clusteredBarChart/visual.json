@@ -28,7 +28,8 @@
                 }
               },
               "queryRef": "dCausaCancelacion.CausaCancelacion",
-              "nativeQueryRef": "CausaCancelacion"
+              "nativeQueryRef": "Causa de cancelación",
+              "displayName": "Causa de cancelación"
             }
           ]
         },
@@ -39,14 +40,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Vuelos Cancelados"
                 }
               },
-              "queryRef": "fVuelos.Vuelos Cancelados",
-              "nativeQueryRef": "Vuelos Cancelados"
+              "queryRef": "Medidas.Vuelos Cancelados",
+              "nativeQueryRef": "Vuelos cancelados",
+              "displayName": "Vuelos cancelados"
             }
           ]
         }
@@ -58,7 +60,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "fVuelos"
+                    "Entity": "Medidas"
                   }
                 },
                 "Property": "Vuelos Cancelados"

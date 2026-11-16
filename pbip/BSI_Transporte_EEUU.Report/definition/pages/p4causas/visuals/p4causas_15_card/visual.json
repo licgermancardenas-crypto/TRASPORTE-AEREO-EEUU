@@ -21,14 +21,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% Causa Controlable"
                 }
               },
-              "queryRef": "fVuelos.% Causa Controlable",
-              "nativeQueryRef": "% Causa Controlable"
+              "queryRef": "Medidas.% Causa Controlable",
+              "nativeQueryRef": "% controlable",
+              "displayName": "% controlable"
             }
           ]
         }

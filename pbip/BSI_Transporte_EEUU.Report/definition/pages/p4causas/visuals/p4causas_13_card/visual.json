@@ -21,13 +21,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% Causa Seguridad"
                 }
               },
-              "queryRef": "fVuelos.% Causa Seguridad",
+              "queryRef": "Medidas.% Causa Seguridad",
               "nativeQueryRef": "% Causa Seguridad"
             }
           ]

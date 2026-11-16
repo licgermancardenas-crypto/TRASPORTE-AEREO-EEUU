@@ -2,10 +2,10 @@
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p5patrones_12_clusteredColumnChart",
   "position": {
-    "x": 642,
+    "x": 954,
     "y": 396,
     "z": 12000,
-    "width": 300,
+    "width": 306,
     "height": 294,
     "tabOrder": 12000
   },
@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dHora"
+                      "Entity": "dDiaSemana"
                     }
                   },
-                  "Property": "FranjaHoraria"
+                  "Property": "DiaSemana"
                 }
               },
-              "queryRef": "dHora.FranjaHoraria",
-              "nativeQueryRef": "FranjaHoraria"
+              "queryRef": "dDiaSemana.DiaSemana",
+              "nativeQueryRef": "Día",
+              "displayName": "Día"
             }
           ]
         },
@@ -39,14 +40,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
-                  "Property": "% A Tiempo"
+                  "Property": "P % Cancelados"
                 }
               },
-              "queryRef": "fVuelos.% A Tiempo",
-              "nativeQueryRef": "% A Tiempo"
+              "queryRef": "Medidas.P % Cancelados",
+              "nativeQueryRef": "% cancelados",
+              "displayName": "% cancelados"
             }
           ]
         }
@@ -58,10 +60,10 @@
               "Column": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "dHora"
+                    "Entity": "dDiaSemana"
                   }
                 },
-                "Property": "FranjaHoraria"
+                "Property": "DiaSemana"
               }
             },
             "direction": "Ascending"
@@ -69,39 +71,6 @@
         ],
         "isDefaultSort": false
       }
-    },
-    "objects": {
-      "dataPoint": [
-        {
-          "properties": {
-            "fill": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "fVuelos"
-                        }
-                      },
-                      "Property": "Color % A Tiempo"
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "selector": {
-            "data": [
-              {
-                "dataViewWildcard": {
-                  "matchingOption": 1
-                }
-              }
-            ]
-          }
-        }
-      ]
     },
     "visualContainerObjects": {
       "background": [
@@ -185,7 +154,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'% a tiempo por franja'"
+                  "Value": "'% cancelados por día'"
                 }
               }
             },

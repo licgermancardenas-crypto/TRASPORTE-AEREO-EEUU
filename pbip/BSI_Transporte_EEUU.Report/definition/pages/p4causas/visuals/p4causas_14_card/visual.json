@@ -21,13 +21,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% Causa Avión previo"
                 }
               },
-              "queryRef": "fVuelos.% Causa Avión previo",
+              "queryRef": "Medidas.% Causa Avión previo",
               "nativeQueryRef": "% Causa Avión previo"
             }
           ]

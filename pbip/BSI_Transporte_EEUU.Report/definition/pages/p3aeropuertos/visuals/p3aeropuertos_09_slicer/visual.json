@@ -28,7 +28,8 @@
                 }
               },
               "queryRef": "dOrigen.OrigenCodigo",
-              "nativeQueryRef": "OrigenCodigo"
+              "nativeQueryRef": "Origen",
+              "displayName": "Origen"
             }
           ]
         }

@@ -185,6 +185,8 @@ def horas() -> pd.DataFrame:
     h["FranjaHoraria"] = pd.cut(h["HoraProgramada"], [-1, 5, 11, 17, 21, 23],
                                 labels=["Madrugada (0-5)", "Mañana (6-11)", "Tarde (12-17)",
                                         "Noche (18-21)", "Noche tardía (22-23)"]).astype(str)
+    orden = ["Madrugada (0-5)", "Mañana (6-11)", "Tarde (12-17)", "Noche (18-21)", "Noche tardía (22-23)"]
+    h["FranjaOrden"] = h["FranjaHoraria"].map(orden.index).astype("int8")
     return h.astype({"HoraProgramada": "int8"})
 
 

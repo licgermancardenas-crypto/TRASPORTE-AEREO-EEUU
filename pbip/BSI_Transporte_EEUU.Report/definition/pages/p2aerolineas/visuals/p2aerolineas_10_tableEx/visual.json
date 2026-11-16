@@ -28,7 +28,8 @@
                 }
               },
               "queryRef": "dAerolinea.Aerolinea",
-              "nativeQueryRef": "Aerolinea"
+              "nativeQueryRef": "Aerolínea",
+              "displayName": "Aerolínea"
             },
             {
               "field": {
@@ -42,34 +43,36 @@
                 }
               },
               "queryRef": "dAerolinea.TipoAerolinea",
-              "nativeQueryRef": "TipoAerolinea"
+              "nativeQueryRef": "Tipo",
+              "displayName": "Tipo"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Ranking Aerolínea"
                 }
               },
-              "queryRef": "fVuelos.Ranking Aerolínea",
-              "nativeQueryRef": "Ranking Aerolínea"
+              "queryRef": "Medidas.Ranking Aerolínea",
+              "nativeQueryRef": "Ranking",
+              "displayName": "Ranking"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Vuelos"
                 }
               },
-              "queryRef": "fVuelos.Vuelos",
+              "queryRef": "Medidas.Vuelos",
               "nativeQueryRef": "Vuelos"
             },
             {
@@ -77,70 +80,75 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% A Tiempo"
                 }
               },
-              "queryRef": "fVuelos.% A Tiempo",
-              "nativeQueryRef": "% A Tiempo"
+              "queryRef": "Medidas.% A Tiempo",
+              "nativeQueryRef": "% a tiempo",
+              "displayName": "% a tiempo"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Δ % A Tiempo vs AA"
                 }
               },
-              "queryRef": "fVuelos.Δ % A Tiempo vs AA",
-              "nativeQueryRef": "Δ % A Tiempo vs AA"
+              "queryRef": "Medidas.Δ % A Tiempo vs AA",
+              "nativeQueryRef": "Δ vs año ant. (pp)",
+              "displayName": "Δ vs año ant. (pp)"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% Cancelados"
                 }
               },
-              "queryRef": "fVuelos.% Cancelados",
-              "nativeQueryRef": "% Cancelados"
+              "queryRef": "Medidas.% Cancelados",
+              "nativeQueryRef": "% cancelados",
+              "displayName": "% cancelados"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Demora Promedio de Demorados"
                 }
               },
-              "queryRef": "fVuelos.Demora Promedio de Demorados",
-              "nativeQueryRef": "Demora Promedio de Demorados"
+              "queryRef": "Medidas.Demora Promedio de Demorados",
+              "nativeQueryRef": "Demora media demorados",
+              "displayName": "Demora media demorados"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% Causa Controlable"
                 }
               },
-              "queryRef": "fVuelos.% Causa Controlable",
-              "nativeQueryRef": "% Causa Controlable"
+              "queryRef": "Medidas.% Causa Controlable",
+              "nativeQueryRef": "% controlable",
+              "displayName": "% controlable"
             }
           ]
         }
@@ -152,7 +160,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "fVuelos"
+                    "Entity": "Medidas"
                   }
                 },
                 "Property": "Ranking Aerolínea"

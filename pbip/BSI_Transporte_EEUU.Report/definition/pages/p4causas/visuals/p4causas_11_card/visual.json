@@ -21,13 +21,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% Causa Clima"
                 }
               },
-              "queryRef": "fVuelos.% Causa Clima",
+              "queryRef": "Medidas.% Causa Clima",
               "nativeQueryRef": "% Causa Clima"
             }
           ]

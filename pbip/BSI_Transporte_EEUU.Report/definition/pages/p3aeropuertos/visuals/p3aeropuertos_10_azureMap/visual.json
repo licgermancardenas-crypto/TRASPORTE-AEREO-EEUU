@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p3aeropuertos_10_map",
+  "name": "p3aeropuertos_10_azureMap",
   "position": {
     "x": 20,
     "y": 136,
@@ -10,7 +10,7 @@
     "tabOrder": 10000
   },
   "visual": {
-    "visualType": "map",
+    "visualType": "azureMap",
     "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
@@ -28,7 +28,8 @@
                 }
               },
               "queryRef": "dOrigen.OrigenCodigo",
-              "nativeQueryRef": "OrigenCodigo"
+              "nativeQueryRef": "Origen",
+              "displayName": "Origen"
             }
           ]
         },
@@ -36,17 +37,22 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "dOrigen"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dOrigen"
+                        }
+                      },
+                      "Property": "OrigenLatitud"
                     }
                   },
-                  "Property": "OrigenLatitud"
+                  "Function": 1
                 }
               },
-              "queryRef": "dOrigen.OrigenLatitud",
-              "nativeQueryRef": "OrigenLatitud"
+              "queryRef": "Avg(dOrigen.OrigenLatitud)",
+              "nativeQueryRef": "Promedio de OrigenLatitud"
             }
           ]
         },
@@ -54,17 +60,22 @@
           "projections": [
             {
               "field": {
-                "Column": {
+                "Aggregation": {
                   "Expression": {
-                    "SourceRef": {
-                      "Entity": "dOrigen"
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dOrigen"
+                        }
+                      },
+                      "Property": "OrigenLongitud"
                     }
                   },
-                  "Property": "OrigenLongitud"
+                  "Function": 1
                 }
               },
-              "queryRef": "dOrigen.OrigenLongitud",
-              "nativeQueryRef": "OrigenLongitud"
+              "queryRef": "Avg(dOrigen.OrigenLongitud)",
+              "nativeQueryRef": "Promedio de OrigenLongitud"
             }
           ]
         },
@@ -75,14 +86,15 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Vuelos Demorados"
                 }
               },
-              "queryRef": "fVuelos.Vuelos Demorados",
-              "nativeQueryRef": "Vuelos Demorados"
+              "queryRef": "Medidas.Vuelos Demorados",
+              "nativeQueryRef": "Vuelos demorados",
+              "displayName": "Vuelos demorados"
             }
           ]
         },
@@ -93,13 +105,13 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Vuelos"
                 }
               },
-              "queryRef": "fVuelos.Vuelos",
+              "queryRef": "Medidas.Vuelos",
               "nativeQueryRef": "Vuelos"
             },
             {
@@ -107,28 +119,30 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% A Tiempo"
                 }
               },
-              "queryRef": "fVuelos.% A Tiempo",
-              "nativeQueryRef": "% A Tiempo"
+              "queryRef": "Medidas.% A Tiempo",
+              "nativeQueryRef": "% a tiempo",
+              "displayName": "% a tiempo"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Demora Promedio de Demorados"
                 }
               },
-              "queryRef": "fVuelos.Demora Promedio de Demorados",
-              "nativeQueryRef": "Demora Promedio de Demorados"
+              "queryRef": "Medidas.Demora Promedio de Demorados",
+              "nativeQueryRef": "Demora media demorados",
+              "displayName": "Demora media demorados"
             }
           ]
         }

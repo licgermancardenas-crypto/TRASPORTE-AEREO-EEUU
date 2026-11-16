@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dAerolinea"
+                      "Entity": "dDestino"
                     }
                   },
-                  "Property": "Aerolinea"
+                  "Property": "DestinoCodigo"
                 }
               },
-              "queryRef": "dAerolinea.Aerolinea",
-              "nativeQueryRef": "Aerolinea"
+              "queryRef": "dDestino.DestinoCodigo",
+              "nativeQueryRef": "Destino",
+              "displayName": "Destino"
             }
           ]
         }
@@ -61,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Aerolínea'"
+                  "Value": "'Aeropuerto de destino'"
                 }
               }
             },

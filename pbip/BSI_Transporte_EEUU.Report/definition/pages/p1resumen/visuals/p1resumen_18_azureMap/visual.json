@@ -1,16 +1,16 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p5patrones_13_clusteredColumnChart",
+  "name": "p1resumen_18_azureMap",
   "position": {
-    "x": 954,
-    "y": 396,
-    "z": 13000,
-    "width": 306,
-    "height": 294,
-    "tabOrder": 13000
+    "x": 20,
+    "y": 470,
+    "z": 18000,
+    "width": 760,
+    "height": 220,
+    "tabOrder": 18000
   },
   "visual": {
-    "visualType": "clusteredColumnChart",
+    "visualType": "azureMap",
     "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "dOrigen"
                     }
                   },
-                  "Property": "DiaSemana"
+                  "Property": "OrigenCodigo"
                 }
               },
-              "queryRef": "dCalendario.DiaSemana",
-              "nativeQueryRef": "DiaSemana"
+              "queryRef": "dOrigen.OrigenCodigo",
+              "nativeQueryRef": "Origen",
+              "displayName": "Origen"
             }
           ]
         },
@@ -36,38 +37,100 @@
           "projections": [
             {
               "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dOrigen"
+                        }
+                      },
+                      "Property": "OrigenLatitud"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dOrigen.OrigenLatitud)",
+              "nativeQueryRef": "Promedio de OrigenLatitud"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dOrigen"
+                        }
+                      },
+                      "Property": "OrigenLongitud"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dOrigen.OrigenLongitud)",
+              "nativeQueryRef": "Promedio de OrigenLongitud"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
-                  "Property": "% Cancelados"
+                  "Property": "Vuelos"
                 }
               },
-              "queryRef": "fVuelos.% Cancelados",
-              "nativeQueryRef": "% Cancelados"
+              "queryRef": "Medidas.Vuelos",
+              "nativeQueryRef": "Vuelos"
+            }
+          ]
+        },
+        "Tooltips": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "% A Tiempo"
+                }
+              },
+              "queryRef": "Medidas.% A Tiempo",
+              "nativeQueryRef": "% a tiempo",
+              "displayName": "% a tiempo"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Demora Promedio Llegada"
+                }
+              },
+              "queryRef": "Medidas.Demora Promedio Llegada",
+              "nativeQueryRef": "Demora media llegada",
+              "displayName": "Demora media llegada"
             }
           ]
         }
-      },
-      "sortDefinition": {
-        "sort": [
-          {
-            "field": {
-              "Column": {
-                "Expression": {
-                  "SourceRef": {
-                    "Entity": "dCalendario"
-                  }
-                },
-                "Property": "DiaSemana"
-              }
-            },
-            "direction": "Ascending"
-          }
-        ],
-        "isDefaultSort": false
       }
     },
     "visualContainerObjects": {
@@ -152,7 +215,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'% cancelados por día'"
+                  "Value": "'Aeropuertos de origen (tamaño = vuelos)'"
                 }
               }
             },

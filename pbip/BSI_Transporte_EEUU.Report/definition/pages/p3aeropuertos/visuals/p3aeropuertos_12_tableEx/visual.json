@@ -21,27 +21,43 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "dOrigen"
                     }
                   },
-                  "Property": "Ruta"
+                  "Property": "OrigenCodigo"
                 }
               },
-              "queryRef": "fVuelos.Ruta",
-              "nativeQueryRef": "Ruta"
+              "queryRef": "dOrigen.OrigenCodigo",
+              "nativeQueryRef": "Origen",
+              "displayName": "Origen"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dDestino"
+                    }
+                  },
+                  "Property": "DestinoCodigo"
+                }
+              },
+              "queryRef": "dDestino.DestinoCodigo",
+              "nativeQueryRef": "Destino",
+              "displayName": "Destino"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Vuelos"
                 }
               },
-              "queryRef": "fVuelos.Vuelos",
+              "queryRef": "Medidas.Vuelos",
               "nativeQueryRef": "Vuelos"
             },
             {
@@ -49,42 +65,45 @@
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% A Tiempo"
                 }
               },
-              "queryRef": "fVuelos.% A Tiempo",
-              "nativeQueryRef": "% A Tiempo"
+              "queryRef": "Medidas.% A Tiempo",
+              "nativeQueryRef": "% a tiempo",
+              "displayName": "% a tiempo"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "% Cancelados"
                 }
               },
-              "queryRef": "fVuelos.% Cancelados",
-              "nativeQueryRef": "% Cancelados"
+              "queryRef": "Medidas.% Cancelados",
+              "nativeQueryRef": "% cancelados",
+              "displayName": "% cancelados"
             },
             {
               "field": {
                 "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fVuelos"
+                      "Entity": "Medidas"
                     }
                   },
                   "Property": "Demora Promedio de Demorados"
                 }
               },
-              "queryRef": "fVuelos.Demora Promedio de Demorados",
-              "nativeQueryRef": "Demora Promedio de Demorados"
+              "queryRef": "Medidas.Demora Promedio de Demorados",
+              "nativeQueryRef": "Demora media demorados",
+              "displayName": "Demora media demorados"
             }
           ]
         }
@@ -96,7 +115,7 @@
               "Measure": {
                 "Expression": {
                   "SourceRef": {
-                    "Entity": "fVuelos"
+                    "Entity": "Medidas"
                   }
                 },
                 "Property": "Vuelos"
@@ -190,7 +209,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Rutas'"
+                  "Value": "'Rutas (origen → destino)'"
                 }
               }
             },

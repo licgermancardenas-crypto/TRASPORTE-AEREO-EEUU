@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dOrigen"
+                      "Entity": "dCausaCancelacion"
                     }
                   },
-                  "Property": "OrigenEstado"
+                  "Property": "CausaCancelacion"
                 }
               },
-              "queryRef": "dOrigen.OrigenEstado",
-              "nativeQueryRef": "OrigenEstado"
+              "queryRef": "dCausaCancelacion.CausaCancelacion",
+              "nativeQueryRef": "Causa de cancelación",
+              "displayName": "Causa de cancelación"
             }
           ]
         }
@@ -61,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Estado de origen'"
+                  "Value": "'Causa de cancelación'"
                 }
               }
             },

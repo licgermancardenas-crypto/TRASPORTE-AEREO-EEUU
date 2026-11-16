@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "dOrigen"
                     }
                   },
-                  "Property": "Mes"
+                  "Property": "OrigenCodigo"
                 }
               },
-              "queryRef": "dCalendario.Mes",
-              "nativeQueryRef": "Mes"
+              "queryRef": "dOrigen.OrigenCodigo",
+              "nativeQueryRef": "Origen",
+              "displayName": "Origen"
             }
           ]
         }
@@ -61,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Mes'"
+                  "Value": "'Aeropuerto de origen'"
                 }
               }
             },

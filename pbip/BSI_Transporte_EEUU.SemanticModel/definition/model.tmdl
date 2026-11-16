@@ -1,6 +1,7 @@
 model Model
-	culture: en-US
+	culture: es-ES
 	defaultPowerBIDataSourceVersion: powerBI_V3
+	discourageImplicitMeasures
 	sourceQueryCulture: es-AR
 	dataAccessOptions
 		legacyRedirects
@@ -8,12 +9,16 @@ model Model
 
 annotation __PBI_TimeIntelligenceEnabled = 0
 
-annotation PBI_QueryOrder = ["RutaDatos", "fVuelos", "dCalendario", "dAerolinea", "dOrigen", "dDestino", "dHora", "dCausaCancelacion"]
+annotation PBI_QueryOrder = ["RutaDatos", "Medidas", "fRutasMes", "fPatrones", "fDetalle", "dMes", "dAerolinea", "dOrigen", "dDestino", "dDiaSemana", "dHora", "dCausaCancelacion"]
 
-ref table fVuelos
-ref table dCalendario
+ref table Medidas
+ref table fRutasMes
+ref table fPatrones
+ref table fDetalle
+ref table dMes
 ref table dAerolinea
 ref table dOrigen
 ref table dDestino
+ref table dDiaSemana
 ref table dHora
 ref table dCausaCancelacion

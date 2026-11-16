@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dOrigen"
+                      "Entity": "dHora"
                     }
                   },
-                  "Property": "OrigenCodigo"
+                  "Property": "FranjaHoraria"
                 }
               },
-              "queryRef": "dOrigen.OrigenCodigo",
-              "nativeQueryRef": "OrigenCodigo"
+              "queryRef": "dHora.FranjaHoraria",
+              "nativeQueryRef": "Franja horaria",
+              "displayName": "Franja horaria"
             }
           ]
         }
@@ -61,7 +62,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Aeropuerto de origen'"
+                  "Value": "'Franja'"
                 }
               }
             },

@@ -21,14 +21,15 @@
                 "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "dCalendario"
+                      "Entity": "dMes"
                     }
                   },
                   "Property": "Anio"
                 }
               },
-              "queryRef": "dCalendario.Anio",
-              "nativeQueryRef": "Anio"
+              "queryRef": "dMes.Anio",
+              "nativeQueryRef": "Año",
+              "displayName": "Año"
             }
           ]
         }
