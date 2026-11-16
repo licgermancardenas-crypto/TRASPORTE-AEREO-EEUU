@@ -1,0 +1,227 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "p4causas_18_hundredPercentStackedBarChart",
+  "position": {
+    "x": 20,
+    "y": 470,
+    "z": 18000,
+    "width": 1240,
+    "height": 220,
+    "tabOrder": 18000
+  },
+  "visual": {
+    "visualType": "hundredPercentStackedBarChart",
+    "drillFilterOtherVisuals": true,
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dAerolinea"
+                    }
+                  },
+                  "Property": "Aerolinea"
+                }
+              },
+              "queryRef": "dAerolinea.Aerolinea",
+              "nativeQueryRef": "Aerolinea"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fVuelos"
+                    }
+                  },
+                  "Property": "Min Demora Aerolínea"
+                }
+              },
+              "queryRef": "fVuelos.Min Demora Aerolínea",
+              "nativeQueryRef": "Min Demora Aerolínea"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fVuelos"
+                    }
+                  },
+                  "Property": "Min Demora Clima"
+                }
+              },
+              "queryRef": "fVuelos.Min Demora Clima",
+              "nativeQueryRef": "Min Demora Clima"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fVuelos"
+                    }
+                  },
+                  "Property": "Min Demora Sistema NAS"
+                }
+              },
+              "queryRef": "fVuelos.Min Demora Sistema NAS",
+              "nativeQueryRef": "Min Demora Sistema NAS"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fVuelos"
+                    }
+                  },
+                  "Property": "Min Demora Seguridad"
+                }
+              },
+              "queryRef": "fVuelos.Min Demora Seguridad",
+              "nativeQueryRef": "Min Demora Seguridad"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fVuelos"
+                    }
+                  },
+                  "Property": "Min Demora Avión previo"
+                }
+              },
+              "queryRef": "fVuelos.Min Demora Avión previo",
+              "nativeQueryRef": "Min Demora Avión previo"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "background": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#FFFFFF'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "border": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "color": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#E4DFEE'"
+                    }
+                  }
+                }
+              }
+            },
+            "radius": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "dropShadow": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Mezcla de causas por aerolínea'"
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1D1631'"
+                    }
+                  }
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "11D"
+                }
+              }
+            },
+            "bold": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

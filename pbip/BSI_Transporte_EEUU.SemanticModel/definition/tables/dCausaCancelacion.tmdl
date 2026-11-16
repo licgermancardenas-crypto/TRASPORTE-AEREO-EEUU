@@ -1,0 +1,22 @@
+table dCausaCancelacion
+
+	column CodigoCancelacion
+		dataType: string
+		isHidden
+		isKey
+		summarizeBy: none
+		sourceColumn: CodigoCancelacion
+
+	column CausaCancelacion
+		dataType: string
+		summarizeBy: none
+		sourceColumn: CausaCancelacion
+
+	partition dCausaCancelacion = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaDatos & "dCausaCancelacion.parquet"))
+				in
+				    Origen
+

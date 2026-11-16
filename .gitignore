@@ -1,0 +1,14 @@
+# Datos: se regeneran con scripts/01_descargar_preparar.py
+raw/
+data/
+*.part
+raw_log.txt
+
+# Power BI: caché y ajustes locales
+**/.pbi/localSettings.json
+**/.pbi/cache.abf
+*.pbix.bak
+
+# Python
+__pycache__/
+.venv/

@@ -1,0 +1,53 @@
+table dDestino
+
+	column DestinoCodigo
+		dataType: string
+		isKey
+		summarizeBy: none
+		sourceColumn: DestinoCodigo
+
+	column DestinoCiudad
+		dataType: string
+		dataCategory: City
+		summarizeBy: none
+		sourceColumn: DestinoCiudad
+
+	column DestinoEstadoCod
+		dataType: string
+		summarizeBy: none
+		sourceColumn: DestinoEstadoCod
+
+	column DestinoEstado
+		dataType: string
+		dataCategory: StateOrProvince
+		summarizeBy: none
+		sourceColumn: DestinoEstado
+
+	column DestinoNombreAeropuerto
+		dataType: string
+		summarizeBy: none
+		sourceColumn: DestinoNombreAeropuerto
+
+	column DestinoLatitud
+		dataType: double
+		formatString: 0.0000
+		dataCategory: Latitude
+		summarizeBy: none
+		sourceColumn: DestinoLatitud
+
+	column DestinoLongitud
+		dataType: double
+		formatString: 0.0000
+		dataCategory: Longitude
+		summarizeBy: none
+		sourceColumn: DestinoLongitud
+
+	partition dDestino = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaDatos & "dAeropuerto.parquet")),
+				    Paso1 = Table.TransformColumnNames(Origen, each "Destino" & _)
+				in
+				    Paso1
+

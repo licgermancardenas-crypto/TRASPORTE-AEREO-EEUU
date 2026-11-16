@@ -1,0 +1,26 @@
+table dAerolinea
+
+	column AerolineaCod
+		dataType: string
+		isKey
+		summarizeBy: none
+		sourceColumn: AerolineaCod
+
+	column Aerolinea
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Aerolinea
+
+	column TipoAerolinea
+		dataType: string
+		summarizeBy: none
+		sourceColumn: TipoAerolinea
+
+	partition dAerolinea = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaDatos & "dAerolinea.parquet"))
+				in
+				    Origen
+

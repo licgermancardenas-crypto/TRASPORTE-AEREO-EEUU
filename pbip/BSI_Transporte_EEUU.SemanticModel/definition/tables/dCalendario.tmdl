@@ -1,0 +1,91 @@
+table dCalendario
+	dataCategory: Time
+
+	column Fecha
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		isKey
+		summarizeBy: none
+		sourceColumn: Fecha
+
+	column FechaKey
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: FechaKey
+
+	column Anio
+		dataType: int64
+		formatString: 0
+		summarizeBy: none
+		sourceColumn: Anio
+
+	column MesNum
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: MesNum
+
+	column Mes
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Mes
+		sortByColumn: MesNum
+
+	column MesCorto
+		dataType: string
+		summarizeBy: none
+		sourceColumn: MesCorto
+		sortByColumn: MesNum
+
+	column AnioMes
+		dataType: string
+		summarizeBy: none
+		sourceColumn: AnioMes
+
+	column AnioMesOrden
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: AnioMesOrden
+
+	column Trimestre
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Trimestre
+
+	column DiaSemanaNum
+		dataType: int64
+		formatString: 0
+		isHidden
+		summarizeBy: none
+		sourceColumn: DiaSemanaNum
+
+	column DiaSemana
+		dataType: string
+		summarizeBy: none
+		sourceColumn: DiaSemana
+		sortByColumn: DiaSemanaNum
+
+	column EsFinDeSemana
+		dataType: boolean
+		summarizeBy: none
+		sourceColumn: EsFinDeSemana
+
+	column Temporada
+		dataType: string
+		summarizeBy: none
+		sourceColumn: Temporada
+
+	partition dCalendario = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaDatos & "dCalendario.parquet")),
+				    Paso1 = Table.TransformColumnTypes(Origen, {{"Fecha", type date}})
+				in
+				    Paso1
+

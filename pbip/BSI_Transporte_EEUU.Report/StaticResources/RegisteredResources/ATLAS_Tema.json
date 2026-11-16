@@ -1,0 +1,134 @@
+{
+  "name": "ATLAS",
+  "dataColors": [
+    "#5B3F99",
+    "#2E9C8F",
+    "#E0A526",
+    "#1F4E9C",
+    "#C8102E",
+    "#7A5FB5",
+    "#9A93AD",
+    "#E06C3C",
+    "#1D1631",
+    "#6B6480"
+  ],
+  "foreground": "#1D1631",
+  "foregroundNeutralSecondary": "#6B6480",
+  "foregroundNeutralTertiary": "#8A97A6",
+  "background": "#FFFFFF",
+  "backgroundLight": "#F4F1F9",
+  "backgroundNeutral": "#E1E6EC",
+  "tableAccent": "#5B3F99",
+  "good": "#2E9C8F",
+  "neutral": "#E0A526",
+  "bad": "#C8102E",
+  "maximum": "#C8102E",
+  "center": "#E0A526",
+  "minimum": "#2E9C8F",
+  "textClasses": {
+    "title": {
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1D1631",
+      "fontSize": 11
+    },
+    "callout": {
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1D1631",
+      "fontSize": 24
+    },
+    "label": {
+      "fontFace": "Segoe UI",
+      "color": "#6B6480",
+      "fontSize": 9
+    },
+    "header": {
+      "fontFace": "Segoe UI Semibold",
+      "color": "#1D1631",
+      "fontSize": 12
+    }
+  },
+  "visualStyles": {
+    "page": {
+      "*": {
+        "background": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F4F1F9"
+              }
+            },
+            "transparency": 0
+          }
+        ],
+        "outspace": [
+          {
+            "color": {
+              "solid": {
+                "color": "#F4F1F9"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "tableEx": {
+      "*": {
+        "columnHeaders": [
+          {
+            "backColor": {
+              "solid": {
+                "color": "#1D1631"
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            }
+          }
+        ],
+        "values": [
+          {
+            "backColorSecondary": {
+              "solid": {
+                "color": "#F4F1F9"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "pivotTable": {
+      "*": {
+        "columnHeaders": [
+          {
+            "backColor": {
+              "solid": {
+                "color": "#1D1631"
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            }
+          }
+        ],
+        "rowHeaders": [
+          {
+            "backColor": {
+              "solid": {
+                "color": "#1D1631"
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": "#FFFFFF"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

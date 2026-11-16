@@ -1,0 +1,27 @@
+table dHora
+
+	column HoraProgramada
+		dataType: int64
+		formatString: 0
+		isKey
+		summarizeBy: none
+		sourceColumn: HoraProgramada
+
+	column HoraTexto
+		dataType: string
+		summarizeBy: none
+		sourceColumn: HoraTexto
+
+	column FranjaHoraria
+		dataType: string
+		summarizeBy: none
+		sourceColumn: FranjaHoraria
+
+	partition dHora = m
+		mode: import
+		source =
+				let
+				    Origen = Parquet.Document(File.Contents(RutaDatos & "dHora.parquet"))
+				in
+				    Origen
+
