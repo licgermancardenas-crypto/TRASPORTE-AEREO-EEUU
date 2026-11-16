@@ -97,7 +97,7 @@ def a_hecho(df: pd.DataFrame) -> pd.DataFrame:
     out = pd.DataFrame({
         "FechaKey": (fecha.dt.year * 10000 + fecha.dt.month * 100 + fecha.dt.day).astype("int32"),
         "AerolineaCod": df["Reporting_Airline"],
-        "NroVuelo": df["Flight_Number_Reporting_Airline"].astype("int32"),
+        "NroVuelo": df["Flight_Number_Reporting_Airline"],  # Int32 nullable: algunos meses traen vacíos
         "OrigenCod": df["Origin"],
         "DestinoCod": df["Dest"],
         "Ruta": df["Origin"] + "-" + df["Dest"],
@@ -146,6 +146,18 @@ def coords() -> pd.DataFrame:
     except Exception as e:  # noqa: BLE001
         print(f"  aviso: sin coordenadas ({e})")
         return pd.DataFrame(columns=["Codigo", "NombreAeropuerto", "Latitud", "Longitud"])
+
+
+COORD_MANUAL = {  # aeropuertos que OurAirports no trae con código IATA
+    "PBI": ("Palm Beach International Airport", 26.6832, -80.0956),
+}
+
+
+def completar_coords(ap_df: pd.DataFrame) -> pd.DataFrame:
+    for cod, (nom, lat, lon) in COORD_MANUAL.items():
+        m = (ap_df["Codigo"] == cod) & ap_df["Latitud"].isna()
+        ap_df.loc[m, ["NombreAeropuerto", "Latitud", "Longitud"]] = [nom, lat, lon]
+    return ap_df
 
 
 def calendario(desde: str, hasta: str) -> pd.DataFrame:
@@ -206,6 +218,7 @@ def main():
     writer.close()
 
     ap_df = pd.concat(aerops).drop_duplicates("Codigo").merge(coords(), on="Codigo", how="left")
+    ap_df = completar_coords(ap_df)
     ap_df["Ciudad"] = ap_df["Ciudad"].str.split(",").str[0]
     ap_df.sort_values("Codigo").to_parquet(DATA / "dAeropuerto.parquet", index=False)
 
