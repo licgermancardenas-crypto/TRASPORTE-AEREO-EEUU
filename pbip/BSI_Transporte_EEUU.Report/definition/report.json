@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.0.0/schema.json",
   "themeCollection": {
     "baseTheme": {
       "name": "CY26SU02",
@@ -11,7 +11,7 @@
       "type": "SharedResources"
     },
     "customTheme": {
-      "name": "ATLAS_Theme.json",
+      "name": "AtlasDarkUI.json",
       "reportVersionAtImport": {
         "visual": "2.4.0",
         "report": "3.0.0",
@@ -20,6 +20,35 @@
       "type": "RegisteredResources"
     }
   },
+  "resourcePackages": [
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY26SU02",
+          "path": "BaseThemes/CY26SU02.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "AtlasDarkUI.json",
+          "path": "AtlasDarkUI.json",
+          "type": "CustomTheme"
+        },
+        {
+          "name": "portada_fondo.png",
+          "path": "portada_fondo.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
   "objects": {
     "outspacePane": [
       {
@@ -42,30 +71,6 @@
       }
     ]
   },
-  "resourcePackages": [
-    {
-      "name": "SharedResources",
-      "type": "SharedResources",
-      "items": [
-        {
-          "name": "CY26SU02",
-          "path": "BaseThemes/CY26SU02.json",
-          "type": "BaseTheme"
-        }
-      ]
-    },
-    {
-      "name": "RegisteredResources",
-      "type": "RegisteredResources",
-      "items": [
-        {
-          "name": "ATLAS_Theme.json",
-          "path": "ATLAS_Theme.json",
-          "type": "CustomTheme"
-        }
-      ]
-    }
-  ],
   "settings": {
     "useStylableVisualContainerHeader": true,
     "exportDataMode": "AllowSummarized",

@@ -1,16 +1,17 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p5patrones_10_lineChart",
   "position": {
     "x": 20,
-    "y": 372,
+    "y": 325,
     "z": 10000,
-    "height": 318,
     "width": 610,
+    "height": 363,
     "tabOrder": 10000
   },
   "visual": {
     "visualType": "lineChart",
+    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Category": {
@@ -27,8 +28,7 @@
                 }
               },
               "queryRef": "dMes.Mes",
-              "nativeQueryRef": "Mes",
-              "active": true
+              "nativeQueryRef": "Mes"
             }
           ]
         },
@@ -86,7 +86,8 @@
             },
             "direction": "Ascending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
@@ -94,6 +95,24 @@
         {
           "properties": {
             "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#94A3B8'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridlineShow": {
               "expr": {
                 "Literal": {
                   "Value": "false"
@@ -110,6 +129,45 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            },
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#94A3B8'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridlineColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1E293B'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "legend": [
+        {
+          "properties": {
+            "labelColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#94A3B8'"
+                    }
+                  }
                 }
               }
             }
@@ -133,7 +191,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#131722'"
                     }
                   }
                 }
@@ -157,7 +215,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E5E7EB'"
+                      "Value": "'#1E293B'"
                     }
                   }
                 }
@@ -166,7 +224,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             }
@@ -179,67 +237,41 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1D1631'"
-                    }
-                  }
-                }
-              }
-            },
-            "position": {
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
               "expr": {
                 "Literal": {
-                  "Value": "'Outer'"
+                  "Value": "16D"
                 }
               }
             },
-            "preset": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Custom'"
+                  "Value": "16D"
                 }
               }
             },
-            "transparency": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "88D"
+                  "Value": "16D"
                 }
               }
             },
-            "shadowBlur": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "shadowDistance": {
-              "expr": {
-                "Literal": {
-                  "Value": "3D"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "angle": {
-              "expr": {
-                "Literal": {
-                  "Value": "90D"
+                  "Value": "16D"
                 }
               }
             }
@@ -268,7 +300,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1D1631'"
+                      "Value": "'#F8FAFC'"
                     }
                   }
                 }
@@ -291,7 +323,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

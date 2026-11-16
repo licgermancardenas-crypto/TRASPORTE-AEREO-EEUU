@@ -1,0 +1,100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Cerrar_Filtros · Causas de demora",
+  "name": "37e966c5e67953498a41",
+  "options": {
+    "targetVisualNames": [
+      "p4causas_filtros",
+      "p4causas_cajon_fondo",
+      "p4causas_cajon_borde",
+      "p4causas_cajon_titulo",
+      "p4causas_cajon_cerrar",
+      "p4causas_05_slicer",
+      "p4causas_06_slicer",
+      "p4causas_07_slicer",
+      "p4causas_08_slicer",
+      "p4causas_09_slicer"
+    ],
+    "suppressData": true,
+    "applyOnlyToTargetVisuals": true,
+    "suppressActiveSection": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "p4causas",
+    "sections": {
+      "p4causas": {
+        "visualContainers": {
+          "p4causas_cajon_fondo": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4causas_cajon_borde": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4causas_cajon_titulo": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4causas_cajon_cerrar": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4causas_05_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4causas_06_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4causas_07_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4causas_08_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p4causas_09_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "p4causas_filtros": {
+            "isHidden": true
+          }
+        }
+      }
+    }
+  }
+}

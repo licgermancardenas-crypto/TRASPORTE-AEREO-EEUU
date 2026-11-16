@@ -1,17 +1,17 @@
 table dCausaCancelacion
-	lineageTag: 405ba198-5dea-4ae9-85bf-37bb3c5caba9
+	lineageTag: 75acf4e3-3303-4707-ab0b-ea134fb24254
 
 	column CodigoCancelacion
 		dataType: string
 		isHidden
 		isKey
-		lineageTag: 0b1cf551-f2e6-47fc-a375-6ad7a9480ab8
+		lineageTag: 64aa97f4-f26c-4560-9723-3ff2e6896eed
 		summarizeBy: none
 		sourceColumn: CodigoCancelacion
 
 	column CausaCancelacion
 		dataType: string
-		lineageTag: 2eba12e5-4649-4633-9168-340d46a0c18b
+		lineageTag: c99c09ce-f827-499b-ae6f-602877698a60
 		summarizeBy: none
 		sourceColumn: CausaCancelacion
 

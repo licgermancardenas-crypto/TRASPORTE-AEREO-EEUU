@@ -1,18 +1,18 @@
 table dDiaSemana
-	lineageTag: e5e355f8-b720-4b1c-9d98-a0a638579b3e
+	lineageTag: 281b4092-0c04-4d87-be3b-edf159089ec4
 
 	column DiaSemanaNum
 		dataType: int64
 		isHidden
 		isKey
 		formatString: 0
-		lineageTag: 99db0d0f-a6ca-4bdc-8b22-72ab85e96977
+		lineageTag: 9d8161b5-0899-440c-b7e7-4b142122ec40
 		summarizeBy: none
 		sourceColumn: DiaSemanaNum
 
 	column DiaSemana
 		dataType: string
-		lineageTag: d4b5c05e-b384-4710-98e5-82f19866746b
+		lineageTag: b17a0023-5a0e-4645-80e8-2ab6e2bee4c9
 		summarizeBy: none
 		sourceColumn: DiaSemana
 		sortByColumn: DiaSemanaNum

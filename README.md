@@ -19,9 +19,10 @@ BSI_Transporte_EEUU/
 ├─ raw/                          ZIP mensuales de BTS (cache, se pueden borrar)
 ├─ data/                         Parquet que lee Power BI
 ├─ pbip/BSI_Transporte_EEUU.pbip abrir con Power BI Desktop
-├─ ATLAS_Theme.json              tema visual actual (ATLAS_Tema.json: versión anterior)
-├─ Mejoras_UI_Manual.md          revisión de UI/UX: qué se aplicó y pasos manuales pendientes
-└─ capturas/                     capturas del tablero (antes; despues/ con la revisión de UI)
+├─ Theme/AtlasDarkUI.json        tema oscuro actual (ATLAS_Theme.json y ATLAS_Tema.json: versiones anteriores)
+├─ UI_Dark_App.md                rediseño Dark UI tipo app: qué incluye y limitaciones
+├─ Mejoras_UI_Manual.md          revisión clara anterior (historial)
+└─ capturas/                     capturas del tablero (dark/ = versión actual)
 ```
 
 ## Cómo usarlo

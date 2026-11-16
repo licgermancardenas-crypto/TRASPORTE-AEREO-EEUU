@@ -1,16 +1,17 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p1resumen_18_azureMap",
   "position": {
     "x": 20,
-    "y": 470,
+    "y": 437,
     "z": 18000,
-    "height": 220,
     "width": 760,
+    "height": 251,
     "tabOrder": 18000
   },
   "visual": {
     "visualType": "azureMap",
+    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Category": {
@@ -28,8 +29,53 @@
               },
               "queryRef": "dOrigen.OrigenCodigo",
               "nativeQueryRef": "Origen",
-              "active": true,
               "displayName": "Origen"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dOrigen"
+                        }
+                      },
+                      "Property": "OrigenLatitud"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dOrigen.OrigenLatitud)",
+              "nativeQueryRef": "Promedio de OrigenLatitud"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "dOrigen"
+                        }
+                      },
+                      "Property": "OrigenLongitud"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(dOrigen.OrigenLongitud)",
+              "nativeQueryRef": "Promedio de OrigenLongitud"
             }
           ]
         },
@@ -84,52 +130,6 @@
               "displayName": "Demora media llegada"
             }
           ]
-        },
-        "X": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "dOrigen"
-                        }
-                      },
-                      "Property": "OrigenLongitud"
-                    }
-                  },
-                  "Function": 1
-                }
-              },
-              "queryRef": "Avg(dOrigen.OrigenLongitud)",
-              "nativeQueryRef": "Promedio de OrigenLongitud"
-            }
-          ]
-        },
-        "Y": {
-          "projections": [
-            {
-              "field": {
-                "Aggregation": {
-                  "Expression": {
-                    "Column": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "dOrigen"
-                        }
-                      },
-                      "Property": "OrigenLatitud"
-                    }
-                  },
-                  "Function": 1
-                }
-              },
-              "queryRef": "Avg(dOrigen.OrigenLatitud)",
-              "nativeQueryRef": "Promedio de OrigenLatitud"
-            }
-          ]
         }
       }
     },
@@ -171,6 +171,13 @@
                   "Value": "false"
                 }
               }
+            },
+            "defaultStyle": {
+              "expr": {
+                "Literal": {
+                  "Value": "'grayscale_dark'"
+                }
+              }
             }
           }
         }
@@ -205,7 +212,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#131722'"
                     }
                   }
                 }
@@ -229,7 +236,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E5E7EB'"
+                      "Value": "'#1E293B'"
                     }
                   }
                 }
@@ -238,7 +245,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             }
@@ -251,67 +258,41 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1D1631'"
-                    }
-                  }
-                }
-              }
-            },
-            "position": {
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
               "expr": {
                 "Literal": {
-                  "Value": "'Outer'"
+                  "Value": "16D"
                 }
               }
             },
-            "preset": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Custom'"
+                  "Value": "16D"
                 }
               }
             },
-            "transparency": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "88D"
+                  "Value": "16D"
                 }
               }
             },
-            "shadowBlur": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "shadowDistance": {
-              "expr": {
-                "Literal": {
-                  "Value": "3D"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "angle": {
-              "expr": {
-                "Literal": {
-                  "Value": "90D"
+                  "Value": "16D"
                 }
               }
             }
@@ -340,7 +321,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1D1631'"
+                      "Value": "'#F8FAFC'"
                     }
                   }
                 }
@@ -363,7 +344,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

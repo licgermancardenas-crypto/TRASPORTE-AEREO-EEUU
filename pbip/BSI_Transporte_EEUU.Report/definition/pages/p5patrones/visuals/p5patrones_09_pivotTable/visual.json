@@ -1,38 +1,19 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p5patrones_09_pivotTable",
   "position": {
     "x": 20,
-    "y": 136,
+    "y": 56,
     "z": 9000,
-    "height": 226,
     "width": 1240,
+    "height": 258,
     "tabOrder": 9000
   },
   "visual": {
     "visualType": "pivotTable",
+    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
-        "Columns": {
-          "projections": [
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dHora"
-                    }
-                  },
-                  "Property": "HoraTexto"
-                }
-              },
-              "queryRef": "dHora.HoraTexto",
-              "nativeQueryRef": "Hora",
-              "active": true,
-              "displayName": "Hora"
-            }
-          ]
-        },
         "Rows": {
           "projections": [
             {
@@ -48,8 +29,26 @@
               },
               "queryRef": "dDiaSemana.DiaSemana",
               "nativeQueryRef": "Día",
-              "active": true,
               "displayName": "Día"
+            }
+          ]
+        },
+        "Columns": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dHora"
+                    }
+                  },
+                  "Property": "HoraTexto"
+                }
+              },
+              "queryRef": "dHora.HoraTexto",
+              "nativeQueryRef": "Hora",
+              "displayName": "Hora"
             }
           ]
         },
@@ -57,18 +56,33 @@
           "projections": [
             {
               "field": {
-                "Measure": {
+                "Column": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "Medidas"
+                      "Entity": "Selector_Metrica_Heatmap"
                     }
                   },
-                  "Property": "P % Demorados"
+                  "Property": "Selector_Metrica_Heatmap"
                 }
               },
-              "queryRef": "Medidas.P % Demorados",
-              "nativeQueryRef": "% demorados",
-              "displayName": "% demorados"
+              "queryRef": "Selector_Metrica_Heatmap.Selector_Metrica_Heatmap",
+              "nativeQueryRef": "Métrica"
+            }
+          ],
+          "fieldParameters": [
+            {
+              "parameterExpr": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Selector_Metrica_Heatmap"
+                    }
+                  },
+                  "Property": "Selector_Metrica_Heatmap"
+                }
+              },
+              "index": 0,
+              "length": 1
             }
           ]
         }
@@ -98,13 +112,8 @@
               "solid": {
                 "color": {
                   "expr": {
-                    "Measure": {
-                      "Expression": {
-                        "SourceRef": {
-                          "Entity": "Medidas"
-                        }
-                      },
-                      "Property": "Color Texto % Demorados"
+                    "Literal": {
+                      "Value": "'#F8FAFC'"
                     }
                   }
                 }
@@ -120,6 +129,88 @@
               }
             ],
             "metadata": "Medidas.P % Demorados"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Color Heatmap Demora"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8FAFC'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Medidas.P Demora Media"
+          }
+        },
+        {
+          "properties": {
+            "backColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Measure": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "Medidas"
+                        }
+                      },
+                      "Property": "Color Heatmap Cancelados"
+                    }
+                  }
+                }
+              }
+            },
+            "fontColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#F8FAFC'"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "selector": {
+            "data": [
+              {
+                "dataViewWildcard": {
+                  "matchingOption": 1
+                }
+              }
+            ],
+            "metadata": "Medidas.P % Cancelados"
           }
         }
       ]
@@ -140,7 +231,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#131722'"
                     }
                   }
                 }
@@ -164,7 +255,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E5E7EB'"
+                      "Value": "'#1E293B'"
                     }
                   }
                 }
@@ -173,7 +264,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             }
@@ -186,67 +277,41 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1D1631'"
-                    }
-                  }
-                }
-              }
-            },
-            "position": {
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
               "expr": {
                 "Literal": {
-                  "Value": "'Outer'"
+                  "Value": "16D"
                 }
               }
             },
-            "preset": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Custom'"
+                  "Value": "16D"
                 }
               }
             },
-            "transparency": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "88D"
+                  "Value": "16D"
                 }
               }
             },
-            "shadowBlur": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "shadowDistance": {
-              "expr": {
-                "Literal": {
-                  "Value": "3D"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "angle": {
-              "expr": {
-                "Literal": {
-                  "Value": "90D"
+                  "Value": "16D"
                 }
               }
             }
@@ -266,7 +331,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'% de vuelos demorados por día y hora programada de salida'"
+                  "Value": "'Matriz térmica: día × hora programada de salida'"
                 }
               }
             },
@@ -275,7 +340,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1D1631'"
+                      "Value": "'#F8FAFC'"
                     }
                   }
                 }
@@ -298,7 +363,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

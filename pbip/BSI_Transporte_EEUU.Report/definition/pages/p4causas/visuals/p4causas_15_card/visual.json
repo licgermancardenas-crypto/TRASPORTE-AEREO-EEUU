@@ -3,10 +3,10 @@
   "name": "p4causas_15_card",
   "position": {
     "x": 1060,
-    "y": 136,
+    "y": 56,
     "z": 15000,
     "width": 196,
-    "height": 92,
+    "height": 105,
     "tabOrder": 15000
   },
   "visual": {
@@ -44,7 +44,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1D1631'"
+                      "Value": "'#F8FAFC'"
                     }
                   }
                 }
@@ -97,7 +97,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#131722'"
                     }
                   }
                 }
@@ -121,7 +121,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E5E7EB'"
+                      "Value": "'#1E293B'"
                     }
                   }
                 }
@@ -130,7 +130,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             }
@@ -143,67 +143,41 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1D1631'"
-                    }
-                  }
-                }
-              }
-            },
-            "position": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Outer'"
-                }
-              }
-            },
-            "preset": {
-              "expr": {
-                "Literal": {
-                  "Value": "'Custom'"
-                }
-              }
-            },
-            "transparency": {
-              "expr": {
-                "Literal": {
-                  "Value": "88D"
-                }
-              }
-            },
-            "shadowBlur": {
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
               "expr": {
                 "Literal": {
                   "Value": "10D"
                 }
               }
             },
-            "shadowDistance": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "3D"
+                  "Value": "10D"
                 }
               }
             },
-            "shadowSpread": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "0D"
+                  "Value": "10D"
                 }
               }
             },
-            "angle": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "90D"
+                  "Value": "10D"
                 }
               }
             }
@@ -232,7 +206,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1D1631'"
+                      "Value": "'#F8FAFC'"
                     }
                   }
                 }

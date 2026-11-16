@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Abrir_Filtros · Comparativo",
+  "name": "1ce22be642c15546b0c0",
+  "options": {
+    "targetVisualNames": [
+      "p2aerolineas_filtros",
+      "p2aerolineas_cajon_fondo",
+      "p2aerolineas_cajon_borde",
+      "p2aerolineas_cajon_titulo",
+      "p2aerolineas_cajon_cerrar",
+      "p2aerolineas_05_slicer",
+      "p2aerolineas_06_slicer",
+      "p2aerolineas_07_slicer",
+      "p2aerolineas_08_slicer",
+      "p2aerolineas_09_slicer"
+    ],
+    "suppressData": true,
+    "applyOnlyToTargetVisuals": true,
+    "suppressActiveSection": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "p2aerolineas",
+    "sections": {
+      "p2aerolineas": {
+        "visualContainers": {
+          "p2aerolineas_cajon_fondo": {},
+          "p2aerolineas_cajon_borde": {},
+          "p2aerolineas_cajon_titulo": {},
+          "p2aerolineas_cajon_cerrar": {},
+          "p2aerolineas_05_slicer": {},
+          "p2aerolineas_06_slicer": {},
+          "p2aerolineas_07_slicer": {},
+          "p2aerolineas_08_slicer": {},
+          "p2aerolineas_09_slicer": {}
+        },
+        "visualContainerGroups": {
+          "p2aerolineas_filtros": {
+            "isHidden": false
+          }
+        }
+      }
+    }
+  }
+}

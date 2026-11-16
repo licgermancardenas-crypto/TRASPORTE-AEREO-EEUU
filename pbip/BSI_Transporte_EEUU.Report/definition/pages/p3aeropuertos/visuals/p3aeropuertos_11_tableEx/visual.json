@@ -1,16 +1,17 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p3aeropuertos_11_tableEx",
   "position": {
     "x": 652,
-    "y": 136,
+    "y": 56,
     "z": 11000,
-    "height": 272,
     "width": 608,
+    "height": 310,
     "tabOrder": 11000
   },
   "visual": {
     "visualType": "tableEx",
+    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Values": {
@@ -82,10 +83,10 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "% A Tiempo"
+                  "Property": "Tabla_Barra_Puntualidad_SVG"
                 }
               },
-              "queryRef": "Medidas.% A Tiempo",
+              "queryRef": "Medidas.Tabla_Barra_Puntualidad_SVG",
               "nativeQueryRef": "% a tiempo",
               "displayName": "% a tiempo"
             },
@@ -137,10 +138,53 @@
             },
             "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
+      "grid": [
+        {
+          "properties": {
+            "imageHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "20D"
+                }
+              }
+            },
+            "imageWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "130D"
+                }
+              }
+            },
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1E293B'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridVerticalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1E293B'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
       "values": [
         {
           "properties": {
@@ -197,7 +241,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#131722'"
                     }
                   }
                 }
@@ -221,7 +265,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E5E7EB'"
+                      "Value": "'#1E293B'"
                     }
                   }
                 }
@@ -230,7 +274,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             }
@@ -243,67 +287,41 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1D1631'"
-                    }
-                  }
-                }
-              }
-            },
-            "position": {
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
               "expr": {
                 "Literal": {
-                  "Value": "'Outer'"
+                  "Value": "16D"
                 }
               }
             },
-            "preset": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Custom'"
+                  "Value": "16D"
                 }
               }
             },
-            "transparency": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "88D"
+                  "Value": "16D"
                 }
               }
             },
-            "shadowBlur": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "shadowDistance": {
-              "expr": {
-                "Literal": {
-                  "Value": "3D"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "angle": {
-              "expr": {
-                "Literal": {
-                  "Value": "90D"
+                  "Value": "16D"
                 }
               }
             }
@@ -332,7 +350,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1D1631'"
+                      "Value": "'#F8FAFC'"
                     }
                   }
                 }
@@ -354,8 +372,34 @@
             }
           }
         }
+      ],
+      "visualTooltip": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "type": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Canvas'"
+                }
+              }
+            },
+            "section": {
+              "expr": {
+                "Literal": {
+                  "Value": "'p8tooltip'"
+                }
+              }
+            }
+          }
+        }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

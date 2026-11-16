@@ -24,6 +24,7 @@ ref table dDestino
 ref table dDiaSemana
 ref table dHora
 ref table dCausaCancelacion
+ref table Selector_Metrica_Heatmap
 
 ref cultureInfo es-ES
 

@@ -1,165 +1,165 @@
 table fRutasMes
-	lineageTag: cf9edf97-f068-495d-971b-6bc80556e354
+	lineageTag: c9f5db28-c3a9-4dd5-b43d-05e49c1f8cdb
 
 	column MesKey
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: 319f1217-995e-4b9f-8622-4dc8f15f4763
+		lineageTag: 72c0153b-55ad-4c62-b14b-b73565b1a086
 		summarizeBy: none
 		sourceColumn: MesKey
 
 	column AerolineaCod
 		dataType: string
 		isHidden
-		lineageTag: c26dc798-97af-4c7d-8a68-88233389389c
+		lineageTag: ea4251a6-07f9-474a-ba6e-89748eec2b1a
 		summarizeBy: none
 		sourceColumn: AerolineaCod
 
 	column OrigenCod
 		dataType: string
 		isHidden
-		lineageTag: cbd923ad-07ba-4d2a-b9a3-2d8f2504caf3
+		lineageTag: 64ca3f6e-f03e-4773-a90c-e867695b6204
 		summarizeBy: none
 		sourceColumn: OrigenCod
 
 	column DestinoCod
 		dataType: string
 		isHidden
-		lineageTag: 5d32056a-25cd-4ac2-bcce-8ce450509372
+		lineageTag: ba6e850b-f6df-47c1-a665-0eb5d5ee151d
 		summarizeBy: none
 		sourceColumn: DestinoCod
 
 	column CodigoCancelacion
 		dataType: string
 		isHidden
-		lineageTag: 3e38b668-9695-41bd-a797-17f6bd0177f5
+		lineageTag: d636c2d7-6f40-4c15-804b-9c4bf2a2b69d
 		summarizeBy: none
 		sourceColumn: CodigoCancelacion
 
 	column Vuelos
 		dataType: int64
 		isHidden
-		lineageTag: 474eb49d-0f5f-4db9-a250-a1f4cc1b7dd0
+		lineageTag: 6280629d-e86c-49e8-9caf-7594a1ff9bdd
 		summarizeBy: sum
 		sourceColumn: Vuelos
 
 	column Cancelados
 		dataType: int64
 		isHidden
-		lineageTag: ae772ee3-ea1f-4087-a3b6-cc5ceb983d8f
+		lineageTag: b6796f80-acdb-4090-aed2-50666fbb9804
 		summarizeBy: sum
 		sourceColumn: Cancelados
 
 	column Desviados
 		dataType: int64
 		isHidden
-		lineageTag: aea53295-d858-4dc0-b871-8eb204213f86
+		lineageTag: ebae92ce-5732-4ee3-a019-46b225188977
 		summarizeBy: sum
 		sourceColumn: Desviados
 
 	column LlegadasDemoradas
 		dataType: int64
 		isHidden
-		lineageTag: 44b77bef-c46c-4412-b07d-5f36eed5dcdb
+		lineageTag: 53540d98-0f14-4370-bed4-c7438e08a34a
 		summarizeBy: sum
 		sourceColumn: LlegadasDemoradas
 
 	column SalidasDemoradas
 		dataType: int64
 		isHidden
-		lineageTag: 0e8197c8-7250-46e6-8699-f3c851e4a713
+		lineageTag: 0a3361ea-5356-4d9a-a35e-d3de41688937
 		summarizeBy: sum
 		sourceColumn: SalidasDemoradas
 
 	column NDemoraLlegada
 		dataType: int64
 		isHidden
-		lineageTag: abbe5ef1-7eb5-4e13-9c4d-782566be46ea
+		lineageTag: ba24a1f8-1889-4ec3-937a-ff48825c2d32
 		summarizeBy: sum
 		sourceColumn: NDemoraLlegada
 
 	column NDemoraSalida
 		dataType: int64
 		isHidden
-		lineageTag: f641004f-9fc4-4553-8b19-94ed17fe7200
+		lineageTag: fdea0b79-d85b-468c-ac99-2b3676762452
 		summarizeBy: sum
 		sourceColumn: NDemoraSalida
 
 	column NTaxiSalida
 		dataType: int64
 		isHidden
-		lineageTag: ac2926da-9730-4662-87fe-fd6ff5419e1e
+		lineageTag: 17d97015-96cf-4990-ac57-207b87e286d4
 		summarizeBy: sum
 		sourceColumn: NTaxiSalida
 
 	column SumaDemoraLlegada
 		dataType: double
 		isHidden
-		lineageTag: 4d845f4a-bd84-45eb-b353-9937d6d75e36
+		lineageTag: a7ffdae6-d96a-4b01-974d-ebf470981e95
 		summarizeBy: sum
 		sourceColumn: SumaDemoraLlegada
 
 	column SumaDemoraDemorados
 		dataType: double
 		isHidden
-		lineageTag: f69c3c2a-098c-410d-a63a-bfdad2f7efe9
+		lineageTag: f471254f-6790-4421-8bd1-613f80bf669f
 		summarizeBy: sum
 		sourceColumn: SumaDemoraDemorados
 
 	column SumaDemoraSalida
 		dataType: double
 		isHidden
-		lineageTag: 1eacce4b-a344-4dd2-8664-5c07112f0aa8
+		lineageTag: fe60c829-a2f6-44df-bdb3-c22c5df1ee0c
 		summarizeBy: sum
 		sourceColumn: SumaDemoraSalida
 
 	column SumaTaxiSalida
 		dataType: double
 		isHidden
-		lineageTag: f1a9278f-2b4a-4ac9-8a1d-11f8052d3fcc
+		lineageTag: 9ad4822f-9ccd-4519-8694-e398c99fb916
 		summarizeBy: sum
 		sourceColumn: SumaTaxiSalida
 
 	column Millas
 		dataType: double
 		isHidden
-		lineageTag: 6095ae2f-b5ed-4fd7-a30c-6efac281c5d6
+		lineageTag: d0c870d7-5aaa-48d4-95ce-23a45a685379
 		summarizeBy: sum
 		sourceColumn: Millas
 
 	column DemoraAerolineaMin
 		dataType: double
 		isHidden
-		lineageTag: fc27b13d-afd4-4b4f-a1df-68f13c11c204
+		lineageTag: 3a41b9ab-11b5-4883-8824-2b882082ef03
 		summarizeBy: sum
 		sourceColumn: DemoraAerolineaMin
 
 	column DemoraClimaMin
 		dataType: double
 		isHidden
-		lineageTag: c92b39d6-d897-4c0e-a236-4e3fc61181f5
+		lineageTag: 8624cb75-895e-4709-a379-1d833a6d844a
 		summarizeBy: sum
 		sourceColumn: DemoraClimaMin
 
 	column DemoraNASMin
 		dataType: double
 		isHidden
-		lineageTag: fe511870-491a-489c-b109-1b6dbdbe6ab7
+		lineageTag: 8778e355-360e-4770-a3d1-88679f941764
 		summarizeBy: sum
 		sourceColumn: DemoraNASMin
 
 	column DemoraSeguridadMin
 		dataType: double
 		isHidden
-		lineageTag: 12745300-6f02-4fd1-9501-f23fdf56211a
+		lineageTag: 10949e44-0c8f-427b-a801-1a60a4d26f9e
 		summarizeBy: sum
 		sourceColumn: DemoraSeguridadMin
 
 	column DemoraAvionPrevioMin
 		dataType: double
 		isHidden
-		lineageTag: 9c93d162-fc83-4ee3-b66a-70159e019ed2
+		lineageTag: 228bb989-6e4a-4a04-8e6c-1b0593f61773
 		summarizeBy: sum
 		sourceColumn: DemoraAvionPrevioMin
 

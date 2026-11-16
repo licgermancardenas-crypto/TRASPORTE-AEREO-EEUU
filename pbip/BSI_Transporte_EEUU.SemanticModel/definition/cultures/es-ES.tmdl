@@ -89,6 +89,48 @@ cultureInfo es-ES
 			        }
 			      ]
 			    },
+			    "daerolinea.aerolineacod": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dAerolinea",
+			          "ConceptualProperty": "AerolineaCod"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "IATA": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "daerolinea.logo_svg_url": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dAerolinea",
+			          "ConceptualProperty": "Logo_SVG_URL"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Logo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
 			    "dorigen.origencodigo": {
 			      "Definition": {
 			        "Binding": {
@@ -152,6 +194,27 @@ cultureInfo es-ES
 			        }
 			      ]
 			    },
+			    "medidas.vuelos": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Vuelos"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Vuelos": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
 			    "medidas.a_tiempo": {
 			      "Definition": {
 			        "Binding": {
@@ -183,7 +246,7 @@ cultureInfo es-ES
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Δ 12M (pp)": {
+			          "Δ últimos 12 meses (pp)": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -225,7 +288,38 @@ cultureInfo es-ES
 			      "State": "Generated",
 			      "Terms": [
 			        {
-			          "Demora media demorados": {
+			          "Demora media de demorados": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        },
+			        {
+			          "Demora media": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas.horas_de_demora": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Horas de Demora"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Horas de demora": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -299,6 +393,48 @@ cultureInfo es-ES
 			        }
 			      ]
 			    },
+			    "medidas.tabla_barra_puntualidad_svg": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Tabla_Barra_Puntualidad_SVG"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "% a tiempo": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas.tabla_badge_variacion_svg": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Tabla_Badge_Variacion_SVG"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Δ 12M": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
 			    "medidas.causa_controlable": {
 			      "Definition": {
 			        "Binding": {
@@ -331,6 +467,57 @@ cultureInfo es-ES
 			      "Terms": [
 			        {
 			          "Taxi salida (min)": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas.a_tiempo_industria": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "% A Tiempo Industria"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Promedio industria EEUU": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas.benchmark_hero_svg": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Benchmark_Hero_SVG"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "medidas.ranking_industria": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Ranking Industria"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "#": {
 			            "State": "Suggested",
 			            "Source": {
 			              "Type": "External",
@@ -593,27 +780,6 @@ cultureInfo es-ES
 			        }
 			      ]
 			    },
-			    "medidas.p__demorados": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "Medidas",
-			          "ConceptualProperty": "P % Demorados"
-			        }
-			      },
-			      "State": "Generated",
-			      "Terms": [
-			        {
-			          "% demorados": {
-			            "State": "Suggested",
-			            "Source": {
-			              "Type": "External",
-			              "Agent": "PowerBI.VisualColumnRename"
-			            },
-			            "Weight": 0.9
-			          }
-			        }
-			      ]
-			    },
 			    "medidas.p__a_tiempo": {
 			      "Definition": {
 			        "Binding": {
@@ -655,6 +821,36 @@ cultureInfo es-ES
 			          }
 			        }
 			      ]
+			    },
+			    "medidas.vuelo_estado_badge_svg": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Vuelo_Estado_Badge_SVG"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Estado": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "medidas.tooltip_top3_rutas_svg": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Medidas",
+			          "ConceptualProperty": "Tooltip_Top3_Rutas_SVG"
+			        }
+			      },
+			      "State": "Generated"
 			    },
 			    "ddestino.destinocodigo": {
 			      "Definition": {

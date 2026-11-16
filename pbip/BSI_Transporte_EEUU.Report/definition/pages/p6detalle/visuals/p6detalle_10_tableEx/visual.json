@@ -1,16 +1,17 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.7.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
   "name": "p6detalle_10_tableEx",
   "position": {
     "x": 20,
-    "y": 136,
+    "y": 56,
     "z": 10000,
-    "height": 554,
     "width": 1240,
+    "height": 632,
     "tabOrder": 10000
   },
   "visual": {
     "visualType": "tableEx",
+    "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
         "Values": {
@@ -120,46 +121,18 @@
             },
             {
               "field": {
-                "Column": {
+                "Measure": {
                   "Expression": {
                     "SourceRef": {
-                      "Entity": "fDetalle"
+                      "Entity": "Medidas"
                     }
                   },
-                  "Property": "Cancelado"
+                  "Property": "Vuelo_Estado_Badge_SVG"
                 }
               },
-              "queryRef": "fDetalle.Cancelado",
-              "nativeQueryRef": "Cancelado"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "dCausaCancelacion"
-                    }
-                  },
-                  "Property": "CausaCancelacion"
-                }
-              },
-              "queryRef": "dCausaCancelacion.CausaCancelacion",
-              "nativeQueryRef": "Causa de cancelación",
-              "displayName": "Causa de cancelación"
-            },
-            {
-              "field": {
-                "Column": {
-                  "Expression": {
-                    "SourceRef": {
-                      "Entity": "fDetalle"
-                    }
-                  },
-                  "Property": "Desviado"
-                }
-              },
-              "queryRef": "fDetalle.Desviado",
-              "nativeQueryRef": "Desviado"
+              "queryRef": "Medidas.Vuelo_Estado_Badge_SVG",
+              "nativeQueryRef": "Estado",
+              "displayName": "Estado"
             },
             {
               "field": {
@@ -194,10 +167,66 @@
             },
             "direction": "Descending"
           }
-        ]
+        ],
+        "isDefaultSort": false
       }
     },
     "objects": {
+      "grid": [
+        {
+          "properties": {
+            "imageHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "22D"
+                }
+              }
+            },
+            "imageWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "150D"
+                }
+              }
+            },
+            "gridHorizontalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1E293B'"
+                    }
+                  }
+                }
+              }
+            },
+            "gridVerticalColor": {
+              "solid": {
+                "color": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "'#1E293B'"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "totals": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
       "values": [
         {
           "properties": {
@@ -253,19 +282,6 @@
             }
           }
         }
-      ],
-      "total": [
-        {
-          "properties": {
-            "fontSize": {
-              "expr": {
-                "Literal": {
-                  "Value": "10D"
-                }
-              }
-            }
-          }
-        }
       ]
     },
     "visualContainerObjects": {
@@ -284,7 +300,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#FFFFFF'"
+                      "Value": "'#131722'"
                     }
                   }
                 }
@@ -308,7 +324,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#E5E7EB'"
+                      "Value": "'#1E293B'"
                     }
                   }
                 }
@@ -317,7 +333,7 @@
             "radius": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
+                  "Value": "12D"
                 }
               }
             }
@@ -330,67 +346,41 @@
             "show": {
               "expr": {
                 "Literal": {
-                  "Value": "true"
+                  "Value": "false"
                 }
               }
-            },
-            "color": {
-              "solid": {
-                "color": {
-                  "expr": {
-                    "Literal": {
-                      "Value": "'#1D1631'"
-                    }
-                  }
-                }
-              }
-            },
-            "position": {
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
               "expr": {
                 "Literal": {
-                  "Value": "'Outer'"
+                  "Value": "16D"
                 }
               }
             },
-            "preset": {
+            "bottom": {
               "expr": {
                 "Literal": {
-                  "Value": "'Custom'"
+                  "Value": "16D"
                 }
               }
             },
-            "transparency": {
+            "left": {
               "expr": {
                 "Literal": {
-                  "Value": "88D"
+                  "Value": "16D"
                 }
               }
             },
-            "shadowBlur": {
+            "right": {
               "expr": {
                 "Literal": {
-                  "Value": "10D"
-                }
-              }
-            },
-            "shadowDistance": {
-              "expr": {
-                "Literal": {
-                  "Value": "3D"
-                }
-              }
-            },
-            "shadowSpread": {
-              "expr": {
-                "Literal": {
-                  "Value": "0D"
-                }
-              }
-            },
-            "angle": {
-              "expr": {
-                "Literal": {
-                  "Value": "90D"
+                  "Value": "16D"
                 }
               }
             }
@@ -419,7 +409,7 @@
                 "color": {
                   "expr": {
                     "Literal": {
-                      "Value": "'#1D1631'"
+                      "Value": "'#F8FAFC'"
                     }
                   }
                 }
@@ -442,7 +432,6 @@
           }
         }
       ]
-    },
-    "drillFilterOtherVisuals": true
+    }
   }
 }

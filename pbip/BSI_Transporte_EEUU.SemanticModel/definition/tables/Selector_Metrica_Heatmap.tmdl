@@ -1,0 +1,43 @@
+table Selector_Metrica_Heatmap
+	lineageTag: fb8b3040-4938-4caf-b785-256aaf1d3ac6
+
+	column Selector_Metrica_Heatmap
+		dataType: string
+		lineageTag: 5aa3603d-71d9-48dd-a45e-aa299bead85a
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Selector_Metrica_Heatmap Orden'
+
+		relatedColumnDetails
+			groupByColumn: 'Selector_Metrica_Heatmap Campos'
+
+	column 'Selector_Metrica_Heatmap Campos'
+		dataType: string
+		isHidden
+		lineageTag: 97f96585-62ad-4619-9436-cae27538d96d
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Selector_Metrica_Heatmap Orden'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+	column 'Selector_Metrica_Heatmap Orden'
+		dataType: int64
+		isHidden
+		lineageTag: 1feaaca9-39ef-46e5-91b7-9e708b13eb88
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+	partition Selector_Metrica_Heatmap = calculated
+		mode: import
+		source =
+				{
+				    ("% vuelos demorados", NAMEOF ( 'Medidas'[P % Demorados] ), 0),
+				    ("Demora media (min)", NAMEOF ( 'Medidas'[P Demora Media] ), 1),
+				    ("% cancelados", NAMEOF ( 'Medidas'[P % Cancelados] ), 2)
+				}
+

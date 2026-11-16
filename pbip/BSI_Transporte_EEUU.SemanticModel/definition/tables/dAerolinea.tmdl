@@ -1,24 +1,56 @@
 table dAerolinea
-	lineageTag: a58df915-2759-481e-ad58-7166662a225d
+	lineageTag: b73c3e81-4f40-49a8-976f-e8665e5cf63f
 
 	column AerolineaCod
 		dataType: string
 		isKey
-		lineageTag: fc2bd854-e436-43eb-ab50-3551b7eab49a
+		lineageTag: 642e0de8-daab-49be-911f-40ba4890b0b1
 		summarizeBy: none
 		sourceColumn: AerolineaCod
 
 	column Aerolinea
 		dataType: string
-		lineageTag: 01bc4020-edb6-4245-b77c-79408cbac19a
+		lineageTag: a60e9a46-5ee6-4a8d-8067-bfd03fd2349e
 		summarizeBy: none
 		sourceColumn: Aerolinea
 
 	column TipoAerolinea
 		dataType: string
-		lineageTag: 3b815d79-3870-4a0f-9676-05a49a75db51
+		lineageTag: 70476a7f-65ff-4cd3-adc9-6ba9d3187ddc
 		summarizeBy: none
 		sourceColumn: TipoAerolinea
+
+	column Color_Marca = SWITCH ( dAerolinea[AerolineaCod], "DL", "#003366", "AA", "#E31837", "WN", "#304CB2", "B6", "#00205B", "UA", "#005DAA", "AS", "#01426A", "NK", "#FFEC00", "F9", "#00843D", "HA", "#413691", "OO", "#1F4E8C", "YX", "#2C3E73", "9E", "#C8102E", "MQ", "#0078D2", "OH", "#36495A", "G4", "#F78F1E", "#7C4DFF" )
+		dataType: string
+		lineageTag: 9e65200f-7bbd-435a-b30a-40210f65cc62
+		summarizeBy: none
+
+	column Color_Texto = SWITCH ( dAerolinea[AerolineaCod], "DL", "#FFFFFF", "AA", "#FFFFFF", "WN", "#FFFFFF", "B6", "#FFFFFF", "UA", "#FFFFFF", "AS", "#FFFFFF", "NK", "#0B0E14", "F9", "#FFFFFF", "HA", "#FFFFFF", "OO", "#FFFFFF", "YX", "#FFFFFF", "9E", "#FFFFFF", "MQ", "#FFFFFF", "OH", "#FFFFFF", "G4", "#0B0E14", "#FFFFFF" )
+		dataType: string
+		isHidden
+		lineageTag: 03eb5845-ce94-4241-a696-d9cbc1bde894
+		summarizeBy: none
+
+	column Logo_SVG_URL =
+			VAR c = dAerolinea[Color_Marca]
+			VAR fg = dAerolinea[Color_Texto]
+			VAR cod = dAerolinea[AerolineaCod]
+			VAR nom = UPPER ( LEFT ( dAerolinea[Aerolinea], SEARCH ( " ", dAerolinea[Aerolinea] & " " ) - 1 ) )
+			VAR svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' width='120' height='36' viewBox='0 0 120 36'>"
+			        & "<rect x='0.5' y='0.5' width='119' height='35' rx='8' fill='#131722' stroke='" & c & "' stroke-width='1'/>"
+			        & "<rect x='0' y='0' width='36' height='36' rx='8' fill='" & c & "'/>"
+			        & "<path d='M7 25 L29 14 L23 25 Z' fill='" & fg & "' opacity='0.92'/>"
+			        & "<circle cx='27' cy='10' r='2.2' fill='" & fg & "' opacity='0.6'/>"
+			        & "<text x='44' y='18' font-family='Segoe UI' font-size='15' font-weight='800' fill='#F8FAFC'>" & cod & "</text>"
+			        & "<text x='44' y='29' font-family='Segoe UI' font-size='7.5' font-weight='600' letter-spacing='0.6' fill='#94A3B8'>" & nom & "</text>"
+			        & "</svg>"
+			RETURN
+			    "data:image/svg+xml;utf8," & SUBSTITUTE ( SUBSTITUTE ( svg, "%", "%25" ), "#", "%23" )
+		dataType: string
+		lineageTag: 2d4cdfe7-a7db-4673-b8b1-2f539ddaac2d
+		dataCategory: ImageUrl
+		summarizeBy: none
 
 	partition dAerolinea = m
 		mode: import

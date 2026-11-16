@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Abrir_Filtros · Detalle de vuelos",
+  "name": "3e44771e6b8257809aa4",
+  "options": {
+    "targetVisualNames": [
+      "p6detalle_filtros",
+      "p6detalle_cajon_fondo",
+      "p6detalle_cajon_borde",
+      "p6detalle_cajon_titulo",
+      "p6detalle_cajon_cerrar",
+      "p6detalle_05_slicer",
+      "p6detalle_06_slicer",
+      "p6detalle_07_slicer",
+      "p6detalle_08_slicer",
+      "p6detalle_09_slicer"
+    ],
+    "suppressData": true,
+    "applyOnlyToTargetVisuals": true,
+    "suppressActiveSection": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "p6detalle",
+    "sections": {
+      "p6detalle": {
+        "visualContainers": {
+          "p6detalle_cajon_fondo": {},
+          "p6detalle_cajon_borde": {},
+          "p6detalle_cajon_titulo": {},
+          "p6detalle_cajon_cerrar": {},
+          "p6detalle_05_slicer": {},
+          "p6detalle_06_slicer": {},
+          "p6detalle_07_slicer": {},
+          "p6detalle_08_slicer": {},
+          "p6detalle_09_slicer": {}
+        },
+        "visualContainerGroups": {
+          "p6detalle_filtros": {
+            "isHidden": false
+          }
+        }
+      }
+    }
+  }
+}

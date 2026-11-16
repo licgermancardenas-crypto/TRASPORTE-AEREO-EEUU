@@ -1,12 +1,15 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/pagesMetadata/1.0.0/schema.json",
   "pageOrder": [
+    "p0portada",
     "p1resumen",
     "p2aerolineas",
+    "p7benchmark",
     "p3aeropuertos",
     "p4causas",
     "p5patrones",
-    "p6detalle"
+    "p6detalle",
+    "p8tooltip"
   ],
-  "activePageName": "p1resumen"
+  "activePageName": "p0portada"
 }

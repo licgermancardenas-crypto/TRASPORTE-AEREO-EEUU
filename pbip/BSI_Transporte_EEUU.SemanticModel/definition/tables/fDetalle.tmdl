@@ -1,10 +1,10 @@
 table fDetalle
-	lineageTag: adee0995-3f47-4afb-b0ff-431ef8b33691
+	lineageTag: 8b417af1-6b7a-4642-b71a-eb04f69630c1
 
 	column Fecha
 		dataType: dateTime
 		formatString: dd/mm/yyyy
-		lineageTag: 9024a8d9-9e5c-4a1c-bbbf-05e321373528
+		lineageTag: 10a2c049-3cfe-46e5-a9fc-9fcbe283b646
 		summarizeBy: none
 		sourceColumn: Fecha
 
@@ -14,41 +14,41 @@ table fDetalle
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: 0b3a729c-234c-474c-8d02-f38417bb7a4f
+		lineageTag: 8d68c023-8fbf-4155-a086-34727f22a5a8
 		summarizeBy: none
 		sourceColumn: MesKey
 
 	column AerolineaCod
 		dataType: string
 		isHidden
-		lineageTag: af0cf485-b1d9-4c00-82ec-97b97a658ef0
+		lineageTag: 48e7d2cb-cceb-4d51-a2d4-8dfe381c288d
 		summarizeBy: none
 		sourceColumn: AerolineaCod
 
 	column NroVuelo
 		dataType: int64
 		formatString: 0
-		lineageTag: d46a51b2-61d8-41db-b0c1-7312926e0304
+		lineageTag: 2e702e49-44f5-4850-a0f6-648c3902e0d0
 		summarizeBy: none
 		sourceColumn: NroVuelo
 
 	column OrigenCod
 		dataType: string
 		isHidden
-		lineageTag: 64e57b9b-3425-4c9e-9f19-b48ffdb14c2f
+		lineageTag: 490b53f6-2372-4f90-8c63-c773b2795f49
 		summarizeBy: none
 		sourceColumn: OrigenCod
 
 	column DestinoCod
 		dataType: string
 		isHidden
-		lineageTag: 81b4033d-c9f1-4c58-bf2a-f75701077f67
+		lineageTag: eb66512c-9ab9-4405-9eb6-d857bc9fd78f
 		summarizeBy: none
 		sourceColumn: DestinoCod
 
 	column Ruta
 		dataType: string
-		lineageTag: 94798765-60fb-49b7-89e7-2ad709fd0fdd
+		lineageTag: 7724a191-6d42-4bdd-9f16-639d867d0941
 		summarizeBy: none
 		sourceColumn: Ruta
 
@@ -56,49 +56,49 @@ table fDetalle
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: 95c87ba7-f423-4d74-b321-f1da139ae69b
+		lineageTag: 4989e81c-2f2f-4f35-8e30-2411d73f9615
 		summarizeBy: none
 		sourceColumn: HoraProgramada
 
 	column DemoraSalidaMin
 		dataType: double
 		formatString: 0
-		lineageTag: 84cdc053-9f71-4a81-b714-97269c885aca
+		lineageTag: 0c7e81f4-2d2e-4d5c-8769-917a6c057a73
 		summarizeBy: none
 		sourceColumn: DemoraSalidaMin
 
 	column DemoraLlegadaMin
 		dataType: double
 		formatString: 0
-		lineageTag: 33a2e68a-b72f-4a14-8b04-1f9da92374e0
+		lineageTag: b1eab7f2-1f91-4f73-82db-3f9e5d235ebe
 		summarizeBy: none
 		sourceColumn: DemoraLlegadaMin
 
 	column Cancelado
 		dataType: int64
 		formatString: 0
-		lineageTag: e1cd378a-34af-4a5f-bd2a-a59b6d9b9887
+		lineageTag: 76c274c1-1d4e-4016-9b7e-ffc749ca1b17
 		summarizeBy: none
 		sourceColumn: Cancelado
 
 	column CodigoCancelacion
 		dataType: string
 		isHidden
-		lineageTag: a364128a-d561-41bb-ba59-126acf83d5d0
+		lineageTag: ba862526-f7e8-4f69-bb7f-45d4a12f3fe8
 		summarizeBy: none
 		sourceColumn: CodigoCancelacion
 
 	column Desviado
 		dataType: int64
 		formatString: 0
-		lineageTag: 2fd6b2a9-ac86-422b-96f9-171e96a83bb1
+		lineageTag: 17284188-797d-4073-ad14-d528dbd3592e
 		summarizeBy: none
 		sourceColumn: Desviado
 
 	column DistanciaMillas
 		dataType: double
 		formatString: #,0
-		lineageTag: c04678e1-a800-4aff-a550-ff8bd9ce948e
+		lineageTag: 17c066bb-3a7e-42a4-b789-99803c6b5de3
 		summarizeBy: none
 		sourceColumn: DistanciaMillas
 

@@ -1,0 +1,100 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Cerrar_Filtros · Resumen",
+  "name": "e0b79b21bfa55c9ba8b6",
+  "options": {
+    "targetVisualNames": [
+      "p1resumen_filtros",
+      "p1resumen_cajon_fondo",
+      "p1resumen_cajon_borde",
+      "p1resumen_cajon_titulo",
+      "p1resumen_cajon_cerrar",
+      "p1resumen_05_slicer",
+      "p1resumen_06_slicer",
+      "p1resumen_07_slicer",
+      "p1resumen_08_slicer",
+      "p1resumen_09_slicer"
+    ],
+    "suppressData": true,
+    "applyOnlyToTargetVisuals": true,
+    "suppressActiveSection": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "p1resumen",
+    "sections": {
+      "p1resumen": {
+        "visualContainers": {
+          "p1resumen_cajon_fondo": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1resumen_cajon_borde": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1resumen_cajon_titulo": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1resumen_cajon_cerrar": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1resumen_05_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1resumen_06_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1resumen_07_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1resumen_08_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p1resumen_09_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "p1resumen_filtros": {
+            "isHidden": true
+          }
+        }
+      }
+    }
+  }
+}

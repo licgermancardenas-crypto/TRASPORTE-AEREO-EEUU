@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Abrir_Filtros · Aeropuertos y rutas",
+  "name": "1e592e1241ac5ac08122",
+  "options": {
+    "targetVisualNames": [
+      "p3aeropuertos_filtros",
+      "p3aeropuertos_cajon_fondo",
+      "p3aeropuertos_cajon_borde",
+      "p3aeropuertos_cajon_titulo",
+      "p3aeropuertos_cajon_cerrar",
+      "p3aeropuertos_05_slicer",
+      "p3aeropuertos_06_slicer",
+      "p3aeropuertos_07_slicer",
+      "p3aeropuertos_08_slicer",
+      "p3aeropuertos_09_slicer"
+    ],
+    "suppressData": true,
+    "applyOnlyToTargetVisuals": true,
+    "suppressActiveSection": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "p3aeropuertos",
+    "sections": {
+      "p3aeropuertos": {
+        "visualContainers": {
+          "p3aeropuertos_cajon_fondo": {},
+          "p3aeropuertos_cajon_borde": {},
+          "p3aeropuertos_cajon_titulo": {},
+          "p3aeropuertos_cajon_cerrar": {},
+          "p3aeropuertos_05_slicer": {},
+          "p3aeropuertos_06_slicer": {},
+          "p3aeropuertos_07_slicer": {},
+          "p3aeropuertos_08_slicer": {},
+          "p3aeropuertos_09_slicer": {}
+        },
+        "visualContainerGroups": {
+          "p3aeropuertos_filtros": {
+            "isHidden": false
+          }
+        }
+      }
+    }
+  }
+}

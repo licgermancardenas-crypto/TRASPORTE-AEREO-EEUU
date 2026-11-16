@@ -1,0 +1,46 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Abrir_Filtros · Benchmark",
+  "name": "428465fe463f528abfd6",
+  "options": {
+    "targetVisualNames": [
+      "p7benchmark_filtros",
+      "p7benchmark_cajon_fondo",
+      "p7benchmark_cajon_borde",
+      "p7benchmark_cajon_titulo",
+      "p7benchmark_cajon_cerrar",
+      "p7benchmark_05_slicer",
+      "p7benchmark_06_slicer",
+      "p7benchmark_07_slicer",
+      "p7benchmark_08_slicer",
+      "p7benchmark_09_slicer"
+    ],
+    "suppressData": true,
+    "applyOnlyToTargetVisuals": true,
+    "suppressActiveSection": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "p7benchmark",
+    "sections": {
+      "p7benchmark": {
+        "visualContainers": {
+          "p7benchmark_cajon_fondo": {},
+          "p7benchmark_cajon_borde": {},
+          "p7benchmark_cajon_titulo": {},
+          "p7benchmark_cajon_cerrar": {},
+          "p7benchmark_05_slicer": {},
+          "p7benchmark_06_slicer": {},
+          "p7benchmark_07_slicer": {},
+          "p7benchmark_08_slicer": {},
+          "p7benchmark_09_slicer": {}
+        },
+        "visualContainerGroups": {
+          "p7benchmark_filtros": {
+            "isHidden": false
+          }
+        }
+      }
+    }
+  }
+}

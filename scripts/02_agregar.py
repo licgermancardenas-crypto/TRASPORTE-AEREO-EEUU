@@ -53,7 +53,8 @@ def rutas(df):
 def patrones(df):
     return df.groupby(K_PATRON, observed=True).agg(
         Vuelos=("Vuelos", "sum"), Cancelados=("Cancelado", "sum"), Desviados=("Desviado", "sum"),
-        LlegadasDemoradas=("LlegadaDemorada15", "sum")).reset_index()
+        LlegadasDemoradas=("LlegadaDemorada15", "sum"),
+        SumaDemoraDemorados=("SumaDemoraDemorados", "sum")).reset_index()
 
 
 def compactar(df, claves):

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "p1resumen_filtros",
+  "position": {
+    "x": 980,
+    "y": 48,
+    "z": 59999,
+    "width": 300,
+    "height": 672,
+    "tabOrder": 59999
+  },
+  "visualGroup": {
+    "displayName": "Cajón de filtros",
+    "groupMode": "ScaleMode"
+  },
+  "isHidden": true
+}

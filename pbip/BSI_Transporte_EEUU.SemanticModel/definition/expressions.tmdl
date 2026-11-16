@@ -1,5 +1,5 @@
 expression RutaDatos = "{{RUTA_REPO}}\data\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
-	lineageTag: f952fc0e-c7f8-4968-aa83-2d9e48b5be8a
+	lineageTag: bad2056b-a64e-4231-85b4-b6692ae59f63
 
 	annotation PBI_ResultType = Text
 

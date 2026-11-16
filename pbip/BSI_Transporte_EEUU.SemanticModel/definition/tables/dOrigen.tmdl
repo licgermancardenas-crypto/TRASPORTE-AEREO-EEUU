@@ -1,43 +1,43 @@
 table dOrigen
-	lineageTag: 4dca1d9f-bb3d-45e4-a41a-d293a3d1dcbb
+	lineageTag: 9fd25a09-e51f-49b7-81d5-b1ffbaa6e83c
 
 	column OrigenCodigo
 		dataType: string
 		isKey
-		lineageTag: 3cbabab8-7a04-4467-ba17-8b35298630d4
+		lineageTag: 474d436f-da02-45ee-bc29-67f7e4f91e76
 		summarizeBy: none
 		sourceColumn: OrigenCodigo
 
 	column OrigenCiudad
 		dataType: string
-		lineageTag: 6d5a9d94-db77-48fe-865f-df0b7fc823c9
+		lineageTag: cecd0660-2332-47c9-8e1b-4966a2389a0b
 		dataCategory: City
 		summarizeBy: none
 		sourceColumn: OrigenCiudad
 
 	column OrigenEstadoCod
 		dataType: string
-		lineageTag: b77b039f-51a6-4f19-993c-f74c0a99b2e9
+		lineageTag: 8a28d5f9-871f-4ac5-aaba-8071cc6d6e0a
 		summarizeBy: none
 		sourceColumn: OrigenEstadoCod
 
 	column OrigenEstado
 		dataType: string
-		lineageTag: a4555436-34f5-4fd4-8a63-9590e5b51212
+		lineageTag: 2a507691-41b1-4c14-b8c7-f8bd7fd1812e
 		dataCategory: StateOrProvince
 		summarizeBy: none
 		sourceColumn: OrigenEstado
 
 	column OrigenNombreAeropuerto
 		dataType: string
-		lineageTag: 3d8d541a-fc4a-45be-bd3e-edfdbe35d8ea
+		lineageTag: b627dce2-2cba-4196-b89a-35b0cba4641e
 		summarizeBy: none
 		sourceColumn: OrigenNombreAeropuerto
 
 	column OrigenLatitud
 		dataType: double
 		formatString: 0.0000
-		lineageTag: 2754dcaa-23e5-4842-86a1-8fa37858201b
+		lineageTag: f569bd38-68cb-4de8-9ad1-5c668fcf0361
 		dataCategory: Latitude
 		summarizeBy: none
 		sourceColumn: OrigenLatitud
@@ -45,7 +45,7 @@ table dOrigen
 	column OrigenLongitud
 		dataType: double
 		formatString: 0.0000
-		lineageTag: 42171c69-20e9-45f2-aebb-bfe4147ca159
+		lineageTag: 1288a255-45fe-4ccb-a7c1-c75b402e4ce1
 		dataCategory: Longitude
 		summarizeBy: none
 		sourceColumn: OrigenLongitud

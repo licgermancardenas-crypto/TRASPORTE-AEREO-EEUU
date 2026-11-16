@@ -1,158 +1,128 @@
 table Medidas
-	lineageTag: 1460b258-f141-4d23-b4bf-d7bc2bc0b550
 
 	/// Vuelos programados reportados a BTS
 	measure Vuelos = SUM ( fRutasMes[Vuelos] )
 		formatString: #,0
 		displayFolder: 1 Volumen
-		lineageTag: 6410b993-ae9f-46ea-b0e0-aa203dd7c6a8
 
 	measure 'Vuelos Cancelados' = SUM ( fRutasMes[Cancelados] )
 		formatString: #,0
 		displayFolder: 1 Volumen
-		lineageTag: 1ad24dc4-c501-4aee-9a73-1d589d719692
 
 	measure 'Vuelos Desviados' = SUM ( fRutasMes[Desviados] )
 		formatString: #,0
 		displayFolder: 1 Volumen
-		lineageTag: 1c45dd19-3a02-4b1c-87ed-2e8a5cdd3b57
 
 	/// Vuelos que llegaron a destino (base para puntualidad, criterio BTS)
 	measure 'Vuelos Operados' = [Vuelos] - [Vuelos Cancelados] - [Vuelos Desviados]
 		formatString: #,0
 		displayFolder: 1 Volumen
-		lineageTag: f68b2e9d-d5c0-4e3c-94e8-4ec733d323f3
 
 	/// Llegadas 15+ min tarde
 	measure 'Vuelos Demorados' = SUM ( fRutasMes[LlegadasDemoradas] )
 		formatString: #,0
 		displayFolder: 1 Volumen
-		lineageTag: 09ab39fd-5c5b-4af0-b632-ac0b03f969e0
 
 	measure 'Vuelos a Tiempo' = [Vuelos Operados] - [Vuelos Demorados]
 		formatString: #,0
 		displayFolder: 1 Volumen
-		lineageTag: 1915459d-3430-4ce5-a060-470b32868bec
 
 	measure 'Millas Voladas' = SUM ( fRutasMes[Millas] )
 		formatString: #,0
 		displayFolder: 1 Volumen
-		lineageTag: ce8f2156-4a8b-42c4-aec1-a1f7b706cbd8
 
 	/// Llegadas con menos de 15 min de demora / vuelos operados
 	measure '% A Tiempo' = DIVIDE ( [Vuelos a Tiempo], [Vuelos Operados] )
 		formatString: 0.0%
 		displayFolder: 2 Puntualidad
-		lineageTag: eee082e8-30d1-4908-b266-fe1222b33a8a
 
 	measure '% Demorados' = DIVIDE ( [Vuelos Demorados], [Vuelos Operados] )
 		formatString: 0.0%
 		displayFolder: 2 Puntualidad
-		lineageTag: 20042192-e3cc-45b3-a511-043bec8c7c4c
 
 	measure '% Cancelados' = DIVIDE ( [Vuelos Cancelados], [Vuelos] )
 		formatString: 0.00%
 		displayFolder: 2 Puntualidad
-		lineageTag: 354f6b90-5979-494d-ae3e-be01adec0d56
 
 	measure '% Desviados' = DIVIDE ( [Vuelos Desviados], [Vuelos] )
 		formatString: 0.00%
 		displayFolder: 2 Puntualidad
-		lineageTag: c4711936-22fc-4238-9533-da415d3de37d
 
 	measure '% Salidas Demoradas' = DIVIDE ( SUM ( fRutasMes[SalidasDemoradas] ), [Vuelos] - [Vuelos Cancelados] )
 		formatString: 0.0%
 		displayFolder: 2 Puntualidad
-		lineageTag: 96b92d06-416e-4366-8123-16d565a3f0f4
 
 	/// Promedio de todos los vuelos operados (negativo = llegó antes)
 	measure 'Demora Promedio Llegada' = DIVIDE ( SUM ( fRutasMes[SumaDemoraLlegada] ), SUM ( fRutasMes[NDemoraLlegada] ) )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
-		lineageTag: e4cd6ddb-1dbe-443b-aa81-6730e2f84a36
 
 	measure 'Demora Promedio Salida' = DIVIDE ( SUM ( fRutasMes[SumaDemoraSalida] ), SUM ( fRutasMes[NDemoraSalida] ) )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
-		lineageTag: 1acb9f19-4483-4ca2-8e0b-bec18bd84ce2
 
 	/// Demora media solo de los vuelos que llegaron 15+ min tarde
 	measure 'Demora Promedio de Demorados' = DIVIDE ( SUM ( fRutasMes[SumaDemoraDemorados] ), [Vuelos Demorados] )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
-		lineageTag: e763a090-b491-4939-978d-c3f539c2d256
 
 	measure 'Taxi Salida Promedio' = DIVIDE ( SUM ( fRutasMes[SumaTaxiSalida] ), SUM ( fRutasMes[NTaxiSalida] ) )
 		formatString: #,0.0 "min"
 		displayFolder: 2 Puntualidad
-		lineageTag: 9797a842-015e-4669-8506-c1b797d8e1f2
 
 	measure 'Min Demora Aerolínea' = SUM ( fRutasMes[DemoraAerolineaMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
-		lineageTag: f3e885f5-9bbe-4b43-8bbc-ca331d1b41c9
 
 	measure 'Min Demora Clima' = SUM ( fRutasMes[DemoraClimaMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
-		lineageTag: 320df23c-23a6-415a-b7fc-d8070f64e1d0
 
 	measure 'Min Demora Sistema NAS' = SUM ( fRutasMes[DemoraNASMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
-		lineageTag: 94223c54-6b3a-4c13-8cef-b8adfb5f911c
 
 	measure 'Min Demora Seguridad' = SUM ( fRutasMes[DemoraSeguridadMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
-		lineageTag: 5616294d-7ff5-4339-8f59-cf646f502e89
 
 	measure 'Min Demora Avión previo' = SUM ( fRutasMes[DemoraAvionPrevioMin] )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
-		lineageTag: d6a58cb4-dbf6-491a-ace6-97e78c150436
 
 	/// Minutos de demora atribuidos a alguna causa (vuelos 15+ min tarde)
 	measure 'Min Demora Total' = [Min Demora Aerolínea] + [Min Demora Clima] + [Min Demora Sistema NAS] + [Min Demora Seguridad] + [Min Demora Avión previo]
 		formatString: #,0
 		displayFolder: 3 Causas de demora
-		lineageTag: b5842ca7-60e4-4033-a1bc-8f94547e9f94
 
 	measure 'Horas de Demora' = DIVIDE ( [Min Demora Total], 60 )
 		formatString: #,0
 		displayFolder: 3 Causas de demora
-		lineageTag: 74b04414-5b7d-481e-8343-a701f2736e55
 
 	measure '% Causa Aerolínea' = DIVIDE ( [Min Demora Aerolínea], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
-		lineageTag: 05a38285-7106-47ea-84e7-75ecfd62a910
 
 	measure '% Causa Clima' = DIVIDE ( [Min Demora Clima], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
-		lineageTag: f30a7169-a57b-4c12-806f-f467643139c4
 
 	measure '% Causa Sistema NAS' = DIVIDE ( [Min Demora Sistema NAS], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
-		lineageTag: 77cf3908-2f11-4251-9988-418ebc7229e5
 
 	measure '% Causa Seguridad' = DIVIDE ( [Min Demora Seguridad], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
-		lineageTag: 16329660-a2a9-413a-a21c-4e6d53f82caf
 
 	measure '% Causa Avión previo' = DIVIDE ( [Min Demora Avión previo], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
-		lineageTag: fc916155-b91f-4059-8071-fc1cef2528a5
 
 	/// Demoras atribuibles a la operación de la aerolínea (propia + avión previo)
 	measure '% Causa Controlable' = DIVIDE ( [Min Demora Aerolínea] + [Min Demora Avión previo], [Min Demora Total] )
 		formatString: 0.0%
 		displayFolder: 3 Causas de demora
-		lineageTag: 039ff976-86fd-4815-bfd8-3669205348b5
 
 	/// Mismos meses del año anterior (en blanco si no hay datos)
 	measure 'Vuelos Año Anterior' =
@@ -168,12 +138,10 @@ table Medidas
 			    )
 		formatString: #,0
 		displayFolder: 4 Comparaciones
-		lineageTag: 000658c9-2c61-4e33-a8c1-f5fce1d94217
 
 	measure 'Var % Vuelos vs AA' = DIVIDE ( [Vuelos] - [Vuelos Año Anterior], [Vuelos Año Anterior] )
 		formatString: +0.0%;-0.0%;0.0%
 		displayFolder: 4 Comparaciones
-		lineageTag: 7b45a3d2-ca3f-4e6e-a737-ca2cfbfffad6
 
 	measure '% A Tiempo Año Anterior' =
 			VAR idx = VALUES ( dMes[MesIndice] )
@@ -188,13 +156,11 @@ table Medidas
 			    )
 		formatString: 0.0%
 		displayFolder: 4 Comparaciones
-		lineageTag: bf623849-9a50-489f-83a5-17a446a97c9e
 
 	/// Diferencia en puntos porcentuales contra iguales meses del año anterior
 	measure 'Δ % A Tiempo vs AA' = IF ( NOT ISBLANK ( [% A Tiempo Año Anterior] ), [% A Tiempo] - [% A Tiempo Año Anterior] )
 		formatString: +0.0%;-0.0%;0.0%
 		displayFolder: 4 Comparaciones
-		lineageTag: 0ba583a5-9ad5-49e3-aeed-de6460bf8bd8
 
 	/// Últimos 12 meses hasta el último mes elegido vs los 12 anteriores (pp)
 	measure 'Δ % A Tiempo 12M' =
@@ -207,7 +173,6 @@ table Medidas
 			    IF ( i >= 24 && NOT ISBLANK ( ult ) && NOT ISBLANK ( prev ), ult - prev )
 		formatString: +0.0%;-0.0%;0.0%
 		displayFolder: 4 Comparaciones
-		lineageTag: 420ea930-e561-44dc-aad5-c93d355313df
 
 	/// Igual que Vuelos Cancelados pero en blanco si es 0 (oculta 'No cancelado')
 	measure 'Cancelados por Causa' =
@@ -216,7 +181,6 @@ table Medidas
 			    IF ( v > 0, v )
 		formatString: #,0
 		displayFolder: 1 Volumen
-		lineageTag: 056071e2-95d9-40a7-8971-b9b4a27e8bee
 
 	measure '% A Tiempo Mes Anterior' =
 			VAR i = MAX ( dMes[MesIndice] )
@@ -227,7 +191,6 @@ table Medidas
 			    )
 		formatString: 0.0%
 		displayFolder: 4 Comparaciones
-		lineageTag: 649e51d2-4720-447c-9fd3-10d9906d5072
 
 	/// Últimos 3 meses hasta el mes del contexto
 	measure '% A Tiempo Móvil 3M' =
@@ -241,7 +204,6 @@ table Medidas
 			    )
 		formatString: 0.0%
 		displayFolder: 4 Comparaciones
-		lineageTag: 635ae50e-354b-4ba5-a4f0-7ce10693c7b9
 
 	/// Posición por % a tiempo dentro de lo filtrado
 	measure 'Ranking Aerolínea' =
@@ -251,12 +213,45 @@ table Medidas
 			)
 		formatString: 0
 		displayFolder: 4 Comparaciones
-		lineageTag: a60499b4-5c11-4d3c-9083-fbcb5c8db7b3
+
+	/// Posición por % a tiempo entre todas las aerolíneas (ignora el filtro de aerolínea)
+	measure 'Ranking Industria' =
+			IF (
+			    HASONEVALUE ( dAerolinea[AerolineaCod] ),
+			    RANKX ( FILTER ( ALL ( dAerolinea ), NOT ISBLANK ( [Vuelos] ) ), [% A Tiempo], , DESC, DENSE )
+			)
+		formatString: 0
+		displayFolder: 4 Comparaciones
+
+	measure 'Aerolíneas con Datos' = COUNTROWS ( FILTER ( ALL ( dAerolinea ), NOT ISBLANK ( [Vuelos] ) ) )
+		formatString: 0
+		displayFolder: 4 Comparaciones
+
+	/// Promedio de toda la industria EEUU (ignora el filtro de aerolínea)
+	measure '% A Tiempo Industria' = CALCULATE ( [% A Tiempo], REMOVEFILTERS ( dAerolinea ) )
+		formatString: 0.0%
+		displayFolder: 4 Comparaciones
+
+	measure '% Cancelados Industria' = CALCULATE ( [% Cancelados], REMOVEFILTERS ( dAerolinea ) )
+		formatString: 0.00%
+		displayFolder: 4 Comparaciones
+
+	measure 'Demora Media Industria' = CALCULATE ( [Demora Promedio de Demorados], REMOVEFILTERS ( dAerolinea ) )
+		formatString: #,0.0 "min"
+		displayFolder: 4 Comparaciones
+
+	measure '% Controlable Industria' = CALCULATE ( [% Causa Controlable], REMOVEFILTERS ( dAerolinea ) )
+		formatString: 0.0%
+		displayFolder: 4 Comparaciones
+
+	/// Línea de promedio del cuadrante (eje X)
+	measure 'Vuelos Promedio por Aerolínea' = AVERAGEX ( FILTER ( ALL ( dAerolinea ), NOT ISBLANK ( [Vuelos] ) ), [Vuelos] )
+		formatString: #,0
+		displayFolder: 4 Comparaciones
 
 	measure 'P Vuelos' = SUM ( fPatrones[Vuelos] )
 		formatString: #,0
 		displayFolder: 5 Patrones
-		lineageTag: fe332334-500c-4ce6-895a-9b6093f9fd91
 
 	/// % de llegadas demoradas según día y hora programada
 	measure 'P % Demorados' =
@@ -266,81 +261,78 @@ table Medidas
 			)
 		formatString: 0.0%
 		displayFolder: 5 Patrones
-		lineageTag: 813cb3dc-070c-42cf-99ed-b5fc77e7fdcc
 
 	measure 'P % A Tiempo' = IF ( NOT ISBLANK ( [P % Demorados] ), 1 - [P % Demorados] )
 		formatString: 0.0%
 		displayFolder: 5 Patrones
-		lineageTag: e2378b45-66e4-4094-80d4-dbca708a6818
 
 	measure 'P % Cancelados' = DIVIDE ( SUM ( fPatrones[Cancelados] ), [P Vuelos] )
 		formatString: 0.00%
 		displayFolder: 5 Patrones
-		lineageTag: df13b533-fd60-41ae-bf0e-b8c055cccc0e
+
+	/// Demora media (min) de los vuelos demorados según día y hora
+	measure 'P Demora Media' = DIVIDE ( SUM ( fPatrones[SumaDemoraDemorados] ), SUM ( fPatrones[LlegadasDemoradas] ) )
+		formatString: #,0.0
+		displayFolder: 5 Patrones
 
 	measure 'D Vuelos' = COUNTROWS ( fDetalle )
 		formatString: #,0
 		displayFolder: 6 Detalle
-		lineageTag: d825260d-df58-4901-b3df-4f776a0efe40
 
 	measure 'Texto Detalle' = "Vuelos de " & FORMAT ( MAX ( fDetalle[Fecha] ), "mmmm yyyy" )
 		displayFolder: 6 Detalle
-		lineageTag: 018de8b1-409c-4dc4-b769-4fd54c2df975
-
-	/// Semáforo (alias de Color Puntualidad): verde ≥80%, ámbar 75–80%, rojo <75%
-	measure 'Color % A Tiempo' = [Color Puntualidad]
-		displayFolder: 9 Formato
-		lineageTag: 5a29de41-9876-43aa-8362-90529bd99d77
-
-	/// Semáforo sobre fPatrones: verde ≥80%, ámbar 75–80%, rojo <75%
-	measure 'Color P % A Tiempo' =
-			VAR v = [P % A Tiempo]
-			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, "#10B981", v >= 0.75, "#F59E0B", "#EF4444" )
-		displayFolder: 9 Formato
-		lineageTag: 53e32067-746b-40ee-ad58-0ff58fcc1c40
-
-	/// Mapa de calor divergente azul → claro → naranja (apto daltónicos): azul = pocas demoras
-	measure 'Color % Demorados' =
-			VAR v = [P % Demorados]
-			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (),
-			        v < 0.12, "#2166AC", v < 0.16, "#67A9CF", v < 0.20, "#D1E5F0",
-			        v < 0.24, "#FDDBC7", v < 0.28, "#F4A15D", "#D9600F" )
-		displayFolder: 9 Formato
-		lineageTag: 979eb34c-6b51-4ac6-ba4c-a4d07cea4860
-
-	measure 'Texto Período' = "Período: " & FORMAT ( MIN ( dMes[FechaMes] ), "mmm yyyy" ) & " – " & FORMAT ( MAX ( dMes[FechaMes] ), "mmm yyyy" )
-		displayFolder: 9 Formato
-		lineageTag: aa32dfcb-b765-4d3e-8eb6-b1f3454bb457
-
-	measure 'Texto Fuente' = "Fuente: BTS – On-Time Performance (transtats.bts.gov). Elaboración ATLAS."
-		displayFolder: 9 Formato
-		lineageTag: 01cfdc14-6a53-4503-9998-9bc0f4ca0fee
 
 	/// Semáforo de puntualidad: verde ≥80%, ámbar 75–80%, rojo <75%
 	measure 'Color Puntualidad' =
 			VAR v = [% A Tiempo]
 			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, "#10B981", v >= 0.75, "#F59E0B", "#EF4444" )
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, "#00E676", v >= 0.75, "#FFD740", "#FF5252" )
 		displayFolder: 9 Formato
-		lineageTag: 02ca8624-ed9d-4f69-ab1a-06611e68d7a6
 
-	/// Texto oscuro sobre celdas claras del mapa de calor, blanco sobre las oscuras
-	measure 'Color Texto % Demorados' =
+	/// Semáforo (alias de Color Puntualidad)
+	measure 'Color % A Tiempo' = [Color Puntualidad]
+		displayFolder: 9 Formato
+
+	/// Semáforo sobre fPatrones: verde ≥80%, ámbar 75–80%, rojo <75%
+	measure 'Color P % A Tiempo' =
+			VAR v = [P % A Tiempo]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v >= 0.80, "#00E676", v >= 0.75, "#FFD740", "#FF5252" )
+		displayFolder: 9 Formato
+
+	/// Mapa de calor: azul = pocas demoras, naranja = muchas
+	measure 'Color % Demorados' =
 			VAR v = [P % Demorados]
 			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v < 0.16 || v >= 0.28, "#FFFFFF", "#1D1631" )
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v < 0.12, "#1D4E89", v < 0.16, "#2F6DB5", v < 0.2, "#334155", v < 0.24, "#8A5A2B", v < 0.28, "#C2701E", "#E8590C" )
 		displayFolder: 9 Formato
-		lineageTag: 6d965f1c-99e1-40d4-a23c-9f8ffacdf718
+
+	/// Mapa de calor de demora media (min)
+	measure 'Color Heatmap Demora' =
+			VAR v = [P Demora Media]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v < 66, "#1D4E89", v < 70, "#2F6DB5", v < 72, "#334155", v < 75, "#8A5A2B", v < 78, "#C2701E", "#E8590C" )
+		displayFolder: 9 Formato
+
+	/// Mapa de calor de % cancelados
+	measure 'Color Heatmap Cancelados' =
+			VAR v = [P % Cancelados]
+			RETURN
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v < 0.01, "#1D4E89", v < 0.013, "#2F6DB5", v < 0.015, "#334155", v < 0.018, "#8A5A2B", v < 0.021, "#C2701E", "#E8590C" )
+		displayFolder: 9 Formato
 
 	/// Detalle: rojo si la llegada se demoró más de 60 min, verde si llegó sin demora
 	measure 'Color Demora Llegada' =
 			VAR v = MAX ( fDetalle[DemoraLlegadaMin] )
 			RETURN
-			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v > 60, "#FDE2E2", v <= 0, "#D1FAE5", BLANK () )
+			    SWITCH ( TRUE (), ISBLANK ( v ), BLANK (), v > 60, "#3B1820", v <= 0, "#0E2E22", BLANK () )
 		displayFolder: 9 Formato
-		lineageTag: 76124dc1-75ec-48ca-9e9d-42606ced7e39
+
+	measure 'Texto Período' = "Período: " & FORMAT ( MIN ( dMes[FechaMes] ), "mmm yyyy" ) & " – " & FORMAT ( MAX ( dMes[FechaMes] ), "mmm yyyy" )
+		displayFolder: 9 Formato
+
+	measure 'Texto Fuente' = "Fuente: BTS – On-Time Performance (transtats.bts.gov). Elaboración ATLAS."
+		displayFolder: 9 Formato
 
 	/// Título según los filtros de Año y Mes
 	measure 'Titulo Dinamico' =
@@ -350,12 +342,300 @@ table Medidas
 			RETURN
 			    "Resumen de puntualidad" & IF ( filtro = "", " – todo el período", " – " & filtro )
 		displayFolder: 9 Formato
-		lineageTag: d25ab1cb-3d71-444e-a103-cd9657788f3f
+
+	/// Cantidad de segmentadores del cajón de filtros con una selección activa
+	measure 'Filtros Activos' = INT ( ISFILTERED ( dMes[Anio] ) ) + INT ( ISFILTERED ( dMes[Mes] ) ) + INT ( ISFILTERED ( dAerolinea[Aerolinea] ) ) + INT ( ISFILTERED ( dAerolinea[TipoAerolinea] ) ) + INT ( ISFILTERED ( dOrigen[OrigenEstado] ) ) + INT ( ISFILTERED ( dOrigen[OrigenCodigo] ) ) + INT ( ISFILTERED ( dDestino[DestinoCodigo] ) ) + INT ( ISFILTERED ( dCausaCancelacion[CausaCancelacion] ) ) + INT ( ISFILTERED ( dHora[FranjaHoraria] ) )
+		formatString: 0
+		displayFolder: 10 App
+
+	measure 'Texto Boton Filtros' = "☰  Filtros (" & [Filtros Activos] & ")"
+		displayFolder: 10 App
+
+	measure 'Portada Vuelos' = FORMAT ( [Vuelos] / 1000000, "0.0" ) & "M"
+		displayFolder: 10 App
+
+	measure 'Portada Puntualidad' = FORMAT ( [% A Tiempo], "0.0%" )
+		displayFolder: 10 App
+
+	measure 'Portada Demora' = FORMAT ( [Demora Promedio de Demorados], "0.0" ) & " min"
+		displayFolder: 10 App
+
+	measure 'Tooltip Aeropuerto Titulo' = SELECTEDVALUE ( dOrigen[OrigenCodigo] ) & "  ·  " & SELECTEDVALUE ( dOrigen[OrigenCiudad] ) & ", " & SELECTEDVALUE ( dOrigen[OrigenEstadoCod] )
+		displayFolder: 10 App
+
+	measure 'Logo Aerolinea' = SELECTEDVALUE ( dAerolinea[Logo_SVG_URL] )
+		displayFolder: 11 SVG
+		dataCategory: ImageUrl
+
+	/// Mini área de la evolución mensual del % a tiempo (160×36)
+	measure KPI_Sparkline_Puntualidad_SVG =
+			VAR W = 160
+			VAR H = 36
+			VAR P = 4
+			VAR t =
+			    FILTER (
+			        ADDCOLUMNS ( ALLSELECTED ( dMes[MesIndice] ), "@v", [% A Tiempo] ),
+			        NOT ISBLANK ( [@v] )
+			    )
+			VAR mn = MINX ( t, [@v] )
+			VAR mx = MAXX ( t, [@v] )
+			VAR i0 = MINX ( t, dMes[MesIndice] )
+			VAR i1 = MAXX ( t, dMes[MesIndice] )
+			VAR pts =
+			    ADDCOLUMNS (
+			        t,
+			        "@x", P + DIVIDE ( dMes[MesIndice] - i0, i1 - i0 ) * ( W - 2 * P ),
+			        "@y", H - P - DIVIDE ( [@v] - mn, mx - mn ) * ( H - 2 * P )
+			    )
+			VAR linea = CONCATENATEX ( pts, FORMAT ( [@x], "0.0", "en-US" ) & "," & FORMAT ( [@y], "0.0", "en-US" ), " ", dMes[MesIndice], ASC )
+			VAR ux = MAXX ( FILTER ( pts, dMes[MesIndice] = i1 ), [@x] )
+			VAR uy = MAXX ( FILTER ( pts, dMes[MesIndice] = i1 ), [@y] )
+			VAR svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' width='160' height='36' viewBox='0 0 160 36'>"
+			        & "<defs><linearGradient id='g' x1='0' y1='0' x2='0' y2='1'>"
+			        & "<stop offset='0' stop-color='#00E5FF' stop-opacity='0.45'/><stop offset='1' stop-color='#00E5FF' stop-opacity='0'/>"
+			        & "</linearGradient></defs>"
+			        & "<polygon points='" & P & "," & H & " " & linea & " " & FORMAT ( ux, "0.0", "en-US" ) & "," & H & "' fill='url(#g)'/>"
+			        & "<polyline points='" & linea & "' fill='none' stroke='#00E5FF' stroke-width='1.6' stroke-linejoin='round'/>"
+			        & "<circle cx='" & FORMAT ( ux, "0.0", "en-US" ) & "' cy='" & FORMAT ( uy, "0.0", "en-US" ) & "' r='5' fill='#00E5FF' opacity='0.25'/>"
+			        & "<circle cx='" & FORMAT ( ux, "0.0", "en-US" ) & "' cy='" & FORMAT ( uy, "0.0", "en-US" ) & "' r='2.6' fill='#00E5FF'/>"
+			        & "</svg>"
+			RETURN
+			    IF ( COUNTROWS ( t ) >= 2, "data:image/svg+xml;utf8," & SUBSTITUTE ( SUBSTITUTE ( svg, "%", "%25" ), "#", "%23" ) )
+		displayFolder: 11 SVG
+		dataCategory: ImageUrl
+
+	/// Barra de progreso del % a tiempo contra la meta de 80% (escala 60–95%)
+	measure KPI_Bullet_Meta_SVG =
+			VAR v = [% A Tiempo]
+			VAR lo = 0.60
+			VAR hi = 0.95
+			VAR x = MIN ( MAX ( DIVIDE ( v - lo, hi - lo ), 0.02 ), 1 ) * 160
+			VAR xm = DIVIDE ( 0.80 - lo, hi - lo ) * 160
+			VAR col = SWITCH ( TRUE (), v >= 0.80, "#00E676", v >= 0.75, "#FFD740", "#FF5252" )
+			VAR svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' width='160' height='14' viewBox='0 0 160 14'>"
+			        & "<rect x='0' y='3' width='160' height='8' rx='4' fill='#1E293B'/>"
+			        & "<rect x='0' y='3' width='" & FORMAT ( x, "0.0", "en-US" ) & "' height='8' rx='4' fill='" & col & "'/>"
+			        & "<rect x='" & FORMAT ( xm - 1, "0.0", "en-US" ) & "' y='0' width='2' height='14' fill='#FFFFFF'/>"
+			        & "</svg>"
+			RETURN
+			    IF ( NOT ISBLANK ( v ), "data:image/svg+xml;utf8," & SUBSTITUTE ( SUBSTITUTE ( svg, "%", "%25" ), "#", "%23" ) )
+		displayFolder: 11 SVG
+		dataCategory: ImageUrl
+
+	/// Barra del % a tiempo con semáforo (escala 60–95%) para tablas
+	measure Tabla_Barra_Puntualidad_SVG =
+			VAR v = [% A Tiempo]
+			VAR w = MIN ( MAX ( DIVIDE ( v - 0.60, 0.35 ), 0.03 ), 1 ) * 84
+			VAR col = SWITCH ( TRUE (), v >= 0.80, "#00E676", v >= 0.75, "#FFD740", "#FF5252" )
+			VAR svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' width='130' height='18' viewBox='0 0 130 18'>"
+			        & "<defs><linearGradient id='b' x1='0' y1='0' x2='1' y2='0'>"
+			        & "<stop offset='0' stop-color='" & col & "' stop-opacity='0.25'/><stop offset='1' stop-color='" & col & "'/>"
+			        & "</linearGradient></defs>"
+			        & "<rect x='0' y='4' width='84' height='10' rx='5' fill='#1E293B'/>"
+			        & "<rect x='0' y='4' width='" & FORMAT ( w, "0.0", "en-US" ) & "' height='10' rx='5' fill='url(#b)'/>"
+			        & "<text x='128' y='13' text-anchor='end' font-family='Segoe UI' font-size='11' font-weight='600' fill='#F8FAFC'>"
+			        & FORMAT ( v, "0.0%" ) & "</text></svg>"
+			RETURN
+			    IF ( NOT ISBLANK ( v ), "data:image/svg+xml;utf8," & SUBSTITUTE ( SUBSTITUTE ( svg, "%", "%25" ), "#", "%23" ) )
+		displayFolder: 11 SVG
+		dataCategory: ImageUrl
+
+	/// Etiqueta ▲/▼ con la variación del % a tiempo en los últimos 12 meses (pp)
+	measure Tabla_Badge_Variacion_SVG =
+			VAR d = [Δ % A Tiempo 12M]
+			VAR pp = d * 100
+			VAR sube = pp >= 0
+			VAR col = IF ( sube, "#00E676", "#FF5252" )
+			VAR rgb = IF ( sube, "0,230,118", "255,82,82" )
+			VAR txt = IF ( sube, "▲ +", "▼ " ) & FORMAT ( pp, "0.0" ) & " pp"
+			VAR svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' width='85' height='22' viewBox='0 0 85 22'>"
+			        & "<rect x='0.5' y='0.5' width='84' height='21' rx='10.5' fill='rgba(" & rgb & ",0.14)' stroke='" & col & "' stroke-width='0.8'/>"
+			        & "<text x='42.5' y='15' text-anchor='middle' font-family='Segoe UI' font-size='11' font-weight='600' fill='" & col & "'>"
+			        & txt & "</text></svg>"
+			RETURN
+			    IF ( NOT ISBLANK ( d ), "data:image/svg+xml;utf8," & SUBSTITUTE ( SUBSTITUTE ( svg, "%", "%25" ), "#", "%23" ) )
+		displayFolder: 11 SVG
+		dataCategory: ImageUrl
+
+	/// Estado del vuelo: a tiempo, demorado, demora >60 min, desviado o cancelado (con causa)
+	measure Vuelo_Estado_Badge_SVG =
+			VAR canc = MAX ( fDetalle[Cancelado] )
+			VAR desv = MAX ( fDetalle[Desviado] )
+			VAR d = MAX ( fDetalle[DemoraLlegadaMin] )
+			VAR causa = UPPER ( SELECTEDVALUE ( dCausaCancelacion[CausaCancelacion] ) )
+			VAR estado =
+			    SWITCH (
+			        TRUE (),
+			        canc = 1, "✕ CANCELADO · " & causa,
+			        desv = 1, "↷ DESVIADO",
+			        d > 60, "▲ DEMORA >60M",
+			        d >= 15, "▲ DEMORA 15–60M",
+			        "● A TIEMPO"
+			    )
+			VAR col = SWITCH ( TRUE (), canc = 1, "#FF5252", desv = 1, "#448AFF", d > 60, "#FF5252", d >= 15, "#FFD740", "#00E676" )
+			VAR rgb = SWITCH ( TRUE (), canc = 1, "255,82,82", desv = 1, "68,138,255", d > 60, "255,82,82", d >= 15, "255,215,64", "0,230,118" )
+			VAR svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' width='150' height='22' viewBox='0 0 150 22'>"
+			        & "<rect x='0.5' y='0.5' width='149' height='21' rx='10.5' fill='rgba(" & rgb & ",0.14)' stroke='" & col & "' stroke-width='0.8'/>"
+			        & "<text x='10' y='15' font-family='Segoe UI' font-size='10' font-weight='600' fill='" & col & "'>"
+			        & estado & "</text></svg>"
+			RETURN
+			    IF ( COUNTROWS ( fDetalle ) = 1, "data:image/svg+xml;utf8," & SUBSTITUTE ( SUBSTITUTE ( svg, "%", "%25" ), "#", "%23" ) )
+		displayFolder: 11 SVG
+		dataCategory: ImageUrl
+
+	/// Top 3 rutas con más % de demoras desde el aeropuerto (rutas con 300+ vuelos)
+	measure Tooltip_Top3_Rutas_SVG =
+			VAR t =
+			    TOPN (
+			        3,
+			        FILTER (
+			            ADDCOLUMNS ( VALUES ( dDestino[DestinoCodigo] ), "@v", [Vuelos], "@p", [% Demorados] ),
+			            [@v] >= 300 && NOT ISBLANK ( [@p] )
+			        ),
+			        [@p], DESC
+			    )
+			VAR mx = MAXX ( t, [@p] )
+			VAR r = ADDCOLUMNS ( t, "@r", RANKX ( t, [@p], , DESC ) )
+			VAR o = SELECTEDVALUE ( dOrigen[OrigenCodigo] )
+			VAR filas =
+			    CONCATENATEX (
+			        r,
+			        VAR y = ( [@r] - 1 ) * 30
+			        RETURN
+			            "<g transform='translate(0," & y & ")'>"
+			                & "<text x='0' y='15' font-family='Segoe UI' font-size='11' font-weight='600' fill='#F8FAFC'>" & o & " → " & dDestino[DestinoCodigo] & "</text>"
+			                & "<rect x='86' y='5' width='140' height='12' rx='6' fill='#1E293B'/>"
+			                & "<rect x='86' y='5' width='" & FORMAT ( DIVIDE ( [@p], mx ) * 140, "0.0", "en-US" ) & "' height='12' rx='6' fill='#FF5252'/>"
+			                & "<text x='292' y='15' text-anchor='end' font-family='Segoe UI' font-size='11' fill='#94A3B8'>" & FORMAT ( [@p], "0.0%" ) & "</text>"
+			                & "</g>",
+			        "",
+			        [@r], ASC
+			    )
+			VAR svg = "<svg xmlns='http://www.w3.org/2000/svg' width='300' height='90' viewBox='0 0 300 90'>" & filas & "</svg>"
+			RETURN
+			    IF ( NOT ISEMPTY ( t ), "data:image/svg+xml;utf8," & SUBSTITUTE ( SUBSTITUTE ( svg, "%", "%25" ), "#", "%23" ) )
+		displayFolder: 11 SVG
+		dataCategory: ImageUrl
+
+	/// Tarjeta de perfil: insignia, segmento, ranking y 4 KPIs contra el promedio de la industria
+	measure Benchmark_Hero_SVG =
+			VAR sel = HASONEVALUE ( dAerolinea[AerolineaCod] )
+			VAR cod = IF ( sel, SELECTEDVALUE ( dAerolinea[AerolineaCod] ), "US" )
+			VAR nombre = IF ( sel, SELECTEDVALUE ( dAerolinea[Aerolinea] ), "Industria EEUU" )
+			VAR tipo = IF ( sel, UPPER ( SELECTEDVALUE ( dAerolinea[TipoAerolinea] ) ), "PROMEDIO DE " & [Aerolíneas con Datos] & " AEROLÍNEAS" )
+			VAR marca = IF ( sel, SELECTEDVALUE ( dAerolinea[Color_Marca] ), "#7C4DFF" )
+			VAR fg = IF ( sel, SELECTEDVALUE ( dAerolinea[Color_Texto] ), "#FFFFFF" )
+			VAR rk =
+			    IF (
+			        sel,
+			        "#" & [Ranking Industria] & " de " & [Aerolíneas con Datos] & " en puntualidad",
+			        "Elegí una aerolínea arriba para compararla"
+			    )
+			VAR k0v = [% A Tiempo]
+			VAR k0d =
+			    IF (
+			        sel && NOT ISBLANK ( k0v ),
+			        "<text x='28' y='174' font-family='Segoe UI' font-size='10' font-weight='600' fill='"
+			            & IF ( ( ( [% A Tiempo] - [% A Tiempo Industria] ) >= 0 ), "#00E676", "#FF5252" ) & "'>"
+			            & IF ( ( [% A Tiempo] - [% A Tiempo Industria] ) >= 0, "▲ ", "▼ " ) & FORMAT ( ABS ( ( [% A Tiempo] - [% A Tiempo Industria] ) ) * 100, "0.0" ) & " pp" & " vs industria</text>",
+			        "<text x='28' y='174' font-family='Segoe UI' font-size='10' fill='#94A3B8'>Promedio EEUU</text>"
+			    )
+			VAR k0 =
+			    "<rect x='16' y='112' width='180' height='68' rx='10' fill='#0B0E14' stroke='#1E293B'/>"
+			        & "<text x='28' y='132' font-family='Segoe UI' font-size='10' fill='#94A3B8'>% A TIEMPO</text>"
+			        & "<text x='28' y='156' font-family='Segoe UI' font-size='20' font-weight='700' fill='#F8FAFC'>"
+			        & FORMAT ( k0v, "0.0%" ) & "</text>"
+			        & k0d
+			VAR k1v = [% Cancelados]
+			VAR k1d =
+			    IF (
+			        sel && NOT ISBLANK ( k1v ),
+			        "<text x='220' y='174' font-family='Segoe UI' font-size='10' font-weight='600' fill='"
+			            & IF ( ( ( [% Cancelados] - [% Cancelados Industria] ) <= 0 ), "#00E676", "#FF5252" ) & "'>"
+			            & IF ( ( [% Cancelados] - [% Cancelados Industria] ) >= 0, "▲ ", "▼ " ) & FORMAT ( ABS ( ( [% Cancelados] - [% Cancelados Industria] ) ) * 100, "0.0" ) & " pp" & " vs industria</text>",
+			        "<text x='220' y='174' font-family='Segoe UI' font-size='10' fill='#94A3B8'>Promedio EEUU</text>"
+			    )
+			VAR k1 =
+			    "<rect x='208' y='112' width='180' height='68' rx='10' fill='#0B0E14' stroke='#1E293B'/>"
+			        & "<text x='220' y='132' font-family='Segoe UI' font-size='10' fill='#94A3B8'>% CANCELADOS</text>"
+			        & "<text x='220' y='156' font-family='Segoe UI' font-size='20' font-weight='700' fill='#F8FAFC'>"
+			        & FORMAT ( k1v, "0.00%" ) & "</text>"
+			        & k1d
+			VAR k2v = [Demora Promedio de Demorados]
+			VAR k2d =
+			    IF (
+			        sel && NOT ISBLANK ( k2v ),
+			        "<text x='28' y='250' font-family='Segoe UI' font-size='10' font-weight='600' fill='"
+			            & IF ( ( ( [Demora Promedio de Demorados] - [Demora Media Industria] ) <= 0 ), "#00E676", "#FF5252" ) & "'>"
+			            & IF ( ( [Demora Promedio de Demorados] - [Demora Media Industria] ) >= 0, "▲ ", "▼ " ) & FORMAT ( ABS ( ( [Demora Promedio de Demorados] - [Demora Media Industria] ) ), "0.0" ) & " min" & " vs industria</text>",
+			        "<text x='28' y='250' font-family='Segoe UI' font-size='10' fill='#94A3B8'>Promedio EEUU</text>"
+			    )
+			VAR k2 =
+			    "<rect x='16' y='188' width='180' height='68' rx='10' fill='#0B0E14' stroke='#1E293B'/>"
+			        & "<text x='28' y='208' font-family='Segoe UI' font-size='10' fill='#94A3B8'>DEMORA MEDIA (DEMORADOS)</text>"
+			        & "<text x='28' y='232' font-family='Segoe UI' font-size='20' font-weight='700' fill='#F8FAFC'>"
+			        & FORMAT ( k2v, "0.0 ""min""" ) & "</text>"
+			        & k2d
+			VAR k3v = [% Causa Controlable]
+			VAR k3d =
+			    IF (
+			        sel && NOT ISBLANK ( k3v ),
+			        "<text x='220' y='250' font-family='Segoe UI' font-size='10' font-weight='600' fill='"
+			            & IF ( ( ( [% Causa Controlable] - [% Controlable Industria] ) <= 0 ), "#00E676", "#FF5252" ) & "'>"
+			            & IF ( ( [% Causa Controlable] - [% Controlable Industria] ) >= 0, "▲ ", "▼ " ) & FORMAT ( ABS ( ( [% Causa Controlable] - [% Controlable Industria] ) ) * 100, "0.0" ) & " pp" & " vs industria</text>",
+			        "<text x='220' y='250' font-family='Segoe UI' font-size='10' fill='#94A3B8'>Promedio EEUU</text>"
+			    )
+			VAR k3 =
+			    "<rect x='208' y='188' width='180' height='68' rx='10' fill='#0B0E14' stroke='#1E293B'/>"
+			        & "<text x='220' y='208' font-family='Segoe UI' font-size='10' fill='#94A3B8'>% DEMORA CONTROLABLE</text>"
+			        & "<text x='220' y='232' font-family='Segoe UI' font-size='20' font-weight='700' fill='#F8FAFC'>"
+			        & FORMAT ( k3v, "0.0%" ) & "</text>"
+			        & k3d
+			VAR svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' width='400' height='268' viewBox='0 0 400 268'>"
+			        & "<rect x='16' y='16' width='72' height='72' rx='14' fill='" & marca & "'/>"
+			        & "<path d='M30 62 L74 40 L62 62 Z' fill='" & fg & "' opacity='0.9'/>"
+			        & "<text x='52' y='38' text-anchor='middle' font-family='Segoe UI' font-size='15' font-weight='800' fill='" & fg & "'>" & cod & "</text>"
+			        & "<text x='104' y='42' font-family='Segoe UI' font-size='19' font-weight='700' fill='#F8FAFC'>" & nombre & "</text>"
+			        & "<rect x='104' y='52' width='" & FORMAT ( LEN ( tipo ) * 6.6 + 18, "0.0", "en-US" ) & "' height='18' rx='9' fill='rgba(124,77,255,0.18)' stroke='#7C4DFF' stroke-width='0.8'/>"
+			        & "<text x='113' y='65' font-family='Segoe UI' font-size='9.5' font-weight='600' fill='#B9A6FF'>" & tipo & "</text>"
+			        & "<text x='104' y='90' font-family='Segoe UI' font-size='11' fill='#00E5FF'>" & rk & "</text>"
+			        & k0 & k1 & k2 & k3
+			        & "</svg>"
+			RETURN
+			    "data:image/svg+xml;utf8," & SUBSTITUTE ( SUBSTITUTE ( svg, "%", "%25" ), "#", "%23" )
+		displayFolder: 11 SVG
+		dataCategory: ImageUrl
+
+	/// Mosaico del selector de aerolíneas: insignia + % a tiempo con semáforo
+	measure Selector_Aerolinea_SVG =
+			VAR cod = SELECTEDVALUE ( dAerolinea[AerolineaCod] )
+			VAR c = SELECTEDVALUE ( dAerolinea[Color_Marca] )
+			VAR fg = SELECTEDVALUE ( dAerolinea[Color_Texto] )
+			VAR v = [% A Tiempo]
+			VAR col = SWITCH ( TRUE (), v >= 0.80, "#00E676", v >= 0.75, "#FFD740", "#FF5252" )
+			VAR svg =
+			    "<svg xmlns='http://www.w3.org/2000/svg' width='80' height='64' viewBox='0 0 80 64'>"
+			        & "<rect x='8' y='8' width='22' height='22' rx='6' fill='" & c & "'/>"
+			        & "<path d='M11 25 L27 17 L23 25 Z' fill='" & fg & "' opacity='0.92'/>"
+			        & "<text x='35' y='26' font-family='Segoe UI' font-size='15' font-weight='800' fill='#F8FAFC'>" & cod & "</text>"
+			        & "<rect x='8' y='40' width='64' height='4' rx='2' fill='#1E293B'/>"
+			        & "<rect x='8' y='40' width='" & FORMAT ( MIN ( MAX ( DIVIDE ( v - 0.60, 0.35 ), 0.05 ), 1 ) * 64, "0.0", "en-US" ) & "' height='4' rx='2' fill='" & col & "'/>"
+			        & "<text x='8' y='58' font-family='Segoe UI' font-size='10' font-weight='600' fill='" & col & "'>" & FORMAT ( v, "0.0%" ) & "</text>"
+			        & "</svg>"
+			RETURN
+			    IF ( NOT ISBLANK ( cod ), "data:image/svg+xml;utf8," & SUBSTITUTE ( SUBSTITUTE ( svg, "%", "%25" ), "#", "%23" ) )
+		displayFolder: 11 SVG
+		dataCategory: ImageUrl
 
 	column Columna
 		dataType: int64
 		isHidden
-		lineageTag: d260a8be-2962-42e8-a77f-07facb3bc602
 		summarizeBy: none
 		sourceColumn: Columna
 

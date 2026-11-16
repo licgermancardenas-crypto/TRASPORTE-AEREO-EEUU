@@ -1,18 +1,18 @@
 table fPatrones
-	lineageTag: e2be2f15-b88b-4694-b48f-d19db9a926be
+	lineageTag: cb3c2a3b-b793-4a99-949e-5099823f90b8
 
 	column MesKey
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: b682e71b-4ed9-441c-b034-5b1965ae210c
+		lineageTag: 9c6704b2-c3a4-4f4a-9ab4-4b289d514f14
 		summarizeBy: none
 		sourceColumn: MesKey
 
 	column AerolineaCod
 		dataType: string
 		isHidden
-		lineageTag: 7939cd4d-6d7a-40c6-acbd-2130ace0d814
+		lineageTag: b42c3c7e-f9ef-4c08-8bb4-3fdaa84b6af2
 		summarizeBy: none
 		sourceColumn: AerolineaCod
 
@@ -20,7 +20,7 @@ table fPatrones
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: e93cf8b9-f996-4640-88bc-51aaa81c6211
+		lineageTag: 0efe4f20-5e20-4684-8997-1b2dbceb9078
 		summarizeBy: none
 		sourceColumn: DiaSemanaNum
 
@@ -28,37 +28,44 @@ table fPatrones
 		dataType: int64
 		isHidden
 		formatString: 0
-		lineageTag: 4cc07fa7-2192-4d25-92bc-b9b1c280d331
+		lineageTag: 528712c3-77c7-41fb-94a2-24679bcfb1fe
 		summarizeBy: none
 		sourceColumn: HoraProgramada
 
 	column Vuelos
 		dataType: int64
 		isHidden
-		lineageTag: 6954d964-8477-4c27-8acb-5b6caad37ac4
+		lineageTag: c7ed1a63-fcad-4462-a30b-4a79d8723b6b
 		summarizeBy: sum
 		sourceColumn: Vuelos
 
 	column Cancelados
 		dataType: int64
 		isHidden
-		lineageTag: df31a534-2aae-42a3-ac82-a313d93c2407
+		lineageTag: 0c30f47a-d36c-4b82-afc4-049936e888f9
 		summarizeBy: sum
 		sourceColumn: Cancelados
 
 	column Desviados
 		dataType: int64
 		isHidden
-		lineageTag: 2d76729c-e05a-4942-b35d-48900355cc48
+		lineageTag: 3065dcf7-e359-4258-adbf-6d2ccb868a83
 		summarizeBy: sum
 		sourceColumn: Desviados
 
 	column LlegadasDemoradas
 		dataType: int64
 		isHidden
-		lineageTag: 1dfeedf7-3381-4177-aaaf-2c45faa734ed
+		lineageTag: bc33d791-462c-4c0e-ba10-d165111dc194
 		summarizeBy: sum
 		sourceColumn: LlegadasDemoradas
+
+	column SumaDemoraDemorados
+		dataType: double
+		isHidden
+		lineageTag: f0479f8c-f6ed-41bf-a316-aac30b22d754
+		summarizeBy: sum
+		sourceColumn: SumaDemoraDemorados
 
 	partition fPatrones = m
 		mode: import

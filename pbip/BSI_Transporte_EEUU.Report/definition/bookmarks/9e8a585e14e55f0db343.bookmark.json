@@ -1,0 +1,92 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/bookmark/1.4.0/schema.json",
+  "displayName": "Cerrar_Filtros · Patrones horarios",
+  "name": "9e8a585e14e55f0db343",
+  "options": {
+    "targetVisualNames": [
+      "p5patrones_filtros",
+      "p5patrones_cajon_fondo",
+      "p5patrones_cajon_borde",
+      "p5patrones_cajon_titulo",
+      "p5patrones_cajon_cerrar",
+      "p5patrones_05_slicer",
+      "p5patrones_06_slicer",
+      "p5patrones_07_slicer",
+      "p5patrones_08_slicer"
+    ],
+    "suppressData": true,
+    "applyOnlyToTargetVisuals": true,
+    "suppressActiveSection": true
+  },
+  "explorationState": {
+    "version": "1.3",
+    "activeSection": "p5patrones",
+    "sections": {
+      "p5patrones": {
+        "visualContainers": {
+          "p5patrones_cajon_fondo": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p5patrones_cajon_borde": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p5patrones_cajon_titulo": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p5patrones_cajon_cerrar": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p5patrones_05_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p5patrones_06_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p5patrones_07_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          },
+          "p5patrones_08_slicer": {
+            "singleVisual": {
+              "display": {
+                "mode": "hidden"
+              }
+            }
+          }
+        },
+        "visualContainerGroups": {
+          "p5patrones_filtros": {
+            "isHidden": true
+          }
+        }
+      }
+    }
+  }
+}
