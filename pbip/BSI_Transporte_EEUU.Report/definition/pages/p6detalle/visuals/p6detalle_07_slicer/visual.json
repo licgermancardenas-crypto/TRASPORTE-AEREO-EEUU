@@ -3,10 +3,10 @@
   "name": "p6detalle_07_slicer",
   "position": {
     "x": 520,
-    "y": 72,
+    "y": 70,
     "z": 7000,
     "width": 240,
-    "height": 54,
+    "height": 60,
     "tabOrder": 7000
   },
   "visual": {
@@ -66,6 +66,13 @@
                 }
               }
             },
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
+                }
+              }
+            },
             "fontColor": {
               "solid": {
                 "color": {
@@ -74,6 +81,19 @@
                       "Value": "'#6B6480'"
                     }
                   }
+                }
+              }
+            }
+          }
+        }
+      ],
+      "items": [
+        {
+          "properties": {
+            "textSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "9D"
                 }
               }
             }
@@ -157,6 +177,40 @@
               "expr": {
                 "Literal": {
                   "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "padding": [
+        {
+          "properties": {
+            "top": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "bottom": {
+              "expr": {
+                "Literal": {
+                  "Value": "2D"
+                }
+              }
+            },
+            "left": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
+                }
+              }
+            },
+            "right": {
+              "expr": {
+                "Literal": {
+                  "Value": "6D"
                 }
               }
             }

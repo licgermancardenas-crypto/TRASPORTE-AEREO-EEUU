@@ -43,10 +43,10 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Vuelos Cancelados"
+                  "Property": "Cancelados por Causa"
                 }
               },
-              "queryRef": "Medidas.Vuelos Cancelados",
+              "queryRef": "Medidas.Cancelados por Causa",
               "nativeQueryRef": "Vuelos cancelados",
               "displayName": "Vuelos cancelados"
             }
@@ -63,7 +63,7 @@
                     "Entity": "Medidas"
                   }
                 },
-                "Property": "Vuelos Cancelados"
+                "Property": "Cancelados por Causa"
               }
             },
             "direction": "Descending"
@@ -71,6 +71,54 @@
         ],
         "isDefaultSort": false
       }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "background": [

@@ -28,7 +28,8 @@
                 }
               },
               "queryRef": "Medidas.% Causa Seguridad",
-              "nativeQueryRef": "% Causa Seguridad"
+              "nativeQueryRef": "Seguridad",
+              "displayName": "Seguridad"
             }
           ]
         }
@@ -52,7 +53,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "24D"
+                  "Value": "22D"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }

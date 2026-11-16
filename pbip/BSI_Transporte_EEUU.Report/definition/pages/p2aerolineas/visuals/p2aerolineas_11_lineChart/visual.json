@@ -1,13 +1,13 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p2aerolineas_12_lineChart",
+  "name": "p2aerolineas_11_lineChart",
   "position": {
     "x": 20,
-    "y": 448,
-    "z": 12000,
-    "width": 760,
-    "height": 242,
-    "tabOrder": 12000
+    "y": 432,
+    "z": 11000,
+    "width": 470,
+    "height": 258,
+    "tabOrder": 11000
   },
   "visual": {
     "visualType": "lineChart",
@@ -24,10 +24,10 @@
                       "Entity": "dMes"
                     }
                   },
-                  "Property": "AnioMes"
+                  "Property": "FechaMes"
                 }
               },
-              "queryRef": "dMes.AnioMes",
+              "queryRef": "dMes.FechaMes",
               "nativeQueryRef": "Mes",
               "displayName": "Mes"
             }
@@ -82,7 +82,7 @@
                     "Entity": "dMes"
                   }
                 },
-                "Property": "AnioMes"
+                "Property": "FechaMes"
               }
             },
             "direction": "Ascending"
@@ -90,6 +90,34 @@
         ],
         "isDefaultSort": false
       }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "background": [
@@ -173,7 +201,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'% a tiempo mensual: troncales vs regionales vs low cost'"
+                  "Value": "'% a tiempo: troncales vs regionales vs low cost'"
                 }
               }
             },

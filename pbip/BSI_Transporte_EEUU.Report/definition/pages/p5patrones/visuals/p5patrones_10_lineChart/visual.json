@@ -3,10 +3,10 @@
   "name": "p5patrones_10_lineChart",
   "position": {
     "x": 20,
-    "y": 396,
+    "y": 372,
     "z": 10000,
     "width": 610,
-    "height": 294,
+    "height": 318,
     "tabOrder": 10000
   },
   "visual": {
@@ -89,6 +89,34 @@
         ],
         "isDefaultSort": false
       }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "background": [

@@ -24,12 +24,12 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Δ % A Tiempo vs AA"
+                  "Property": "Δ % A Tiempo 12M"
                 }
               },
-              "queryRef": "Medidas.Δ % A Tiempo vs AA",
-              "nativeQueryRef": "Δ vs año ant. (pp)",
-              "displayName": "Δ vs año ant. (pp)"
+              "queryRef": "Medidas.Δ % A Tiempo 12M",
+              "nativeQueryRef": "Δ 12M (pp)",
+              "displayName": "Δ 12M (pp)"
             }
           ]
         }
@@ -53,7 +53,14 @@
             "fontSize": {
               "expr": {
                 "Literal": {
-                  "Value": "24D"
+                  "Value": "22D"
+                }
+              }
+            },
+            "labelDisplayUnits": {
+              "expr": {
+                "Literal": {
+                  "Value": "1D"
                 }
               }
             }
@@ -156,7 +163,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Δ vs año anterior (pp)'"
+                  "Value": "'Δ últimos 12 meses (pp)'"
                 }
               }
             },

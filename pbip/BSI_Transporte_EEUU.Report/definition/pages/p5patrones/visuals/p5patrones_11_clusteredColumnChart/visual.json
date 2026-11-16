@@ -3,10 +3,10 @@
   "name": "p5patrones_11_clusteredColumnChart",
   "position": {
     "x": 642,
-    "y": 396,
+    "y": 372,
     "z": 11000,
     "width": 300,
-    "height": 294,
+    "height": 318,
     "tabOrder": 11000
   },
   "visual": {
@@ -101,6 +101,52 @@
                 }
               }
             ]
+          }
+        }
+      ],
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "labels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "8D"
+                }
+              }
+            }
           }
         }
       ]

@@ -37,6 +37,7 @@ table dMes
 		dataType: string
 		summarizeBy: none
 		sourceColumn: AnioMes
+		sortByColumn: MesIndice
 
 	column MesIndice
 		dataType: int64

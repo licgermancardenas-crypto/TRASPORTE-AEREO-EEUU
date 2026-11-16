@@ -162,6 +162,26 @@ table Medidas
 		formatString: +0.0%;-0.0%;0.0%
 		displayFolder: 4 Comparaciones
 
+	/// Últimos 12 meses hasta el último mes elegido vs los 12 anteriores (pp)
+	measure 'Δ % A Tiempo 12M' =
+			VAR i = MAX ( dMes[MesIndice] )
+			VAR ult =
+			    CALCULATE ( [% A Tiempo], REMOVEFILTERS ( dMes ), dMes[MesIndice] > i - 12, dMes[MesIndice] <= i )
+			VAR prev =
+			    CALCULATE ( [% A Tiempo], REMOVEFILTERS ( dMes ), dMes[MesIndice] > i - 24, dMes[MesIndice] <= i - 12 )
+			RETURN
+			    IF ( i >= 24 && NOT ISBLANK ( ult ) && NOT ISBLANK ( prev ), ult - prev )
+		formatString: +0.0%;-0.0%;0.0%
+		displayFolder: 4 Comparaciones
+
+	/// Igual que Vuelos Cancelados pero en blanco si es 0 (oculta 'No cancelado')
+	measure 'Cancelados por Causa' =
+			VAR v = [Vuelos Cancelados]
+			RETURN
+			    IF ( v > 0, v )
+		formatString: #,0
+		displayFolder: 1 Volumen
+
 	measure '% A Tiempo Mes Anterior' =
 			VAR i = MAX ( dMes[MesIndice] )
 			RETURN
@@ -189,7 +209,7 @@ table Medidas
 	measure 'Ranking Aerolínea' =
 			IF (
 			    HASONEVALUE ( dAerolinea[Aerolinea] ),
-			    RANKX ( ALLSELECTED ( dAerolinea[Aerolinea] ), [% A Tiempo], , DESC, DENSE )
+			    RANKX ( ALLSELECTED ( dAerolinea ), [% A Tiempo], , DESC, DENSE )
 			)
 		formatString: 0
 		displayFolder: 4 Comparaciones
@@ -219,7 +239,7 @@ table Medidas
 		formatString: #,0
 		displayFolder: 6 Detalle
 
-	measure 'Texto Detalle' = "Vuelo por vuelo – " & FORMAT ( MAX ( fDetalle[Fecha] ), "mmmm yyyy" ) & " (último mes publicado por BTS)"
+	measure 'Texto Detalle' = "Vuelos de " & FORMAT ( MAX ( fDetalle[Fecha] ), "mmmm yyyy" )
 		displayFolder: 6 Detalle
 
 	/// Semáforo: verde ≥80%, ámbar ≥72%, rojo debajo

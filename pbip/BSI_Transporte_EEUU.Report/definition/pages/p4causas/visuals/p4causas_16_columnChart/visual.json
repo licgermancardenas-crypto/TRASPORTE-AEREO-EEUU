@@ -24,10 +24,10 @@
                       "Entity": "dMes"
                     }
                   },
-                  "Property": "AnioMes"
+                  "Property": "FechaMes"
                 }
               },
-              "queryRef": "dMes.AnioMes",
+              "queryRef": "dMes.FechaMes",
               "nativeQueryRef": "Mes",
               "displayName": "Mes"
             }
@@ -47,8 +47,8 @@
                 }
               },
               "queryRef": "Medidas.Min Demora Aerolínea",
-              "nativeQueryRef": "Aerolínea",
-              "displayName": "Aerolínea"
+              "nativeQueryRef": "Operación aerolínea",
+              "displayName": "Operación aerolínea"
             },
             {
               "field": {
@@ -123,7 +123,7 @@
                     "Entity": "dMes"
                   }
                 },
-                "Property": "AnioMes"
+                "Property": "FechaMes"
               }
             },
             "direction": "Ascending"
@@ -131,6 +131,34 @@
         ],
         "isDefaultSort": false
       }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "background": [

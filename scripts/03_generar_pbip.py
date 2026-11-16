@@ -148,6 +148,16 @@ MEDIDAS = [
     ("% A Tiempo Año Anterior", AA.format(m="[% A Tiempo]"), "0.0%", "4 Comparaciones", None),
     ("Δ % A Tiempo vs AA", "IF ( NOT ISBLANK ( [% A Tiempo Año Anterior] ), [% A Tiempo] - [% A Tiempo Año Anterior] )",
      "+0.0%;-0.0%;0.0%", "4 Comparaciones", "Diferencia en puntos porcentuales contra iguales meses del año anterior"),
+    ("Δ % A Tiempo 12M",
+     "VAR i = MAX ( dMes[MesIndice] )\nVAR ult =\n"
+     "    CALCULATE ( [% A Tiempo], REMOVEFILTERS ( dMes ), dMes[MesIndice] > i - 12, dMes[MesIndice] <= i )\n"
+     "VAR prev =\n"
+     "    CALCULATE ( [% A Tiempo], REMOVEFILTERS ( dMes ), dMes[MesIndice] > i - 24, dMes[MesIndice] <= i - 12 )\n"
+     "RETURN\n    IF ( i >= 24 && NOT ISBLANK ( ult ) && NOT ISBLANK ( prev ), ult - prev )",
+     "+0.0%;-0.0%;0.0%", "4 Comparaciones",
+     "Últimos 12 meses hasta el último mes elegido vs los 12 anteriores (pp)"),
+    ("Cancelados por Causa", "VAR v = [Vuelos Cancelados]\nRETURN\n    IF ( v > 0, v )", "#,0", "1 Volumen",
+     "Igual que Vuelos Cancelados pero en blanco si es 0 (oculta 'No cancelado')"),
     ("% A Tiempo Mes Anterior",
      "VAR i = MAX ( dMes[MesIndice] )\nRETURN\n    IF (\n        HASONEVALUE ( dMes[MesIndice] ),\n"
      "        CALCULATE ( [% A Tiempo], REMOVEFILTERS ( dMes ), dMes[MesIndice] = i - 1 )\n    )",
@@ -157,7 +167,7 @@ MEDIDAS = [
      "        dMes[MesIndice] > i - 3,\n        dMes[MesIndice] <= i\n    )",
      "0.0%", "4 Comparaciones", "Últimos 3 meses hasta el mes del contexto"),
     ("Ranking Aerolínea",
-     "IF (\n    HASONEVALUE ( dAerolinea[Aerolinea] ),\n    RANKX ( ALLSELECTED ( dAerolinea[Aerolinea] ), [% A Tiempo], , DESC, DENSE )\n)",
+     "IF (\n    HASONEVALUE ( dAerolinea[Aerolinea] ),\n    RANKX ( ALLSELECTED ( dAerolinea ), [% A Tiempo], , DESC, DENSE )\n)",
      "0", "4 Comparaciones", "Posición por % a tiempo dentro de lo filtrado"),
     # --- Patrones (fPatrones: mes × aerolínea × día × hora)
     ("P Vuelos", "SUM ( fPatrones[Vuelos] )", "#,0", "5 Patrones", None),
@@ -170,7 +180,7 @@ MEDIDAS = [
     # --- Detalle
     ("D Vuelos", "COUNTROWS ( fDetalle )", "#,0", "6 Detalle", None),
     ("Texto Detalle",
-     "\"Vuelo por vuelo – \" & FORMAT ( MAX ( fDetalle[Fecha] ), \"mmmm yyyy\" ) & \" (último mes publicado por BTS)\"",
+     "\"Vuelos de \" & FORMAT ( MAX ( fDetalle[Fecha] ), \"mmmm yyyy\" )",
      None, "6 Detalle", None),
     # --- Formato y textos
     ("Color % A Tiempo",
@@ -224,7 +234,7 @@ TABLAS_DEF = {
                  "fDetalle.parquet", ["Table.TransformColumnTypes({prev}, {{\"Fecha\", type date}})"]),
     "dMes": ([("MesKey", "int64", {**H, "key": True}), ("FechaMes", "dateTime", {"fmt": "mmm yyyy"}),
               ("Anio", "int64", {"fmt": "0"}), ("MesNum", "int64", H), ("Mes", "string", {"sort_by": "MesNum"}),
-              ("AnioMes", "string"), ("MesIndice", "int64", H), ("Trimestre", "string"), ("Temporada", "string")],
+              ("AnioMes", "string", {"sort_by": "MesIndice"}), ("MesIndice", "int64", H), ("Trimestre", "string"), ("Temporada", "string")],
              "dMes.parquet", ["Table.TransformColumnTypes({prev}, {{\"FechaMes\", type date}})"]),
     "dAerolinea": ([("AerolineaCod", "string", {"key": True}), ("Aerolinea", "string"), ("TipoAerolinea", "string")],
                    "dAerolinea.parquet"),
@@ -305,6 +315,9 @@ def escribir_modelo():
 SCH = "https://developer.microsoft.com/json-schemas/fabric/item/report/definition"
 
 
+ETIQ_CAUSA = {"Aerolínea": "Operación aerolínea", "Clima": "Clima", "Sistema NAS": "Sistema NAS",
+              "Seguridad": "Seguridad", "Avión previo": "Avión previo"}
+
 # Nombres visibles en ejes, leyendas y encabezados de tabla
 NOMBRES = {
     "AnioMes": "Mes", "Anio": "Año", "Aerolinea": "Aerolínea", "TipoAerolinea": "Tipo",
@@ -318,7 +331,8 @@ NOMBRES = {
     "% Causa Controlable": "% controlable", "Ranking Aerolínea": "Ranking", "Taxi Salida Promedio": "Taxi salida (min)",
     "Vuelos Demorados": "Vuelos demorados", "Vuelos Cancelados": "Vuelos cancelados",
     "Demora Promedio Llegada": "Demora media llegada",
-    **{f"Min Demora {c}": c for c, _ in CAUSAS},
+    **{f"Min Demora {c}": ETIQ_CAUSA[c] for c, _ in CAUSAS}, **{f"% Causa {c}": ETIQ_CAUSA[c] for c, _ in CAUSAS},
+    "Δ % A Tiempo 12M": "Δ 12M (pp)", "Cancelados por Causa": "Vuelos cancelados", "FechaMes": "Mes",
 }
 
 
@@ -367,6 +381,12 @@ def contenedor(extra=None):
     return o
 
 
+GRAFICOS = {"lineChart", "clusteredBarChart", "clusteredColumnChart", "columnChart", "barChart",
+            "hundredPercentStackedBarChart"}
+BARRAS = {"clusteredBarChart", "clusteredColumnChart"}
+MAPA_ZOOM = {"p1resumen": 2.3, "p3aeropuertos": 3.2}
+
+
 class Pagina:
     def __init__(self, nombre, display):
         self.nombre, self.display, self.visuales, self.z = nombre, display, [], 0
@@ -379,6 +399,22 @@ class Pagina:
             if sort:
                 v["query"]["sortDefinition"] = {"sort": [{"field": sort[0]["field"], "direction": sort[1]}],
                                                 "isDefaultSort": False}
+        objects = dict(objects or {})
+        if vtype in GRAFICOS:
+            objects.setdefault("categoryAxis", [{"properties": {"showAxisTitle": lit(False)}}])
+            objects.setdefault("valueAxis", [{"properties": {"showAxisTitle": lit(False)}}])
+        if vtype in BARRAS and "labels" not in objects:
+            objects["labels"] = [{"properties": {"show": lit(True), "fontSize": lit(8)}}]
+        if vtype == "tableEx":
+            objects.setdefault("values", [{"properties": {"fontSize": lit(10)}}])
+            objects.setdefault("columnHeaders", [{"properties": {"fontSize": lit(10)}}])
+            objects.setdefault("total", [{"properties": {"fontSize": lit(10)}}])
+        if vtype == "azureMap":
+            objects.setdefault("mapControls", [{"properties": {
+                "autoZoom": lit(False), "zoom": lit(MAPA_ZOOM.get(self.nombre, 3.2)),
+                "centerLatitude": lit(38.5), "centerLongitude": lit(-96.5), "showStylePicker": lit(False)}}])
+            objects.setdefault("bubbleLayer", [{"properties": {
+                "minRadius": lit(2), "maxRadius": lit(16), "transparency": lit(30), "strokeWidth": lit(1)}}])
         if objects:
             v["objects"] = objects
         vco = contenedor(titulo(title) if title else {"title": [{"properties": {"show": lit(False)}}]})
@@ -426,9 +462,12 @@ class Pagina:
         # segmentadores
         y = 72
         for i, (ent, prop, tit) in enumerate(slicers or SLICERS_STD):
-            self.add("slicer", 20 + i * 250, y, 240, 54, {"Values": [C(ent, prop)]}, objects={
+            self.add("slicer", 20 + i * 250, 70, 240, 60, {"Values": [C(ent, prop)]}, objects={
                 "data": [{"properties": {"mode": lit("Dropdown")}}],
-                "header": [{"properties": {"show": lit(True), "text": lit(tit), "fontColor": {"solid": {"color": lit(GRIS)}}}}]})
+                "header": [{"properties": {"show": lit(True), "text": lit(tit), "textSize": lit(9),
+                                           "fontColor": {"solid": {"color": lit(GRIS)}}}}],
+                "items": [{"properties": {"textSize": lit(9)}}]},
+                extra_vco={"padding": [{"properties": {"top": lit(2), "bottom": lit(2), "left": lit(6), "right": lit(6)}}]})
 
     def pie(self):
         self.add("card", 20, 696, 700, 22, {"Values": [M("Texto Fuente")]}, objects={
@@ -442,7 +481,8 @@ def kpis(p, y, medidas):
     wd = (1240 - (n - 1) * 12) // n
     for i, (m, tit) in enumerate(medidas):
         p.add("card", 20 + i * (wd + 12), y, wd, 92, {"Values": [M(m)]}, title=tit, objects={
-            "labels": [{"properties": {"color": {"solid": {"color": lit(AZUL)}}, "fontSize": lit(24)}}],
+            "labels": [{"properties": {"color": {"solid": {"color": lit(AZUL)}}, "fontSize": lit(22),
+                                       "labelDisplayUnits": lit(1)}}],
             "categoryLabels": [{"properties": {"show": lit(False)}}]})
 
 
@@ -466,12 +506,12 @@ def paginas():
     # 1 RESUMEN ---------------------------------------------------------------
     p = Pagina("p1resumen", "Resumen")
     p.encabezado("Resumen ejecutivo de puntualidad")
-    kpis(p, 136, [("Vuelos", "Vuelos"), ("% A Tiempo", "% a tiempo"), ("Δ % A Tiempo vs AA", "Δ vs año anterior (pp)"),
+    kpis(p, 136, [("Vuelos", "Vuelos"), ("% A Tiempo", "% a tiempo"), ("Δ % A Tiempo 12M", "Δ últimos 12 meses (pp)"),
                   ("% Cancelados", "% cancelados"), ("Demora Promedio de Demorados", "Demora media de demorados"),
                   ("Horas de Demora", "Horas de demora")])
-    p.add("lineChart", 20, 240, 760, 220, {"Category": [C("dMes", "AnioMes")],
+    p.add("lineChart", 20, 240, 760, 220, {"Category": [C("dMes", "FechaMes")],
                                            "Y": [M("% A Tiempo"), M("% A Tiempo Móvil 3M")]},
-          title="Evolución mensual del % a tiempo", sort=(C("dMes", "AnioMes"), "Ascending"))
+          title="Evolución mensual del % a tiempo", sort=(C("dMes", "FechaMes"), "Ascending"))
     p.add("clusteredBarChart", 792, 240, 468, 450, {"Category": [C("dAerolinea", "Aerolinea")], "Y": [M("% A Tiempo")]},
           title="% a tiempo por aerolínea", objects=barras_color(), sort=(M("% A Tiempo"), "Descending"))
     p.add("azureMap", 20, 470, 760, 220, {"Category": [C("dOrigen", "OrigenCodigo")], "Y": [PROM("dOrigen", "OrigenLatitud")],
@@ -484,16 +524,17 @@ def paginas():
     # 2 AEROLÍNEAS ------------------------------------------------------------
     p = Pagina("p2aerolineas", "Aerolíneas")
     p.encabezado("Comparativo de aerolíneas")
-    p.add("tableEx", 20, 136, 760, 300, {"Values": [
+    p.add("tableEx", 20, 136, 1240, 286, {"Values": [
         C("dAerolinea", "Aerolinea"), C("dAerolinea", "TipoAerolinea"), M("Ranking Aerolínea"), M("Vuelos"),
-        M("% A Tiempo"), M("Δ % A Tiempo vs AA"), M("% Cancelados"), M("Demora Promedio de Demorados"),
-        M("% Causa Controlable")]}, title="Tabla de desempeño", sort=(M("Ranking Aerolínea"), "Ascending"))
-    p.add("clusteredBarChart", 792, 136, 468, 300, {"Category": [C("dAerolinea", "Aerolinea")], "Y": [M("Vuelos")]},
-          title="Vuelos por aerolínea", sort=(M("Vuelos"), "Descending"))
-    p.add("lineChart", 20, 448, 760, 242, {"Category": [C("dMes", "AnioMes")],
+        M("% A Tiempo"), M("Δ % A Tiempo 12M"), M("% Cancelados"), M("Demora Promedio de Demorados"),
+        M("% Causa Controlable"), M("Taxi Salida Promedio")]}, title="Tabla de desempeño (ordenar por columna)",
+        sort=(M("Ranking Aerolínea"), "Ascending"))
+    p.add("lineChart", 20, 432, 470, 258, {"Category": [C("dMes", "FechaMes")],
                                            "Series": [C("dAerolinea", "TipoAerolinea")], "Y": [M("% A Tiempo")]},
-          title="% a tiempo mensual: troncales vs regionales vs low cost", sort=(C("dMes", "AnioMes"), "Ascending"))
-    p.add("clusteredBarChart", 792, 448, 468, 242, {"Category": [C("dAerolinea", "Aerolinea")], "Y": [M("% Cancelados")]},
+          title="% a tiempo: troncales vs regionales vs low cost", sort=(C("dMes", "FechaMes"), "Ascending"))
+    p.add("clusteredBarChart", 502, 432, 374, 258, {"Category": [C("dAerolinea", "Aerolinea")], "Y": [M("Vuelos")]},
+          title="Vuelos por aerolínea", sort=(M("Vuelos"), "Descending"))
+    p.add("clusteredBarChart", 888, 432, 372, 258, {"Category": [C("dAerolinea", "Aerolinea")], "Y": [M("% Cancelados")]},
           title="% cancelados por aerolínea", sort=(M("% Cancelados"), "Descending"))
     p.pie()
     P.append(p)
@@ -519,23 +560,23 @@ def paginas():
     # 4 CAUSAS ----------------------------------------------------------------
     p = Pagina("p4causas", "Causas de demora")
     p.encabezado("Por qué se demoran y cancelan los vuelos")
-    kpis(p, 136, [(f"% Causa {c}", c) for c, _ in CAUSAS] + [("% Causa Controlable", "Controlable por aerolínea")])
-    p.add("columnChart", 20, 240, 760, 220, {"Category": [C("dMes", "AnioMes")],
+    kpis(p, 136, [(f"% Causa {c}", ETIQ_CAUSA[c]) for c, _ in CAUSAS] + [("% Causa Controlable", "Controlable por aerolínea")])
+    p.add("columnChart", 20, 240, 760, 220, {"Category": [C("dMes", "FechaMes")],
                                              "Y": [M(f"Min Demora {c}") for c, _ in CAUSAS]},
-          title="Minutos de demora por causa y mes", sort=(C("dMes", "AnioMes"), "Ascending"))
+          title="Minutos de demora por causa y mes", sort=(C("dMes", "FechaMes"), "Ascending"))
     p.add("clusteredBarChart", 792, 240, 468, 220, {"Category": [C("dCausaCancelacion", "CausaCancelacion")],
-                                                    "Y": [M("Vuelos Cancelados")]},
-          title="Cancelaciones por causa", sort=(M("Vuelos Cancelados"), "Descending"))
-    p.add("hundredPercentStackedBarChart", 20, 470, 1240, 220, {"Category": [C("dAerolinea", "Aerolinea")],
-                                                                "Y": [M(f"Min Demora {c}") for c, _ in CAUSAS]},
-          title="Mezcla de causas por aerolínea")
+                                                    "Y": [M("Cancelados por Causa")]},
+          title="Cancelaciones por causa", sort=(M("Cancelados por Causa"), "Descending"))
+    p.add("barChart", 20, 470, 1240, 220, {"Category": [C("dAerolinea", "Aerolinea")],
+                                           "Y": [M(f"% Causa {c}") for c, _ in CAUSAS]},
+          title="Mezcla de causas por aerolínea (% de minutos de demora)", sort=(M("% Causa Aerolínea"), "Descending"))
     p.pie()
     P.append(p)
 
     # 5 PATRONES --------------------------------------------------------------
     p = Pagina("p5patrones", "Patrones horarios")
     p.encabezado("Cuándo conviene volar", SLICERS_PATRON)
-    p.add("pivotTable", 20, 136, 1240, 250, {"Rows": [C("dDiaSemana", "DiaSemana")], "Columns": [C("dHora", "HoraTexto")],
+    p.add("pivotTable", 20, 136, 1240, 226, {"Rows": [C("dDiaSemana", "DiaSemana")], "Columns": [C("dHora", "HoraTexto")],
                                              "Values": [M("P % Demorados")]},
           title="% de vuelos demorados por día y hora programada de salida",
           objects={"values": [{"properties": {
@@ -543,13 +584,13 @@ def paginas():
                   "Expression": {"SourceRef": {"Entity": "Medidas"}}, "Property": "Color % Demorados"}}}}},
               "fontColor": {"solid": {"color": lit("#FFFFFF")}}},
               "selector": {"data": [{"dataViewWildcard": {"matchingOption": 1}}], "metadata": "Medidas.P % Demorados"}}]})
-    p.add("lineChart", 20, 396, 610, 294, {"Category": [C("dMes", "Mes")], "Series": [C("dMes", "Anio")],
+    p.add("lineChart", 20, 372, 610, 318, {"Category": [C("dMes", "Mes")], "Series": [C("dMes", "Anio")],
                                            "Y": [M("% A Tiempo")]},
           title="Estacionalidad: % a tiempo por mes y año", sort=(C("dMes", "Mes"), "Ascending"))
-    p.add("clusteredColumnChart", 642, 396, 300, 294, {"Category": [C("dHora", "FranjaHoraria")], "Y": [M("P % A Tiempo")]},
+    p.add("clusteredColumnChart", 642, 372, 300, 318, {"Category": [C("dHora", "FranjaHoraria")], "Y": [M("P % A Tiempo")]},
           title="% a tiempo por franja", objects=barras_color("Color P % A Tiempo"),
           sort=(C("dHora", "FranjaHoraria"), "Ascending"))
-    p.add("clusteredColumnChart", 954, 396, 306, 294, {"Category": [C("dDiaSemana", "DiaSemana")], "Y": [M("P % Cancelados")]},
+    p.add("clusteredColumnChart", 954, 372, 306, 318, {"Category": [C("dDiaSemana", "DiaSemana")], "Y": [M("P % Cancelados")]},
           title="% cancelados por día", sort=(C("dDiaSemana", "DiaSemana"), "Ascending"))
     p.pie()
     P.append(p)

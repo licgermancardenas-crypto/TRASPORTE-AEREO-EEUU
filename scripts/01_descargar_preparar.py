@@ -51,7 +51,7 @@ TIPO = {  # red troncal vs regional / low cost
 }
 CAUSAS_CANC = pd.DataFrame({
     "CodigoCancelacion": ["A", "B", "C", "D", "N"],
-    "CausaCancelacion": ["Aerolínea", "Clima", "Sistema Nacional (NAS)", "Seguridad", "No cancelado"],
+    "CausaCancelacion": ["Aerolínea", "Clima", "Sistema NAS", "Seguridad", "No cancelado"],
 })
 MESES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto",
          "Septiembre", "Octubre", "Noviembre", "Diciembre"]

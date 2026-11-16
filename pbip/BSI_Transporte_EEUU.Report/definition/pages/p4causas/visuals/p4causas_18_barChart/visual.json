@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "p4causas_18_hundredPercentStackedBarChart",
+  "name": "p4causas_18_barChart",
   "position": {
     "x": 20,
     "y": 470,
@@ -10,7 +10,7 @@
     "tabOrder": 18000
   },
   "visual": {
-    "visualType": "hundredPercentStackedBarChart",
+    "visualType": "barChart",
     "drillFilterOtherVisuals": true,
     "query": {
       "queryState": {
@@ -43,12 +43,12 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Min Demora Aerolínea"
+                  "Property": "% Causa Aerolínea"
                 }
               },
-              "queryRef": "Medidas.Min Demora Aerolínea",
-              "nativeQueryRef": "Aerolínea",
-              "displayName": "Aerolínea"
+              "queryRef": "Medidas.% Causa Aerolínea",
+              "nativeQueryRef": "Operación aerolínea",
+              "displayName": "Operación aerolínea"
             },
             {
               "field": {
@@ -58,10 +58,10 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Min Demora Clima"
+                  "Property": "% Causa Clima"
                 }
               },
-              "queryRef": "Medidas.Min Demora Clima",
+              "queryRef": "Medidas.% Causa Clima",
               "nativeQueryRef": "Clima",
               "displayName": "Clima"
             },
@@ -73,10 +73,10 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Min Demora Sistema NAS"
+                  "Property": "% Causa Sistema NAS"
                 }
               },
-              "queryRef": "Medidas.Min Demora Sistema NAS",
+              "queryRef": "Medidas.% Causa Sistema NAS",
               "nativeQueryRef": "Sistema NAS",
               "displayName": "Sistema NAS"
             },
@@ -88,10 +88,10 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Min Demora Seguridad"
+                  "Property": "% Causa Seguridad"
                 }
               },
-              "queryRef": "Medidas.Min Demora Seguridad",
+              "queryRef": "Medidas.% Causa Seguridad",
               "nativeQueryRef": "Seguridad",
               "displayName": "Seguridad"
             },
@@ -103,16 +103,62 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Min Demora Avión previo"
+                  "Property": "% Causa Avión previo"
                 }
               },
-              "queryRef": "Medidas.Min Demora Avión previo",
+              "queryRef": "Medidas.% Causa Avión previo",
               "nativeQueryRef": "Avión previo",
               "displayName": "Avión previo"
             }
           ]
         }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Medidas"
+                  }
+                },
+                "Property": "% Causa Aerolínea"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": false
       }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "background": [
@@ -196,7 +242,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Mezcla de causas por aerolínea'"
+                  "Value": "'Mezcla de causas por aerolínea (% de minutos de demora)'"
                 }
               }
             },

@@ -5,8 +5,8 @@
     "x": 20,
     "y": 136,
     "z": 10000,
-    "width": 760,
-    "height": 300,
+    "width": 1240,
+    "height": 286,
     "tabOrder": 10000
   },
   "visual": {
@@ -98,12 +98,12 @@
                       "Entity": "Medidas"
                     }
                   },
-                  "Property": "Δ % A Tiempo vs AA"
+                  "Property": "Δ % A Tiempo 12M"
                 }
               },
-              "queryRef": "Medidas.Δ % A Tiempo vs AA",
-              "nativeQueryRef": "Δ vs año ant. (pp)",
-              "displayName": "Δ vs año ant. (pp)"
+              "queryRef": "Medidas.Δ % A Tiempo 12M",
+              "nativeQueryRef": "Δ 12M (pp)",
+              "displayName": "Δ 12M (pp)"
             },
             {
               "field": {
@@ -149,6 +149,21 @@
               "queryRef": "Medidas.% Causa Controlable",
               "nativeQueryRef": "% controlable",
               "displayName": "% controlable"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Medidas"
+                    }
+                  },
+                  "Property": "Taxi Salida Promedio"
+                }
+              },
+              "queryRef": "Medidas.Taxi Salida Promedio",
+              "nativeQueryRef": "Taxi salida (min)",
+              "displayName": "Taxi salida (min)"
             }
           ]
         }
@@ -171,6 +186,47 @@
         ],
         "isDefaultSort": false
       }
+    },
+    "objects": {
+      "values": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "columnHeaders": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "total": [
+        {
+          "properties": {
+            "fontSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "10D"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "background": [
@@ -254,7 +310,7 @@
             "text": {
               "expr": {
                 "Literal": {
-                  "Value": "'Tabla de desempeño'"
+                  "Value": "'Tabla de desempeño (ordenar por columna)'"
                 }
               }
             },

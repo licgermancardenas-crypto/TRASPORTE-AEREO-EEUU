@@ -24,10 +24,10 @@
                       "Entity": "dMes"
                     }
                   },
-                  "Property": "AnioMes"
+                  "Property": "FechaMes"
                 }
               },
-              "queryRef": "dMes.AnioMes",
+              "queryRef": "dMes.FechaMes",
               "nativeQueryRef": "Mes",
               "displayName": "Mes"
             }
@@ -78,7 +78,7 @@
                     "Entity": "dMes"
                   }
                 },
-                "Property": "AnioMes"
+                "Property": "FechaMes"
               }
             },
             "direction": "Ascending"
@@ -86,6 +86,34 @@
         ],
         "isDefaultSort": false
       }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
     },
     "visualContainerObjects": {
       "background": [
